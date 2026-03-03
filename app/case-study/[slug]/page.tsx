@@ -9,8 +9,9 @@ export async function generateStaticParams() {
   return getAllSlugs().map(slug => ({ slug }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const cs = getCaseStudy(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const cs = getCaseStudy(slug)
   return { title: cs ? `${cs.tag} • Your Name` : 'Not Found' }
 }
 
@@ -37,8 +38,9 @@ function ImgPlaceholder({
   )
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const cs = getCaseStudy(params.slug)
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const cs = getCaseStudy(slug)
   if (!cs) notFound()
 
   return (

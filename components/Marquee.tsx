@@ -13,37 +13,75 @@ const PROJECTS = [
   { id: 'project-six',   label: 'Project Six',   gradient: 'linear-gradient(135deg,#d4d0b0,#b8b080)', hasLink: true,  alt: 'Screenshot of Project Six' },
 ]
 
-// Duplicate for seamless CSS loop
-const CARDS = [...PROJECTS, ...PROJECTS]
+// Triple set for seamless infinite manual navigation
+const CARDS = [...PROJECTS, ...PROJECTS, ...PROJECTS]
+const PROJECT_COUNT = PROJECTS.length
+const CARD_WIDTH_WITH_GAP = 320 + 20
+const MIDDLE_SET_START = PROJECT_COUNT
+const MIDDLE_SET_END = PROJECT_COUNT * 2
+
+const normalizeIndex = (index: number) => {
+  return ((index % PROJECT_COUNT) + PROJECT_COUNT) % PROJECT_COUNT
+}
 
 export default function Marquee() {
   const [paused, setPaused] = useState(false)
   const [hovering, setHovering] = useState(false)
   const [focused, setFocused] = useState(false)
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentVirtualIndex, setCurrentVirtualIndex] = useState(MIDDLE_SET_START)
   const [isManualMode, setIsManualMode] = useState(false)
   const trackRef = useRef<HTMLDivElement>(null)
+  const recenterTimeoutRef = useRef<number | null>(null)
+
+  const currentIndex = normalizeIndex(currentVirtualIndex)
 
   // Derived: animation should stop if paused by user, hover, focus, or in manual mode
   const shouldPause = paused || hovering || focused || isManualMode
 
   // Navigate to a specific slide
-  const goToSlide = useCallback((index: number) => {
+  const goToSlide = useCallback((virtualIndex: number) => {
     const track = trackRef.current
     if (!track) return
     
     // Enter manual mode and pause
     setIsManualMode(true)
     setPaused(true)
-    setCurrentIndex(index)
+    setCurrentVirtualIndex(virtualIndex)
     
-    const cardWidth = 320 + 20 // card width + gap
-    const offset = -(index * cardWidth)
+    const offset = -(virtualIndex * CARD_WIDTH_WITH_GAP)
     
     // Fully stop the CSS marquee animation so inline transform takes effect
     track.style.animation = 'none'
     track.style.transition = 'transform 0.5s ease'
     track.style.transform = `translateX(${offset}px)`
+
+    if (recenterTimeoutRef.current) {
+      window.clearTimeout(recenterTimeoutRef.current)
+    }
+
+    recenterTimeoutRef.current = window.setTimeout(() => {
+      const currentTrack = trackRef.current
+      if (!currentTrack) return
+
+      let recenteredIndex = virtualIndex
+      if (virtualIndex < MIDDLE_SET_START) {
+        recenteredIndex = virtualIndex + PROJECT_COUNT
+      } else if (virtualIndex >= MIDDLE_SET_END) {
+        recenteredIndex = virtualIndex - PROJECT_COUNT
+      }
+
+      if (recenteredIndex !== virtualIndex) {
+        setCurrentVirtualIndex(recenteredIndex)
+        currentTrack.style.transition = 'none'
+        currentTrack.style.transform = `translateX(${-recenteredIndex * CARD_WIDTH_WITH_GAP}px)`
+
+        requestAnimationFrame(() => {
+          const updatedTrack = trackRef.current
+          if (!updatedTrack) return
+          updatedTrack.style.transition = 'transform 0.5s ease'
+        })
+      }
+    }, 520)
   }, [])
 
   // focus the active card when index changes in manual mode
@@ -51,10 +89,18 @@ export default function Marquee() {
     if (!isManualMode) return
     const track = trackRef.current
     if (!track) return
-    const sel = `.marquee-card[data-slide-index="${currentIndex}"]`
+    const sel = `.marquee-card[data-virtual-index="${currentVirtualIndex}"]`
     const el = track.querySelector(sel) as HTMLElement | null
     if (el) el.focus()
-  }, [currentIndex, isManualMode])
+  }, [currentVirtualIndex, isManualMode])
+
+  useEffect(() => {
+    return () => {
+      if (recenterTimeoutRef.current) {
+        window.clearTimeout(recenterTimeoutRef.current)
+      }
+    }
+  }, [])
 
   // Announce slide info to screen readers
   const [announcement, setAnnouncement] = useState('')
@@ -64,16 +110,14 @@ export default function Marquee() {
     // ensure carousel is paused when manually navigating
     setPaused(true)
 
-    let nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1
-    
-    // Wrap around
-    if (nextIndex < 0) nextIndex = PROJECTS.length - 1
-    if (nextIndex >= PROJECTS.length) nextIndex = 0
-    
-    console.log('[Marquee] navigate', direction, 'from', currentIndex, 'to', nextIndex)
-    goToSlide(nextIndex)
-    setAnnouncement(`Showing ${PROJECTS[nextIndex].label}, slide ${nextIndex + 1} of ${PROJECTS.length}`)
-  }, [currentIndex, goToSlide])
+    const nextVirtualIndex = direction === 'next'
+      ? currentVirtualIndex + 1
+      : currentVirtualIndex - 1
+    const nextProjectIndex = normalizeIndex(nextVirtualIndex)
+
+    goToSlide(nextVirtualIndex)
+    setAnnouncement(`Showing ${PROJECTS[nextProjectIndex].label}, slide ${nextProjectIndex + 1} of ${PROJECTS.length}`)
+  }, [currentVirtualIndex, goToSlide])
 
   
 
@@ -109,19 +153,19 @@ export default function Marquee() {
         onBlurCapture={() => setFocused(false)}
       >
         {CARDS.map((project, i) => {
-          const isOriginal = i < PROJECTS.length
-          const slideIndex = isOriginal ? i : i - PROJECTS.length
-          const isActive = isOriginal && slideIndex === currentIndex
+          const projectIndex = normalizeIndex(i)
+          const isMiddleSet = i >= MIDDLE_SET_START && i < MIDDLE_SET_END
+          const isActive = i === currentVirtualIndex
           return (
             <div
               key={`${project.id}-${i}`}
               className={"marquee-card" + (isActive ? ' marquee-card--active' : '')}
               role="group"
               aria-roledescription="slide"
-              aria-label={`${project.label}, slide ${(i % PROJECTS.length) + 1} of ${PROJECTS.length}`}
+              aria-label={`${project.label}, slide ${projectIndex + 1} of ${PROJECTS.length}`}
               // Hide duplicated cards from screen readers
-              aria-hidden={!isOriginal ? true : undefined}
-              data-slide-index={isOriginal ? slideIndex : undefined}
+              aria-hidden={!isMiddleSet ? true : undefined}
+              data-virtual-index={i}
               tabIndex={isActive ? 0 : -1}
             >
               {/* Replace the div below with an <Image> when you have real screenshots */}
@@ -172,12 +216,12 @@ export default function Marquee() {
                   const match = computed.match(/matrix\(1,\s*0,\s*0,\s*1,\s*(-?[\d.]+),/)
                   if (match) currentX = parseFloat(match[1])
                 }
-                const cardWidth = 320 + 20
-                const snapIndex = Math.round(Math.abs(currentX) / cardWidth) % PROJECTS.length
-                setCurrentIndex(snapIndex)
-                goToSlide(snapIndex)
+                const rawIndex = Math.round(Math.abs(currentX) / CARD_WIDTH_WITH_GAP)
+                const snapIndex = normalizeIndex(rawIndex)
+                const snapVirtualIndex = MIDDLE_SET_START + snapIndex
+                goToSlide(snapVirtualIndex)
+                setAnnouncement(`Slideshow paused on ${PROJECTS[snapIndex].label}`)
               }
-              setAnnouncement(`Slideshow paused on ${PROJECTS[currentIndex].label}`)
             } else {
               // Resume auto-scroll
               setIsManualMode(false)

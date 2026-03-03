@@ -239,8 +239,10 @@ export default function DraggableCanvas({ items }: DraggableCanvasProps) {
 
       function onMove(cx: number, cy: number) {
         if (!isDragging) return
-        const vw = viewport.clientWidth
-        const vh = viewport.clientHeight
+        const currentViewport = viewportRef.current
+        if (!currentViewport) return
+        const vw = currentViewport.clientWidth
+        const vh = currentViewport.clientHeight
         const ew = el.offsetWidth
         const eh = el.offsetHeight
         el.style.left = Math.max(0, Math.min(vw - ew, startL + cx - startCX)) + 'px'

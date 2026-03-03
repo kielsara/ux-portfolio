@@ -18,7 +18,7 @@ portfolio/
 ├── components/
 │   ├── Sidebar.tsx             ← left nav (shared between home + case study)
 │   ├── Marquee.tsx             ← scrolling project cards on home page
-│   └── DraggableCanvas.tsx    ← interactive research board on case study
+│   └── DraggableCanvas.tsx     ← interactive research board on case study
 ├── lib/
 │   └── caseStudies.ts          ← ✏️  YOUR CONTENT LIVES HERE
 ├── public/                     ← drop images/PDFs here
@@ -135,24 +135,6 @@ have to manually deploy again.
 
 ### Custom domain (optional):
 In your Vercel project → Settings → Domains → add your domain.
-
----
-
-## Common questions
-
-**"I changed the text but the site didn't update"**
-Make sure `npm run dev` is running in your terminal.
-
-**"I see a TypeScript error"**
-TypeScript errors usually appear in your terminal. Read the message — it usually
-tells you exactly which file and line to fix.
-
-**"How do I add a new page (like /about)?"**
-Create a file at `app/about/page.tsx`. Next.js routing is folder-based —
-the file path IS the URL path.
-
-**"Can I use plain CSS classes instead of the design system?"**
-Yes — all classes are in `app/globals.css`. Add new classes there freely.
 
 ---
 

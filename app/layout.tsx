@@ -18,8 +18,8 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Your Name • Product Design',
-  description: 'Portfolio of [Your Name], product designer.',
+  title: 'Sara Kiel\'s UX Portfolio',
+  description: 'Portfolio of Sara Kiel, UX Researcher & Designer.',
 }
 
 export default function RootLayout({
