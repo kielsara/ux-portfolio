@@ -1,0 +1,100 @@
+import Link from 'next/link'
+
+// ── Types ──────────────────────────────────────────────
+interface NavItem {
+  href: string
+  label: string
+  sub?: string
+  external?: boolean
+}
+
+interface NavGroup {
+  groupLabel?: string
+  items: NavItem[]
+}
+
+export interface SidebarProps {
+  /** Home sidebar: show logo + nav groups */
+  variant?: 'home' | 'case-study'
+  /** Italic subtitle shown below back link (case-study variant) */
+  intro?: string
+  /** TOC entries (case-study variant) */
+  toc?: { id: string; symbol: string; label: string }[]
+  /** Active TOC id (controlled externally via client component) */
+  activeTocId?: string
+}
+
+// ── Shared nav data — edit this to match your projects ──
+const NAV_GROUPS: NavGroup[] = [
+  {
+    items: [{ href: '/about', label: 'About' }],
+  },
+  {
+    groupLabel: 'Case Studies',
+    items: [
+      { href: '/case-study/project-one',   label: 'Project One',   sub: 'Brief description here' },
+      { href: '/case-study/project-two',   label: 'Project Two',   sub: 'Brief description here' },
+      { href: '/case-study/project-three', label: 'Project Three', sub: 'Brief description here' },
+    ],
+  },
+  {
+    groupLabel: 'Work With Me',
+    items: [
+      { href: 'mailto:you@email.com',                   label: 'Email',    sub: 'Shoot me a message' },
+      { href: 'https://linkedin.com/in/yourhandle',     label: 'LinkedIn', sub: "Let's connect", external: true },
+      { href: '/resume.pdf',                            label: 'Resume',   sub: 'Download PDF' },
+    ],
+  },
+]
+
+export default function Sidebar({ variant = 'home', intro, toc }: SidebarProps) {
+  return (
+    <aside className="sidebar">
+      {variant === 'home' ? (
+        <>
+          <div className="sidebar-logo">
+            <Link href="/">Your Name</Link>
+          </div>
+          <nav className="nav">
+            {NAV_GROUPS.map((group, i) => (
+              <div key={i} className="nav-group">
+                {group.groupLabel && (
+                  <span className="nav-label">{group.groupLabel}</span>
+                )}
+                {group.items.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="nav-link"
+                    {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {item.label}
+                    {item.sub && <span className="nav-sub">{item.sub}</span>}
+                  </Link>
+                ))}
+              </div>
+            ))}
+          </nav>
+        </>
+      ) : (
+        <>
+          <div className="sidebar-back">
+            <Link href="/">← Index</Link>
+          </div>
+          {intro && <p className="sidebar-intro">{intro}</p>}
+          {toc && toc.length > 0 && (
+            <nav className="toc">
+              <span className="toc-label">On this page</span>
+              {toc.map((entry) => (
+                <a key={entry.id} href={`#${entry.id}`} className="toc-link">
+                  <span className="toc-symbol">{entry.symbol}</span>
+                  {entry.label}
+                </a>
+              ))}
+            </nav>
+          )}
+        </>
+      )}
+    </aside>
+  )
+}
