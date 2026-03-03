@@ -38,11 +38,11 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
-    groupLabel: 'Work With Me',
+    groupLabel: 'Contact Info',
     items: [
-      { href: 'mailto:you@email.com',                   label: 'Email',    sub: 'Shoot me a message' },
-      { href: 'https://linkedin.com/in/yourhandle',     label: 'LinkedIn', sub: "Let's connect", external: true },
-      { href: '/resume.pdf',                            label: 'Resume',   sub: 'Download PDF' },
+      { href: 'mailto:smkiel2@illinois.edu',                   label: 'Email',    sub: 'Send me a message' },
+      { href: 'https://linkedin.com/in/saramkiel',     label: 'LinkedIn', sub: "Connect with me", external: true },
+      { href: '/resume.pdf',                            label: 'Resume',   sub: 'Download my resume (PDF)' },
     ],
   },
 ]
@@ -53,7 +53,7 @@ export default function Sidebar({ variant = 'home', intro, toc }: SidebarProps) 
       {variant === 'home' ? (
         <>
           <div className="sidebar-logo">
-            <Link href="/">Your Name</Link>
+            <Link href="/">Sara Kiel</Link>
           </div>
           <nav className="nav">
             {NAV_GROUPS.map((group, i) => (

@@ -31,7 +31,7 @@ export default function Home() {
         <footer className="site-footer">
           <span>Built with Next.js</span>
           <div className="footer-links">
-            <Link href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener noreferrer">
+            <Link href="https://linkedin.com/in/saramkiel" target="_blank" rel="noopener noreferrer">
               LinkedIn
             </Link>
             <Link href="/resume.pdf">Resume</Link>
