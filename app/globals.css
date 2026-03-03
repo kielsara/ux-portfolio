@@ -13,6 +13,19 @@
   --font-sans:  'DM Sans', sans-serif;
 }
 
+/* ── Screen-reader only utility ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
@@ -132,6 +145,7 @@ a { color: inherit; text-decoration: none; }
 /* ── Main area ── */
 .main {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -206,7 +220,7 @@ a { color: inherit; text-decoration: none; }
 .marquee-wrapper {
   overflow: hidden;
   border-bottom: 1px solid var(--border);
-  padding: 40px 0;
+  padding: 40px 0 24px;
 }
 .marquee-track {
   display: flex;
@@ -214,7 +228,8 @@ a { color: inherit; text-decoration: none; }
   width: max-content;
   animation: marquee 40s linear infinite;
 }
-.marquee-wrapper:hover .marquee-track {
+/* Pause via JS-controlled class (user pause, hover, or focus) */
+.marquee-track--paused {
   animation-play-state: paused;
 }
 @keyframes marquee {
@@ -255,6 +270,59 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.72rem;
   border-bottom: 1px solid rgba(255,255,255,0.4);
   padding-bottom: 1px;
+}
+
+/* ── Marquee controls ── */
+.marquee-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 0 4px;
+  position: relative;
+  z-index: 10;
+}
+.marquee-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  /* Ensure sufficient contrast ratio (bg #f5f3ee / text #1a1916) */
+}
+.marquee-btn:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+.marquee-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Pause button slightly wider to stand out */
+.marquee-btn--pause {
+  width: 40px;
+  height: 40px;
+  border-width: 2px;
+}
+
+.marquee-caption {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 8px 0 28px;
+}
+
+/* Active card outline (match control focus style) */
+.marquee-card--active,
+.marquee-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 /* ═══════════════════════════════════
