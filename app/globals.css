@@ -690,6 +690,182 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
 }
 
 /* ═══════════════════════════════════
+   DESIGN SYSTEM PROJECT COMPONENTS
+═══════════════════════════════════ */
+
+/* ── Hero with title overlay ── */
+.hero-image--ds {
+  position: relative;
+}
+
+.hero-title-overlay {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.95);
+  text-transform: uppercase;
+  border: 3px solid rgba(255,255,255,0.9);
+  padding: 16px 32px;
+}
+
+/* ── Context link ── */
+.context-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--accent);
+  border-radius: 6px;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.context-link:hover {
+  background: #b5571f;
+  transform: translateY(-1px);
+}
+
+/* ── Goals and Results lists ── */
+.goals-list,
+.results-list {
+  list-style: none;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.goals-list li,
+.results-list li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #3a3835;
+}
+
+.goals-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.results-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ── Wide article sections ── */
+.article-section--wide {
+  max-width: 920px;
+}
+
+/* ── Section subhead ── */
+.section-subhead {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+/* ── Chart categories table ── */
+.chart-categories {
+  margin: 28px 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.4);
+}
+
+.chart-categories-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  padding: 14px 20px;
+  background: rgba(26,26,46,0.05);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.chart-category-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  padding: 14px 20px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.chart-category-row:last-child {
+  border-bottom: none;
+}
+
+.chart-category-label {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.chart-category-value {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── Before/After grid ── */
+.before-after-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.before-after-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.before-after-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Back to top ── */
+.back-to-top {
+  text-align: center;
+  padding: 40px 60px;
+  border-top: 1px solid var(--border);
+}
+
+.back-to-top a {
+  font-size: 0.82rem;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+
+.back-to-top a:hover {
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════
    ABOUT PAGE
 ═══════════════════════════════════ */
 
@@ -932,4 +1108,12 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   .findings-grid { grid-template-columns: 1fr; }
   .process-step { flex-direction: column; gap: 12px; }
   .step-num { width: auto; }
+  
+  /* Design system responsive */
+  .before-after-grid { grid-template-columns: 1fr; gap: 32px; }
+  .chart-categories-header,
+  .chart-category-row { grid-template-columns: 1fr; gap: 4px; }
+  .chart-categories-header span:first-child { display: none; }
+  .back-to-top { padding: 24px; }
+  .hero-title-overlay { font-size: 1.5rem; padding: 12px 20px; }
 }

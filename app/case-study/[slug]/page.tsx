@@ -299,6 +299,223 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     )
   }
 
+  // ── Design System project layout ──
+  if (cs.isDesignSystem) {
+    return (
+      <div className="layout">
+        <Sidebar variant="case-study" intro={cs.intro} toc={cs.toc} />
+
+        <main className="main">
+
+          {/* ── Header ── */}
+          <header className="case-header">
+            <div className="case-tag">{cs.tag}</div>
+            <h1>{cs.title}</h1>
+            <p>{cs.overview}</p>
+            <div className="meta-row">
+              <div className="meta-item">
+                <span className="meta-label">Role</span>
+                <span className="meta-value">{cs.role}</span>
+              </div>
+              <div className="meta-item">
+                <span className="meta-label">Duration</span>
+                <span className="meta-value">{cs.timeline}</span>
+              </div>
+              {cs.tools && (
+                <div className="meta-item">
+                  <span className="meta-label">Tools</span>
+                  <span className="meta-value">{cs.tools}</span>
+                </div>
+              )}
+              {cs.methods && (
+                <div className="meta-item meta-item-wide">
+                  <span className="meta-label">Methods</span>
+                  <span className="meta-value">{cs.methods}</span>
+                </div>
+              )}
+            </div>
+          </header>
+
+          {/* ── Hero image ── */}
+          <div
+            className="hero-image hero-image--ds"
+            style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#1a1a2e,#16213e)' }}
+          >
+            <span className="hero-title-overlay">DESIGN SYSTEM</span>
+          </div>
+
+          {/* ═══ Context ═══ */}
+          {cs.context && (
+            <section className="article-section" id="context">
+              <div className="section-eyebrow">Context</div>
+              <h2>{cs.context.headline}</h2>
+              <p>{cs.context.body}</p>
+              {cs.context.body2 && <p>{cs.context.body2}</p>}
+              {cs.context.linkText && (
+                <a href="#architecture" className="context-link">{cs.context.linkText}</a>
+              )}
+            </section>
+          )}
+
+          {/* ═══ Goals ═══ */}
+          {cs.goals && (
+            <section className="article-section" id="goals">
+              <div className="section-eyebrow">Goals</div>
+              {cs.goals.headline && <h2>{cs.goals.headline}</h2>}
+              <ul className="goals-list">
+                {cs.goals.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* ═══ Results ═══ */}
+          {cs.results && (
+            <section className="article-section" id="results">
+              <div className="section-eyebrow">Results</div>
+              {cs.results.headline && <h2>{cs.results.headline}</h2>}
+              <ul className="results-list">
+                {cs.results.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* ═══ Reflections ═══ */}
+          {cs.reflections && (
+            <section className="article-section" id="reflections">
+              <div className="section-eyebrow">Reflections</div>
+              <h2>{cs.reflections.headline}</h2>
+              <p>{cs.reflections.body}</p>
+            </section>
+          )}
+
+          {/* ═══ Process & Design Decisions — Component Architecture ═══ */}
+          {cs.componentArchitecture && (
+            <section className="article-section article-section--wide" id="architecture">
+              <div className="section-eyebrow">Process &amp; Design Decisions</div>
+              <h2 className="section-subhead">Component Architecture</h2>
+              <h3>{cs.componentArchitecture.headline}</h3>
+              <p>{cs.componentArchitecture.body}</p>
+              {cs.componentArchitecture.body2 && <p>{cs.componentArchitecture.body2}</p>}
+              {cs.componentArchitecture.body3 && <p>{cs.componentArchitecture.body3}</p>}
+              <ImgPlaceholder
+                gradient="linear-gradient(135deg,#1a1a2e,#2d2d44)"
+                label="[ component architecture diagram ]"
+                caption="Design system structure showing foundations, styles, and component layers."
+                height={360}
+              />
+            </section>
+          )}
+
+          {/* ═══ Chart & Graph Components ═══ */}
+          {cs.chartComponents && (
+            <section className="article-section article-section--wide" id="charts">
+              <h2 className="section-subhead">Chart &amp; Graph Components</h2>
+              <h3>{cs.chartComponents.headline}</h3>
+              <p>{cs.chartComponents.body}</p>
+              
+              {cs.chartComponents.tableData && (
+                <div className="chart-categories">
+                  <div className="chart-categories-header">
+                    <span>Overview/Summary</span>
+                    <span>Charts &amp; Graphs</span>
+                  </div>
+                  {cs.chartComponents.tableData.map((row, i) => (
+                    <div key={i} className="chart-category-row">
+                      <span className="chart-category-label">{row.label}</span>
+                      <span className="chart-category-value">{row.value}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              
+              {cs.chartComponents.body2 && <p>{cs.chartComponents.body2}</p>}
+              
+              <ImgPlaceholder
+                gradient="linear-gradient(135deg,#16213e,#0f3460)"
+                label="[ chart component library overview ]"
+                caption="Chart and graph components with usage guidelines and documentation."
+                height={320}
+              />
+            </section>
+          )}
+
+          {/* ═══ Static Mockups — System-Driven Components ═══ */}
+          {cs.staticMockups && (
+            <section className="article-section article-section--wide" id="mockups">
+              <h2 className="section-subhead">Static Mockups</h2>
+              <div className="section-eyebrow" style={{ marginTop: 0 }}>System-Driven Components</div>
+              <h3>{cs.staticMockups.headline}</h3>
+              <p>{cs.staticMockups.body}</p>
+              {cs.staticMockups.body2 && <p>{cs.staticMockups.body2}</p>}
+              
+              <div className="before-after-grid">
+                <div className="before-after-item">
+                  <div className="before-after-label">Before</div>
+                  <ImgPlaceholder
+                    gradient="linear-gradient(135deg,#2d2d44,#1a1a2e)"
+                    label="[ before: ad-hoc frames ]"
+                    height={240}
+                  />
+                </div>
+                <div className="before-after-item">
+                  <div className="before-after-label">After</div>
+                  <ImgPlaceholder
+                    gradient="linear-gradient(135deg,#1a1a2e,#16213e)"
+                    label="[ after: system-driven components ]"
+                    height={240}
+                  />
+                </div>
+              </div>
+              
+              {cs.staticMockups.body3 && <p>{cs.staticMockups.body3}</p>}
+            </section>
+          )}
+
+          {/* ── Interactive Canvas ── */}
+          <div className="canvas-section">
+            <DraggableCanvas />
+            <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, marginTop: '16px' }}>
+              Component library exploration &mdash; drag to explore the design system structure.
+            </p>
+          </div>
+
+          {/* ── Back to top ── */}
+          <div className="back-to-top">
+            <a href="#">click to go back to the top of page ↑</a>
+          </div>
+
+          {/* ── Case footer nav ── */}
+          <div className="case-footer">
+            {cs.prevSlug ? (
+              <Link href={`/case-study/${cs.prevSlug}`}>← Previous project</Link>
+            ) : (
+              <Link href="/">← All projects</Link>
+            )}
+            {cs.nextSlug ? (
+              <Link href={`/case-study/${cs.nextSlug}`}>Next project →</Link>
+            ) : (
+              <span />
+            )}
+          </div>
+
+          {/* ── Site footer ── */}
+          <footer className="site-footer">
+            <span>Built with Next.js</span>
+            <div className="footer-links">
+              <Link href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener noreferrer">LinkedIn</Link>
+              <Link href="/resume.pdf">Resume</Link>
+            </div>
+          </footer>
+
+        </main>
+      </div>
+    )
+  }
+
   // ── Standard project layout (unchanged) ──
   return (
     <div className="layout">

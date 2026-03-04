@@ -32,9 +32,9 @@ const NAV_GROUPS: NavGroup[] = [
   {
     groupLabel: 'Case Studies',
     items: [
-      { href: '/case-study/project-one',   label: 'Project One',   sub: 'Brief description here' },
-      { href: '/case-study/project-two',   label: 'Project Two',   sub: 'Brief description here' },
-      { href: '/case-study/project-three', label: 'Project Three', sub: 'Brief description here' },
+      { href: '/case-study/project-one',   label: 'UX Audit',       sub: 'Synchrony analytics platform' },
+      { href: '/case-study/project-two',   label: 'Design System',  sub: 'Component library & guidelines' },
+      { href: '/case-study/project-three', label: 'Project Three',  sub: 'Coming soon' },
     ],
   },
   {
