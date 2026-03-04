@@ -74,7 +74,7 @@ const caseStudies: CaseStudy[] = [
     title: 'Turning 7 months of heuristic analysis into actionable design change.',
     intro: 'A systematic UX audit for enterprise analytics',
     overview:
-      'I led a comprehensive UX audit of Synchrony Business Solutions\' analytics platform — a tool used by enterprise clients to track performance, spending, and business insights. What started as a usability review became a 7-month deep dive into data visualization clarity, accessibility, and design system foundations.',
+      'I led a comprehensive UX audit of Synchrony Business Solutions\' analytics platform — a tool used by small-to-medium sized business clients to track performance, spending, and business insights. What started as a usability review became a 7-month deep dive into data visualization clarity, accessibility, a product redesign, and design system foundations.',
     role: 'UX/UI Design Intern',
     timeline: '7 months',
     tools: 'Figma & FigJam',
@@ -99,7 +99,7 @@ const caseStudies: CaseStudy[] = [
       stats: [
         { number: '50+', desc: 'screens evaluated across the platform' },
         { number: '6', desc: 'evaluators collaborating on heuristic analysis' },
-        { number: '100+', desc: 'usability issues identified and categorized' },
+        { number: '80+', desc: 'usability issues identified and categorized' },
       ],
     },
 
@@ -126,7 +126,7 @@ const caseStudies: CaseStudy[] = [
     },
 
     synthesis: {
-      headline: 'From 100+ sticky notes to 6 actionable themes.',
+      headline: 'From 80+ sticky notes to 6 actionable themes.',
       body: 'I clustered findings using affinity mapping in FigJam, grouping raw observations into themes that could drive design decisions. This transformed an overwhelming spreadsheet of issues into a clear story stakeholders could act on.',
       themes: [
         'Data Visualization Standards',

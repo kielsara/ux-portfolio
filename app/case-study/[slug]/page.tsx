@@ -188,7 +188,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <div className="canvas-section">
             <DraggableCanvas />
             <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, marginTop: '16px' }}>
-              Affinity mapping in FigJam &mdash; clustering 100+ observations into actionable themes.
+              Affinity mapping in FigJam &mdash; clustering 80+ observations into actionable themes.
             </p>
           </div>
 
