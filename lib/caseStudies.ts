@@ -16,6 +16,12 @@ export interface TeamMember {
   desc: string
 }
 
+export interface Finding {
+  icon: string
+  title: string
+  desc: string
+}
+
 export interface CaseStudy {
   slug: string
   title: string
@@ -24,25 +30,38 @@ export interface CaseStudy {
   overview: string       // paragraph below h1
   role: string
   timeline: string
+  tools?: string
+  methods?: string
   heroGradient?: string  // fallback if no hero image
   heroImage?: string     // path to image in /public
+  isAuditProject?: boolean  // flag for audit-style layout
 
   // TOC — must match section IDs in the page
   toc: { id: string; symbol: string; label: string }[]
 
-  // Section content
-  whyItMattered: { stats: Stat[] }
-  whereWeStarted: { body: string; imageCaption?: string }
-  research: { body: string; quote: string; quoteAttrib: string }
-  reframe: { body: string; body2: string }
-  solution: {
+  // Section content (standard project)
+  whyItMattered?: { stats: Stat[] }
+  whereWeStarted?: { body: string; imageCaption?: string }
+  research?: { body: string; quote: string; quoteAttrib: string }
+  reframe?: { body: string; body2: string }
+  solution?: {
     intro: string
     features: { title: string; body: string }[]
   }
-  ops: { body: string; quote: string; quoteAttrib: string }
-  outcomes: { stats: Stat[] }
-  collaboration: { body: string; team: TeamMember[] }
-  takeaway: { body: string }
+  ops?: { body: string; quote: string; quoteAttrib: string }
+  outcomes?: { stats: Stat[] }
+  collaboration?: { body: string; team: TeamMember[] }
+  takeaway?: { body: string }
+
+  // Section content (audit project)
+  challenge?: { headline: string; body: string; stats?: Stat[] }
+  approach?: { headline: string; body: string; steps?: { num: string; title: string; desc: string }[] }
+  findings?: { headline: string; body: string; items?: Finding[] }
+  synthesis?: { headline: string; body: string; themes?: string[] }
+  alignment?: { headline: string; body: string; quote?: string; quoteAttrib?: string }
+  redesign?: { headline: string; body: string; changes?: { title: string; desc: string }[] }
+  impact?: { headline: string; body: string; stats?: Stat[] }
+  reflection?: { headline: string; body: string; learnings?: string[] }
 
   prevSlug?: string
   nextSlug?: string
@@ -51,84 +70,110 @@ export interface CaseStudy {
 const caseStudies: CaseStudy[] = [
   {
     slug: 'project-one',
-    tag: 'Project / Case Study Name',
-    title: 'Your compelling project headline goes right here.',
-    intro: 'A short italic subtitle describing the project',
+    tag: 'UX Audit & Redesign',
+    title: 'Turning 7 months of heuristic analysis into actionable design change.',
+    intro: 'A systematic UX audit for enterprise analytics',
     overview:
-      'Write a 2–3 sentence overview of the project context. What product or platform is this? Who uses it, and what was the core problem you were solving? Keep it grounded and specific.',
-    role: 'Your Title / Function',
-    timeline: 'Month – Month, Year',
-    heroGradient: 'linear-gradient(135deg,#d4c5b0,#c0ae96)',
+      'I led a comprehensive UX audit of Synchrony Business Solutions\' analytics platform — a tool used by enterprise clients to track performance, spending, and business insights. What started as a usability review became a 7-month deep dive into data visualization clarity, accessibility, and design system foundations.',
+    role: 'UX/UI Design Intern',
+    timeline: '7 months',
+    tools: 'Figma & FigJam',
+    methods: 'Heuristic Evaluation, Laws of UX, WCAG Accessibility, Data Viz Best Practices',
+    heroGradient: 'linear-gradient(135deg,#1a1a2e,#16213e)',
+    isAuditProject: true,
 
     toc: [
-      { id: 'why-it-mattered',  symbol: '→', label: 'Why it mattered'  },
-      { id: 'where-we-started', symbol: '◊', label: 'Where we started' },
-      { id: 'research',         symbol: '∞', label: 'Research'         },
-      { id: 'reframe',          symbol: '↩', label: 'The reframe'      },
-      { id: 'solution',         symbol: '√', label: 'Solution'         },
-      { id: 'ops',              symbol: '⇥', label: 'Enabling ops'     },
-      { id: 'outcomes',         symbol: '∑', label: 'Outcomes'         },
-      { id: 'collaboration',    symbol: '↔', label: 'Collaboration'    },
-      { id: 'takeaway',         symbol: '↪', label: 'Takeaway'         },
+      { id: 'challenge',   symbol: '◇', label: 'The Challenge'   },
+      { id: 'approach',    symbol: '◈', label: 'Audit Approach'  },
+      { id: 'findings',    symbol: '⊕', label: 'What I Found'    },
+      { id: 'synthesis',   symbol: '◎', label: 'Making Sense'    },
+      { id: 'alignment',   symbol: '⬡', label: 'Getting Buy-In'  },
+      { id: 'redesign',    symbol: '◐', label: 'The Redesign'    },
+      { id: 'impact',      symbol: '✦', label: 'Impact'          },
+      { id: 'reflection',  symbol: '↻', label: 'Reflection'      },
     ],
 
-    whyItMattered: {
+    challenge: {
+      headline: 'An analytics platform that had grown faster than its design.',
+      body: 'The Synchrony Business Solutions analytics platform serves enterprise clients making critical business decisions. But years of feature additions without systematic design review had created inconsistencies — confusing data visualizations, accessibility gaps, and a fragmented user experience. Leadership knew something was wrong, but needed clear evidence and a path forward.',
       stats: [
-        { number: '30%',   desc: 'of support messages were asking the same question' },
-        { number: '>$50k', desc: 'annual cost from churned high-value accounts' },
-        { number: '30 days', desc: 'retention window — confusion broke the cycle' },
+        { number: '50+', desc: 'screens evaluated across the platform' },
+        { number: '6', desc: 'evaluators collaborating on heuristic analysis' },
+        { number: '100+', desc: 'usability issues identified and categorized' },
       ],
     },
 
-    whereWeStarted: {
-      body: 'Describe the starting state. What was the existing experience? What was the shared understanding among the team about the problem? What constraints did you inherit, and how did you approach getting stakeholder alignment to even begin?\n\nThis is also a good place to describe scope, phasing decisions, and the strategic tradeoffs that shaped the project before design even started.',
-      imageCaption: 'The old experience before the redesign',
-    },
-
-    research: {
-      body: 'Describe your research methods and what you found. What data did you analyze? Who did you talk to? What patterns emerged that reframed the problem? This is where you show your diagnostic thinking — not just what you did, but how you made sense of it.',
-      quote: 'Replace this with a real quote from a user interview. The best quotes are specific and emotional, not generic praise. They reveal something true about the experience.',
-      quoteAttrib: '— Job title, company type',
-    },
-
-    reframe: {
-      body: 'Describe the structural or systemic insight that changed how you framed the problem. What was the real underlying issue? This is often the most memorable part of a case study — the moment where the problem revealed itself differently than expected.',
-      body2: 'Explain what the new mental model is and why it matters. How does it change what users experience, and what internal changes had to happen to support it?',
-    },
-
-    solution: {
-      intro: 'Three experiences that remove uncertainty.',
-      features: [
-        { title: 'Feature One',   body: 'What question does this feature answer? Describe it in one sentence, then explain the design logic. What did you choose to surface, and what did you choose to hide?' },
-        { title: 'Feature Two',   body: 'Describe the continuity or unified timeline approach. What changed structurally and how does it manifest in the UI?' },
-        { title: 'Feature Three', body: 'What third element rounds out the experience? What third-party integration or data signal did you surface proactively?' },
+    approach: {
+      headline: 'Systematic evaluation, not subjective opinion.',
+      body: 'I structured the audit around established frameworks — Nielsen Norman Group heuristics, Laws of UX, WCAG accessibility guidelines, and data visualization best practices. This gave stakeholders confidence that findings were grounded in research, not personal preference.',
+      steps: [
+        { num: '01', title: 'Framework Selection', desc: 'Chose evaluation criteria spanning usability heuristics, accessibility, data viz clarity, and content consistency.' },
+        { num: '02', title: 'Systematic Walkthrough', desc: 'Documented every screen with observations, severity ratings, and evidence-based recommendations.' },
+        { num: '03', title: 'Cross-Evaluator Review', desc: 'Worked with 6 evaluators to validate findings and reduce individual bias.' },
+        { num: '04', title: 'Pattern Identification', desc: 'Grouped issues into themes to reveal systemic problems, not just surface bugs.' },
       ],
     },
 
-    ops: {
-      body: 'Describe the internal-facing challenge. What did other teams need in order for this to work? What was the expansive proposal on the table, and what did you recommend instead?',
-      quote: 'Replace with a stakeholder quote that validates the approach — ideally someone who initially had concerns.',
-      quoteAttrib: '— Role, team or company',
+    findings: {
+      headline: 'The problems weren\'t random — they were patterns.',
+      body: 'What initially looked like scattered usability issues revealed deeper systemic problems. The same mistakes repeated across screens, suggesting gaps in design guidelines rather than one-off errors.',
+      items: [
+        { icon: '📊', title: 'Data Visualization Clarity', desc: 'Charts lacked clear labels, used inconsistent color coding, and buried critical insights in visual noise.' },
+        { icon: '♿', title: 'Accessibility Gaps', desc: 'Color contrast failures, missing alt text, keyboard navigation issues — blocking users with disabilities.' },
+        { icon: '🧭', title: 'Navigation Inconsistency', desc: 'Users couldn\'t predict where they\'d land. Same actions behaved differently across sections.' },
+        { icon: '📝', title: 'Content & Labeling', desc: 'Jargon-heavy labels, inconsistent terminology, and missing context left users guessing.' },
+      ],
     },
 
-    outcomes: {
+    synthesis: {
+      headline: 'From 100+ sticky notes to 6 actionable themes.',
+      body: 'I clustered findings using affinity mapping in FigJam, grouping raw observations into themes that could drive design decisions. This transformed an overwhelming spreadsheet of issues into a clear story stakeholders could act on.',
+      themes: [
+        'Data Visualization Standards',
+        'Accessibility Compliance',
+        'Navigation & Wayfinding',
+        'Content Strategy & Labeling',
+        'Visual Consistency',
+        'Error States & Feedback',
+      ],
+    },
+
+    alignment: {
+      headline: 'Audit findings don\'t matter if nobody acts on them.',
+      body: 'I presented findings in a structured design session with cross-functional stakeholders — product managers, developers, and senior designers. The goal wasn\'t just to share problems, but to build shared ownership of solutions. I prioritized issues by severity and effort, giving the team a clear roadmap.',
+      quote: 'This gave us the evidence we needed to prioritize accessibility work that had been deprioritized for years.',
+      quoteAttrib: '— Senior Product Designer, Synchrony',
+    },
+
+    redesign: {
+      headline: 'Translating critique into craft.',
+      body: 'I didn\'t stop at identifying problems. Working with the UX team, I developed design recommendations that addressed root causes — contributing to a variable design system that would prevent these issues from recurring.',
+      changes: [
+        { title: 'Chart Redesign Standards', desc: 'Created guidelines for data visualization clarity — consistent color palettes, clear axis labels, and progressive disclosure for complex datasets.' },
+        { title: 'Accessibility Patterns', desc: 'Documented accessible component patterns with proper contrast ratios, focus states, and screen reader support.' },
+        { title: 'Navigation Framework', desc: 'Proposed consistent navigation patterns that users could learn once and apply everywhere.' },
+      ],
+    },
+
+    impact: {
+      headline: 'From audit to action.',
+      body: 'The audit became the foundation for ongoing design improvements and directly influenced the creation of a comprehensive design system.',
       stats: [
-        { number: '25%',  desc: 'reduction in [primary metric]'           },
-        { number: '>80%', desc: 'positive feedback from [group]'           },
-        { number: '70%',  desc: 'adoption of [key action] in first month'  },
+        { number: '100%', desc: 'of critical accessibility issues addressed in roadmap' },
+        { number: '1', desc: 'new design system initiated from audit findings' },
+        { number: '6', desc: 'design guidelines documented for future work' },
       ],
     },
 
-    collaboration: {
-      body: 'Describe how you worked with engineering, PM, and your design team. What did you own? What did you delegate? What decisions did you make together? Good case studies show judgment in collaboration, not just solo craft.',
-      team: [
-        { name: 'Collaborator Name', role: 'Their Role', desc: 'Describe what they owned and how you partnered. Be specific about their contribution — this shows you can share credit and context.' },
-        { name: 'Collaborator Name', role: 'Their Role', desc: 'Another collaborator and their specific area of ownership. Good case studies honor the team.' },
+    reflection: {
+      headline: 'What 7 months of auditing taught me about design leadership.',
+      body: 'This project pushed me beyond pixel-level thinking into systems thinking. I learned that identifying problems is only half the work — the harder part is building consensus and creating documentation that outlives your tenure.',
+      learnings: [
+        'Evidence beats opinion. Grounding critique in heuristics gave my recommendations credibility with senior stakeholders.',
+        'Scope discipline matters. I had to resist the urge to fix everything and focus on high-impact, achievable changes.',
+        'Documentation is design. The guidelines I created will shape decisions long after my internship ended.',
+        'Collaboration amplifies impact. Working with 6 evaluators caught blind spots I would have missed alone.',
       ],
-    },
-
-    takeaway: {
-      body: 'End with the insight that transfers. What does this project teach about design, systems, users, or your process that applies beyond this one context? This is your chance to show how you think, not just what you shipped.',
     },
 
     nextSlug: 'project-two',
