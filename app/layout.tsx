@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { EB_Garamond, DM_Sans } from 'next/font/google'
 import './globals.css'
+import { Agentation } from "agentation";
 
 const garamond = EB_Garamond({
   subsets: ['latin'],
@@ -29,7 +30,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${garamond.variable} ${dmSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {process.env.NODE_ENV === "development" && <Agentation />}
+      </body>
     </html>
   )
 }
