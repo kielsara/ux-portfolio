@@ -7,9 +7,9 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 const PROJECTS = [
   { id: 'project-one',   label: 'Project One',   gradient: 'linear-gradient(135deg,#d4c5b0,#a89880)', hasLink: true,  alt: 'Screenshot of Project One' },
   { id: 'project-two',   label: 'Project Two',   gradient: 'linear-gradient(135deg,#b8c9d4,#8aaab8)', hasLink: true,  alt: 'Screenshot of Project Two' },
-  { id: 'project-three', label: 'Project Three', gradient: 'linear-gradient(135deg,#c9c0d3,#9e91b0)', hasLink: false, alt: 'Screenshot of Project Three' },
+  { id: 'project-three', label: 'Project Three', gradient: 'linear-gradient(135deg,#c9c0d3,#9e91b0)', hasLink: true, alt: 'Screenshot of Project Three' },
   { id: 'project-four',  label: 'Project Four',  gradient: 'linear-gradient(135deg,#d4b0b0,#b88080)', hasLink: true,  alt: 'Screenshot of Project Four' },
-  { id: 'project-five',  label: 'Project Five',  gradient: 'linear-gradient(135deg,#b0d4c0,#80b898)', hasLink: false, alt: 'Screenshot of Project Five' },
+  { id: 'project-five',  label: 'Project Five',  gradient: 'linear-gradient(135deg,#b0d4c0,#80b898)', hasLink: true, alt: 'Screenshot of Project Five' },
   { id: 'project-six',   label: 'Project Six',   gradient: 'linear-gradient(135deg,#d4d0b0,#b8b080)', hasLink: true,  alt: 'Screenshot of Project Six' },
 ]
 
@@ -122,36 +122,37 @@ export default function Marquee() {
   
 
   return (
-    <section
-      className="marquee-wrapper"
-      aria-label={`Featured Work slideshow, ${PROJECTS.length} projects`}
-      aria-roledescription="carousel"
-    >
-      {/* Screen-reader live region for control announcements */}
-      <div
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-        className="sr-only"
+    <>
+      <section
+        className="marquee-wrapper"
+        aria-label={`Selected Work slideshow, ${PROJECTS.length} projects`}
+        aria-roledescription="carousel"
       >
-        {announcement}
-      </div>
+        {/* Screen-reader live region for control announcements */}
+        <div
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="sr-only"
+        >
+          {announcement}
+        </div>
 
-      {/* Slide count hint for screen readers */}
-      <p className="sr-only">
-        Showing {PROJECTS.length} projects. Use the previous and next buttons to browse,
-        or pause the slideshow with the pause button.
-      </p>
+        {/* Slide count hint for screen readers */}
+        <p className="sr-only">
+          Showing {PROJECTS.length} projects. Use the previous and next buttons to browse,
+          or pause the slideshow with the pause button.
+        </p>
 
-      <div
-        className={`marquee-track${shouldPause ? ' marquee-track--paused' : ''}`}
-        ref={trackRef}
-        aria-label="Project cards"
-        onMouseEnter={() => setHovering(true)}
-        onMouseLeave={() => setHovering(false)}
-        onFocusCapture={() => setFocused(true)}
-        onBlurCapture={() => setFocused(false)}
-      >
+        <div
+          className={`marquee-track${shouldPause ? ' marquee-track--paused' : ''}`}
+          ref={trackRef}
+          aria-label="Project cards"
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+          onFocusCapture={() => setFocused(true)}
+          onBlurCapture={() => setFocused(false)}
+        >
         {CARDS.map((project, i) => {
           const projectIndex = normalizeIndex(i)
           const isMiddleSet = i >= MIDDLE_SET_START && i < MIDDLE_SET_END
@@ -185,6 +186,7 @@ export default function Marquee() {
           )
         })}
       </div>
+      </section>
 
       {/* Carousel controls */}
       <div className="marquee-controls" role="group" aria-label="Slideshow controls">
@@ -269,6 +271,6 @@ export default function Marquee() {
       <div className="marquee-caption" aria-hidden="true">
         {PROJECTS[currentIndex]?.label || ''}
       </div>
-    </section>
+    </>
   )
 }

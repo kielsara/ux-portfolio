@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Sidebar from '@/components/Sidebar'
+import SiteFooter from '@/components/SiteFooter'
 
 const ABOUT_TOC = [
   { id: 'about', symbol: '01', label: 'About' },
@@ -160,15 +161,7 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <footer className="site-footer">
-          <span>Built with Next.js</span>
-          <div className="footer-links">
-            <Link href="https://linkedin.com/in/saramkiel" target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </Link>
-            <Link href="/resume.pdf">Resume</Link>
-          </div>
-        </footer>
+        <SiteFooter />
       </main>
     </div>
   )

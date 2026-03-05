@@ -269,6 +269,163 @@ const selectedWorkItems: SelectedWorkItem[] = [
     },
 
     prevSlug: 'project-one',
+    nextSlug: 'project-three',
+  },
+
+  {
+    slug: 'project-three',
+    tag: 'Research Synthesis',
+    title: 'Turning qualitative interview data into prioritized product opportunities.',
+    intro: 'Synthesizing behavior patterns into roadmap-ready insights',
+    overview:
+      'This project focused on structuring interview and usability findings into a synthesis framework that product and engineering could quickly act on. I translated broad observations into themes, mapped opportunity areas, and documented a sequenced set of recommendations.',
+    role: 'UX Researcher',
+    timeline: '8 weeks',
+    tools: 'Dovetail, FigJam, Figma',
+    methods: 'Interviews, Affinity Mapping, Opportunity Framing',
+    heroGradient: 'linear-gradient(135deg,#c9c0d3,#9e91b0)',
+    toc: [
+      { id: 'why-it-mattered', symbol: '◇', label: 'Why it mattered' },
+      { id: 'research', symbol: '◈', label: 'Research' },
+      { id: 'outcomes', symbol: '✦', label: 'Outcomes' },
+    ],
+    whyItMattered: {
+      stats: [
+        { number: '24', desc: 'stakeholder and user interviews synthesized' },
+        { number: '5', desc: 'opportunity themes prioritized' },
+        { number: '1', desc: 'clear implementation sequence delivered' },
+      ],
+    },
+    research: {
+      body: 'I clustered recurring friction points across interviews and task recordings, then validated each theme with quantitative usage signals and support ticket trends.',
+      quote: 'The synthesis made our next-quarter priorities obvious.',
+      quoteAttrib: '— Product Manager',
+    },
+    outcomes: {
+      stats: [
+        { number: '3', desc: 'initiatives moved into active roadmap planning' },
+        { number: '40%', desc: 'faster decision cycles in planning sessions' },
+      ],
+    },
+    prevSlug: 'project-two',
+    nextSlug: 'project-four',
+  },
+
+  {
+    slug: 'project-four',
+    tag: 'Workflow Redesign',
+    title: 'Reducing operational friction in a multi-step internal workflow.',
+    intro: 'Simplifying handoffs and decision points for operations teams',
+    overview:
+      'I redesigned a high-friction operational flow used daily by internal teams. The redesign reduced ambiguity at key decision points, improved status visibility, and made exception handling easier for first-time and returning users.',
+    role: 'Product Designer',
+    timeline: '10 weeks',
+    tools: 'Figma, Maze',
+    methods: 'Task Analysis, Journey Mapping, Iterative Prototyping',
+    heroGradient: 'linear-gradient(135deg,#d4b0b0,#b88080)',
+    toc: [
+      { id: 'why-it-mattered', symbol: '◇', label: 'Why it mattered' },
+      { id: 'solution', symbol: '◈', label: 'Solution' },
+      { id: 'outcomes', symbol: '✦', label: 'Outcomes' },
+    ],
+    whyItMattered: {
+      stats: [
+        { number: '17', desc: 'steps in original workflow' },
+        { number: '6', desc: 'critical error-prone moments identified' },
+      ],
+    },
+    solution: {
+      intro: 'A clearer, guided flow with better contextual feedback.',
+      features: [
+        { title: 'Progressive disclosure', body: 'Only high-signal information appears by default, with deeper details available on demand.' },
+        { title: 'Inline guidance', body: 'Contextual helper text and status labels reduce avoidable errors and rework.' },
+      ],
+    },
+    outcomes: {
+      stats: [
+        { number: '31%', desc: 'reduction in completion time during testing' },
+        { number: '22%', desc: 'drop in preventable support requests' },
+      ],
+    },
+    prevSlug: 'project-three',
+    nextSlug: 'project-five',
+  },
+
+  {
+    slug: 'project-five',
+    tag: 'Accessibility Sprint',
+    title: 'Improving accessibility compliance across shared interface patterns.',
+    intro: 'Raising baseline accessibility across common components',
+    overview:
+      'This sprint focused on increasing accessibility quality across reused UI patterns. I audited key components, partnered with engineering on implementation details, and documented updated guidance for ongoing consistency.',
+    role: 'UX Designer',
+    timeline: '6 weeks',
+    tools: 'Figma, Axe, Storybook',
+    methods: 'WCAG Review, Component Audit, Cross-functional QA',
+    heroGradient: 'linear-gradient(135deg,#b0d4c0,#80b898)',
+    toc: [
+      { id: 'challenge', symbol: '◇', label: 'Challenge' },
+      { id: 'redesign', symbol: '◈', label: 'Redesign' },
+      { id: 'impact', symbol: '✦', label: 'Impact' },
+    ],
+    challenge: {
+      headline: 'Critical accessibility issues were concentrated in shared components.',
+      body: 'Recurring contrast, focus-state, and keyboard-navigation issues affected multiple product surfaces because they originated in reused patterns.',
+    },
+    redesign: {
+      headline: 'Rework the patterns once, improve many screens at once.',
+      body: 'I updated component specs and states, then worked with engineering to align implementation and QA checklists.',
+      changes: [
+        { title: 'Focus visibility standards', desc: 'Introduced consistent focus behavior and state contrast across interactive controls.' },
+        { title: 'Semantic structure updates', desc: 'Improved heading hierarchy and control labeling patterns for assistive technologies.' },
+      ],
+    },
+    impact: {
+      headline: 'Higher baseline quality and faster future review cycles.',
+      body: 'Teams now ship with stronger default accessibility behavior and fewer regressions during QA.',
+      stats: [
+        { number: '70+', desc: 'component instances improved by pattern updates' },
+        { number: '35%', desc: 'faster accessibility QA cycle on subsequent releases' },
+      ],
+    },
+    prevSlug: 'project-four',
+    nextSlug: 'project-six',
+  },
+
+  {
+    slug: 'project-six',
+    tag: 'Onboarding Optimization',
+    title: 'Clarifying first-use onboarding to improve activation and confidence.',
+    intro: 'Designing first-run experiences that reduce uncertainty',
+    overview:
+      'I redesigned onboarding touchpoints to improve early-user confidence and reduce setup friction. The work focused on clear progression, better language, and guidance tailored to role-specific needs.',
+    role: 'Product Designer',
+    timeline: '7 weeks',
+    tools: 'Figma, GA4, Hotjar',
+    methods: 'Funnel Analysis, Usability Testing, Content Design',
+    heroGradient: 'linear-gradient(135deg,#d4d0b0,#b8b080)',
+    toc: [
+      { id: 'why-it-mattered', symbol: '◇', label: 'Why it mattered' },
+      { id: 'reframe', symbol: '◈', label: 'Reframe' },
+      { id: 'outcomes', symbol: '✦', label: 'Outcomes' },
+    ],
+    whyItMattered: {
+      stats: [
+        { number: '42%', desc: 'drop-off rate in original onboarding funnel' },
+        { number: '3', desc: 'major confusion points identified in testing' },
+      ],
+    },
+    reframe: {
+      body: 'Rather than adding more help text, we reduced cognitive load by restructuring step order and clarifying default recommendations.',
+      body2: 'Users needed confidence signals at each stage, not just instructions.',
+    },
+    outcomes: {
+      stats: [
+        { number: '19%', desc: 'increase in first-week activation' },
+        { number: '27%', desc: 'fewer setup-related support tickets' },
+      ],
+    },
+    prevSlug: 'project-five',
   },
 ]
 

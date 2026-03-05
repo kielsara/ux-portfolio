@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Sidebar from '@/components/Sidebar'
 import DraggableCanvas from '@/components/DraggableCanvas'
 import { getAllSlugs, getSelectedWork } from '@/lib/selectedWork'
+import SiteFooter from '@/components/SiteFooter'
 
 // Tell Next.js which slugs exist at build time
 export async function generateStaticParams() {
@@ -12,7 +13,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const cs = getSelectedWork(slug)
-  return { title: cs ? `${cs.tag} · Featured Work • Sara Kiel` : 'Not Found' }
+  return { title: cs ? `${cs.tag} · Selected Work • Sara Kiel` : 'Not Found' }
 }
 
 // ── Placeholder image block ────────────────────────────
@@ -286,13 +287,7 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           </div>
 
           {/* ── Site footer ── */}
-          <footer className="site-footer">
-            <span>Built with Next.js</span>
-            <div className="footer-links">
-              <Link href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener noreferrer">LinkedIn</Link>
-              <Link href="/resume.pdf">Resume</Link>
-            </div>
-          </footer>
+          <SiteFooter />
 
         </main>
       </div>
@@ -503,13 +498,7 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           </div>
 
           {/* ── Site footer ── */}
-          <footer className="site-footer">
-            <span>Built with Next.js</span>
-            <div className="footer-links">
-              <Link href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener noreferrer">LinkedIn</Link>
-              <Link href="/resume.pdf">Resume</Link>
-            </div>
-          </footer>
+          <SiteFooter />
 
         </main>
       </div>
@@ -715,13 +704,7 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
         </div>
 
         {/* ── Site footer ── */}
-        <footer className="site-footer">
-          <span>Built with Next.js</span>
-          <div className="footer-links">
-            <Link href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener noreferrer">LinkedIn</Link>
-            <Link href="/resume.pdf">Resume</Link>
-          </div>
-        </footer>
+        <SiteFooter />
 
       </main>
     </div>
