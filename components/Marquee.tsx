@@ -124,7 +124,7 @@ export default function Marquee() {
   return (
     <section
       className="marquee-wrapper"
-      aria-label={`Selected Work slideshow, ${PROJECTS.length} projects`}
+      aria-label={`Featured Work slideshow, ${PROJECTS.length} projects`}
       aria-roledescription="carousel"
     >
       {/* Screen-reader live region for control announcements */}
@@ -178,7 +178,7 @@ export default function Marquee() {
               <div className="card-label">
                 <span>{project.label}</span>
                 {project.hasLink && (
-                  <Link href={`/case-study/${project.id}`}>View →</Link>
+                  <Link href={`/selected-work/${project.id}`}>View →</Link>
                 )}
               </div>
             </div>

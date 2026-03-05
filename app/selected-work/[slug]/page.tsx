@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Sidebar from '@/components/Sidebar'
 import DraggableCanvas from '@/components/DraggableCanvas'
-import { getAllSlugs, getCaseStudy } from '@/lib/caseStudies'
+import { getAllSlugs, getSelectedWork } from '@/lib/selectedWork'
 
 // Tell Next.js which slugs exist at build time
 export async function generateStaticParams() {
@@ -11,8 +11,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const cs = getCaseStudy(slug)
-  return { title: cs ? `${cs.tag} • Sara Kiel` : 'Not Found' }
+  const cs = getSelectedWork(slug)
+  return { title: cs ? `${cs.tag} · Featured Work • Sara Kiel` : 'Not Found' }
 }
 
 // ── Placeholder image block ────────────────────────────
@@ -40,16 +40,16 @@ function ImgPlaceholder({
   )
 }
 
-export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function SelectedWorkPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const cs = getCaseStudy(slug)
+  const cs = getSelectedWork(slug)
   if (!cs) notFound()
 
   // Render audit-style project
   if (cs.isAuditProject) {
     return (
       <div className="layout">
-        <Sidebar variant="case-study" intro={cs.intro} toc={cs.toc} />
+        <Sidebar variant="project" intro={cs.intro} toc={cs.toc} />
 
         <main className="main">
 
@@ -274,12 +274,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           {/* ── Case footer nav ── */}
           <div className="case-footer">
             {cs.prevSlug ? (
-              <Link href={`/case-study/${cs.prevSlug}`}>← Previous project</Link>
+              <Link href={`/selected-work/${cs.prevSlug}`}>← Previous project</Link>
             ) : (
               <Link href="/">← All projects</Link>
             )}
             {cs.nextSlug ? (
-              <Link href={`/case-study/${cs.nextSlug}`}>Next project →</Link>
+              <Link href={`/selected-work/${cs.nextSlug}`}>Next project →</Link>
             ) : (
               <span />
             )}
@@ -303,7 +303,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   if (cs.isDesignSystem) {
     return (
       <div className="layout">
-        <Sidebar variant="case-study" intro={cs.intro} toc={cs.toc} />
+        <Sidebar variant="project" intro={cs.intro} toc={cs.toc} />
 
         <main className="main">
 
@@ -491,12 +491,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           {/* ── Case footer nav ── */}
           <div className="case-footer">
             {cs.prevSlug ? (
-              <Link href={`/case-study/${cs.prevSlug}`}>← Previous project</Link>
+              <Link href={`/selected-work/${cs.prevSlug}`}>← Previous project</Link>
             ) : (
               <Link href="/">← All projects</Link>
             )}
             {cs.nextSlug ? (
-              <Link href={`/case-study/${cs.nextSlug}`}>Next project →</Link>
+              <Link href={`/selected-work/${cs.nextSlug}`}>Next project →</Link>
             ) : (
               <span />
             )}
@@ -520,7 +520,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   return (
     <div className="layout">
       {/* ── Sidebar with TOC ── */}
-      <Sidebar variant="case-study" intro={cs.intro} toc={cs.toc} />
+      <Sidebar variant="project" intro={cs.intro} toc={cs.toc} />
 
       <main className="main">
 
@@ -703,12 +703,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         {/* ── Case footer nav ── */}
         <div className="case-footer">
           {cs.prevSlug ? (
-            <Link href={`/case-study/${cs.prevSlug}`}>← Previous project</Link>
+            <Link href={`/selected-work/${cs.prevSlug}`}>← Previous project</Link>
           ) : (
             <Link href="/">← All projects</Link>
           )}
           {cs.nextSlug ? (
-            <Link href={`/case-study/${cs.nextSlug}`}>Next project →</Link>
+            <Link href={`/selected-work/${cs.nextSlug}`}>Next project →</Link>
           ) : (
             <span />
           )}

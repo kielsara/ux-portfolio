@@ -15,10 +15,10 @@ interface NavGroup {
 
 export interface SidebarProps {
   /** Home sidebar: show logo + nav groups */
-  variant?: 'home' | 'case-study'
-  /** Italic subtitle shown below back link (case-study variant) */
+  variant?: 'home' | 'project'
+  /** Italic subtitle shown below back link (project variant) */
   intro?: string
-  /** TOC entries (case-study variant) */
+  /** TOC entries (project variant) */
   toc?: { id: string; symbol: string; label: string }[]
   /** Active TOC id (controlled externally via client component) */
   activeTocId?: string
@@ -30,11 +30,11 @@ const NAV_GROUPS: NavGroup[] = [
     items: [{ href: '/about', label: 'About' }],
   },
   {
-    groupLabel: 'Case Studies',
+    groupLabel: 'Selected Work',
     items: [
-      { href: '/case-study/project-one',   label: 'UX Audit',       sub: 'Synchrony analytics platform' },
-      { href: '/case-study/project-two',   label: 'Design System',  sub: 'Component library & guidelines' },
-      { href: '/case-study/project-three', label: 'Project Three',  sub: 'Coming soon' },
+      { href: '/selected-work/project-one',   label: 'UX Audit',       sub: 'Synchrony analytics platform' },
+      { href: '/selected-work/project-two',   label: 'Design System',  sub: 'Component library & guidelines' },
+      { href: '/selected-work/project-three', label: 'Project Three',  sub: 'Coming soon' },
     ],
   },
   {

@@ -45,7 +45,7 @@ export default function AboutPage() {
   return (
     <div className="layout">
       <Sidebar
-        variant="case-study"
+        variant="project"
         intro="Designer + researcher focused on reducing complexity and improving confidence in high-friction workflows."
         toc={ABOUT_TOC}
       />

@@ -11,18 +11,20 @@ export default function Home() {
         {/* ── Hero ── */}
         <section className="hero">
           <h1>
-            Your bold headline goes<br />
-            <em>right here.</em>
+            Designing human-centered digital experiences through<br />
+            <em>research + data + empathy.</em>
           </h1>
           <p>
-            I&rsquo;m [Your Name], a [your role] based in [your location]. Replace this with
-            your story &mdash; what you do, who you do it for, and what makes your
-            perspective unique. Keep it honest, specific, and human.
+            I’m Sara, an Information Management graduate student currently pursuing a certificate 
+            in Accessibility Design, with a background in Sociocultural and Linguistic Anthropology 
+            and Human-Centered Design. I bring a social science perspective to UX research and 
+            design — studying how people behave, communicate, and navigate digital systems to create
+             more intuitive, inclusive, and accessible experiences.
           </p>
         </section>
 
-        {/* ── Selected Work ── */}
-        <div className="section-header">Selected Work</div>
+        {/* ── Featured Work ── */}
+        <div className="section-header">Featured Work</div>
 
         {/* ── Marquee ── */}
         <Marquee />

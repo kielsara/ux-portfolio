@@ -110,7 +110,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
 }
 
-/* ── TOC (case study sidebar) ── */
+/* ── TOC (selected work sidebar) ── */
 .toc { display: flex; flex-direction: column; gap: 2px; }
 .toc-label {
   font-size: 0.7rem;
@@ -326,8 +326,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════
-   CASE STUDY PAGE
-═══════════════════════════════════ */
+  SELECTED WORK PAGE
+════════════════════════════════════ */
 
 .case-header {
   padding: 60px 60px 48px;

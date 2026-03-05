@@ -1,8 +1,8 @@
 // ─────────────────────────────────────────────────────────────
-//  lib/caseStudies.ts
+//  lib/selectedWork.ts
 //
-//  Add one entry per case study. The `slug` must match the
-//  folder name used in the URL: /case-study/[slug]
+//  Add one entry per project. The `slug` must match the
+//  folder name used in the URL: /selected-work/[slug]
 // ─────────────────────────────────────────────────────────────
 
 export interface Stat {
@@ -22,7 +22,7 @@ export interface Finding {
   desc: string
 }
 
-export interface CaseStudy {
+export interface SelectedWorkItem {
   slug: string
   title: string
   tag: string
@@ -77,7 +77,7 @@ export interface CaseStudy {
   nextSlug?: string
 }
 
-const caseStudies: CaseStudy[] = [
+const selectedWorkItems: SelectedWorkItem[] = [
   {
     slug: 'project-one',
     tag: 'UX Audit & Redesign',
@@ -273,9 +273,9 @@ const caseStudies: CaseStudy[] = [
 ]
 
 export function getAllSlugs(): string[] {
-  return caseStudies.map(cs => cs.slug)
+  return selectedWorkItems.map(item => item.slug)
 }
 
-export function getCaseStudy(slug: string): CaseStudy | undefined {
-  return caseStudies.find(cs => cs.slug === slug)
+export function getSelectedWork(slug: string): SelectedWorkItem | undefined {
+  return selectedWorkItems.find(item => item.slug === slug)
 }

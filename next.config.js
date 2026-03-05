@@ -6,6 +6,7 @@ const nextConfig = {
 	experimental: {
 		devtoolSegmentExplorer: false,
 	},
+	// No legacy redirects configured; `/case-study` URLs are retired.
 }
 
 module.exports = nextConfig
