@@ -13,7 +13,7 @@ export default function SiteFooter() {
         <Link href="https://linkedin.com/in/saramkiel" target="_blank" rel="noopener noreferrer">
           LinkedIn
         </Link>
-        <Link href="/resume.pdf">Resume</Link>
+        <Link href="/Sara Kiel — Resume.pdf">Resume</Link>
       </div>
     </footer>
   )

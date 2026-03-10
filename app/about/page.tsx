@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Sidebar from '@/components/Sidebar'
+import Sidebar, { LocalPageNav } from '@/components/Sidebar'
 import SiteFooter from '@/components/SiteFooter'
 
 const ABOUT_TOC = [
@@ -45,13 +45,15 @@ const TOOLS = [
 export default function AboutPage() {
   return (
     <div className="layout">
-      <Sidebar
-        variant="project"
-        intro="Designer + researcher focused on reducing complexity and improving confidence in high-friction workflows."
-        toc={ABOUT_TOC}
-      />
+      <Sidebar variant="project" />
 
-      <main className="main">
+      <div className="page-with-local-nav">
+        <LocalPageNav
+          intro="Designer + researcher focused on reducing complexity and improving confidence in high-friction workflows."
+          toc={ABOUT_TOC}
+        />
+
+        <main className="main">
         <header className="case-header" id="about">
           <div className="case-tag">About</div>
           <h1>Designing practical, evidence-backed experiences for people doing hard work.</h1>
@@ -161,8 +163,9 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <SiteFooter />
-      </main>
+          <SiteFooter />
+        </main>
+      </div>
     </div>
   )
 }

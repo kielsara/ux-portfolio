@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import Sidebar from '@/components/Sidebar'
+import Sidebar, { LocalPageNav } from '@/components/Sidebar'
 import DraggableCanvas from '@/components/DraggableCanvas'
 import { getAllSlugs, getSelectedWork } from '@/lib/selectedWork'
 import SiteFooter from '@/components/SiteFooter'
@@ -50,9 +50,12 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
   if (cs.isAuditProject) {
     return (
       <div className="layout">
-        <Sidebar variant="project" intro={cs.intro} toc={cs.toc} />
+        <Sidebar variant="project" />
 
-        <main className="main">
+        <div className="page-with-local-nav">
+          <LocalPageNav intro={cs.intro} toc={cs.toc} />
+
+          <main className="main">
 
           {/* ── Header ── */}
           <header className="case-header">
@@ -272,6 +275,11 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
             </section>
           )}
 
+          {/* ── Back to top ── */}
+          <div className="back-to-top">
+            <a href="#">click to go back to the top of page ↑</a>
+          </div>
+
           {/* ── Case footer nav ── */}
           <div className="case-footer">
             {cs.prevSlug ? (
@@ -287,9 +295,10 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           </div>
 
           {/* ── Site footer ── */}
-          <SiteFooter />
+            <SiteFooter />
 
-        </main>
+          </main>
+        </div>
       </div>
     )
   }
@@ -298,9 +307,12 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
   if (cs.isDesignSystem) {
     return (
       <div className="layout">
-        <Sidebar variant="project" intro={cs.intro} toc={cs.toc} />
+        <Sidebar variant="project" />
 
-        <main className="main">
+        <div className="page-with-local-nav">
+          <LocalPageNav intro={cs.intro} toc={cs.toc} />
+
+          <main className="main">
 
           {/* ── Header ── */}
           <header className="case-header">
@@ -498,9 +510,10 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           </div>
 
           {/* ── Site footer ── */}
-          <SiteFooter />
+            <SiteFooter />
 
-        </main>
+          </main>
+        </div>
       </div>
     )
   }
@@ -508,10 +521,12 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
   // ── Standard project layout (unchanged) ──
   return (
     <div className="layout">
-      {/* ── Sidebar with TOC ── */}
-      <Sidebar variant="project" intro={cs.intro} toc={cs.toc} />
+      <Sidebar variant="project" />
 
-      <main className="main">
+      <div className="page-with-local-nav">
+        <LocalPageNav intro={cs.intro} toc={cs.toc} />
+
+        <main className="main">
 
         {/* ── Header ── */}
         <header className="case-header">
@@ -689,6 +704,11 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           </section>
         )}
 
+        {/* ── Back to top ── */}
+        <div className="back-to-top">
+          <a href="#">click to go back to the top of page ↑</a>
+        </div>
+
         {/* ── Case footer nav ── */}
         <div className="case-footer">
           {cs.prevSlug ? (
@@ -704,9 +724,10 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
         </div>
 
         {/* ── Site footer ── */}
-        <SiteFooter />
+          <SiteFooter />
 
-      </main>
+        </main>
+      </div>
     </div>
   )
 }

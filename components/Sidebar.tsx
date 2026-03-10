@@ -35,12 +35,12 @@ const NAV_GROUPS: NavGroup[] = [
   {
     groupLabel: 'Selected Work',
     items: [
-      { href: '/selected-work/project-one',   label: 'UX Audit',       sub: 'Synchrony analytics platform' },
-      { href: '/selected-work/project-two',   label: 'Design System',  sub: 'Component library & guidelines' },
-      { href: '/selected-work/project-three', label: 'Project Three',  sub: 'Research synthesis' },
-      { href: '/selected-work/project-four',  label: 'Project Four',   sub: 'Operational workflow redesign' },
-      { href: '/selected-work/project-five',  label: 'Project Five',   sub: 'Accessibility uplift sprint' },
-      { href: '/selected-work/project-six',   label: 'Project Six',    sub: 'Onboarding optimization' },
+      { href: '/selected-work/project-one',   label: 'UX Audit & Redesign',       sub: 'Addressing Synchrony Analytics usability' },
+      { href: '/selected-work/project-two',   label: 'Design System',  sub: 'Establishing a component library & guidelines' },
+      { href: '/selected-work/project-three', label: 'UX/UI Design with AI',  sub: 'Prototyping a behavior reporting platform' },
+      { href: '/selected-work/project-four',  label: 'UX/UI Concept Redesign',   sub: 'Reimagining Strava\'s mobile experience' },
+      { href: '/selected-work/project-five',  label: 'CX Strategy & Design',   sub: 'Developing Busey\'s persona & journey map program' },
+      { href: '/selected-work/project-six',   label: 'UX Research & Operations',    sub: 'Scaling research practices at Synchrony' },
     ],
   },
   {
@@ -48,7 +48,7 @@ const NAV_GROUPS: NavGroup[] = [
     items: [
       { href: 'mailto:smkiel2@illinois.edu',                   label: 'Email',    sub: 'Send me a message' },
       { href: 'https://linkedin.com/in/saramkiel',     label: 'LinkedIn', sub: "Connect with me", external: true },
-      { href: '/resume.pdf',                            label: 'Resume',   sub: 'Download my resume (PDF)' },
+      { href: '/Sara Kiel — Resume.pdf',                label: 'Resume',   sub: 'Download my resume (PDF)' },
     ],
   },
 ]
@@ -57,7 +57,39 @@ const ABOUT_ITEM = NAV_GROUPS[0].items[0]
 const SELECTED_WORK_GROUP = NAV_GROUPS[1]
 const CONTACT_GROUP = NAV_GROUPS[2]
 
-export default function Sidebar({ variant = 'home', intro, toc }: SidebarProps) {
+interface LocalPageNavProps {
+  intro?: string
+  toc?: { id: string; symbol: string; label: string }[]
+}
+
+export function LocalPageNav({ intro, toc }: LocalPageNavProps) {
+  return (
+    <aside className="local-sidebar" aria-label="Local page navigation">
+      <div className="local-sidebar-inner">
+        <div className="sidebar-back">
+          <Link href="/">← Index</Link>
+        </div>
+        {intro && <p className="sidebar-intro">{intro}</p>}
+
+        {toc && toc.length > 0 && (
+          <nav className="local-toc">
+            <span className="local-toc-label">On this page</span>
+            {toc.map((entry) => (
+              <a key={entry.id} href={`#${entry.id}`} className="local-toc-link">
+                <span className="toc-symbol">{entry.symbol}</span>
+                {entry.label}
+              </a>
+            ))}
+          </nav>
+        )}
+      </div>
+    </aside>
+  )
+}
+
+export default function Sidebar({ variant = 'home' }: SidebarProps) {
+  const sidebarClassName = variant === 'project' ? 'sidebar sidebar--project-page' : 'sidebar'
+
   // Close other dropdowns when one opens
   useEffect(() => {
     const handleToggle = (e: Event) => {
@@ -86,7 +118,7 @@ export default function Sidebar({ variant = 'home', intro, toc }: SidebarProps) 
   }, [])
 
   return (
-    <aside className="sidebar">
+    <aside className={sidebarClassName}>
       <div className="sidebar-primary">
         <div className="sidebar-logo">
           <Link href="/">Sara Kiel</Link>
@@ -134,27 +166,6 @@ export default function Sidebar({ variant = 'home', intro, toc }: SidebarProps) 
         </nav>
       </div>
 
-      {variant === 'project' && (
-        <div className="sidebar-project-local">
-          <div>
-            <div className="sidebar-back">
-              <Link href="/">← Index</Link>
-            </div>
-            {intro && <p className="sidebar-intro">{intro}</p>}
-          </div>
-          {toc && toc.length > 0 && (
-            <nav className="toc">
-              <span className="toc-label">On this page</span>
-              {toc.map((entry) => (
-                <a key={entry.id} href={`#${entry.id}`} className="toc-link">
-                  <span className="toc-symbol">{entry.symbol}</span>
-                  {entry.label}
-                </a>
-              ))}
-            </nav>
-          )}
-        </div>
-      )}
     </aside>
   )
 }
