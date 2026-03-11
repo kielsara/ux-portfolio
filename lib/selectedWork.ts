@@ -100,11 +100,11 @@ const selectedWorkItems: SelectedWorkItem[] = [
     title: 'Turning 7 months of heuristic analysis into actionable design change.',
     intro: 'A systematic UX audit for enterprise analytics',
     overview:
-      'I led a comprehensive UX audit of Synchrony Business Solutions\' analytics platform — a tool used by small-to-medium sized business clients to track performance, spending, and business insights. What started as a usability review became a 7-month deep dive into data visualization clarity, accessibility, a product redesign, and design system foundations.',
+      'I led a comprehensive UX audit of Synchrony Business Solutions\' analytics platform — a tool used by small-to-medium sized business clients to track customer reviews, marketing efforts, and business operations. What started as a usability review became a 7-month deep dive into data visualization clarity, accessibility, a product redesign, and design system foundations.',
     role: 'UX/UI Design Intern',
-    team: 'Senior Product Design, Product Management, Engineering',
+    team: 'Grace Blondell, Lead UX Designer',
     timeline: '7 months',
-    tools: 'Figma & FigJam',
+    tools: 'Figma, FigJam',
     methods: 'Heuristic Evaluation, Laws of UX, WCAG Accessibility, Data Viz Best Practices',
     heroGradient: 'linear-gradient(135deg,#1a1a2e,#16213e)',
     isAuditProject: true,
@@ -122,10 +122,10 @@ const selectedWorkItems: SelectedWorkItem[] = [
 
     challenge: {
       headline: 'An analytics platform that had grown faster than its design.',
-      body: 'The Synchrony Business Solutions analytics platform serves enterprise clients making critical business decisions. But years of feature additions without systematic design review had created inconsistencies — confusing data visualizations, accessibility gaps, and a fragmented user experience. Leadership knew something was wrong, but needed clear evidence and a path forward.',
+      body: 'The Synchrony Business Solutions analytics platform serves enterprise clients making critical business decisions. But years of feature additions without systematic design review had created inconsistencies — confusing data visualizations, accessibility gaps, and a fragmented user experience. The team had also recently transitioned from a legacy design workflow into Figma, and much of the UI had been migrated as screenshots of live production states instead of editable components. With limited team capacity to clean and restructure those files, the design environment itself became harder to maintain and scale. Leadership knew something was wrong, but needed clear evidence and a path forward.',
       stats: [
         { number: '50+', desc: 'screens evaluated across the platform' },
-        { number: '6', desc: 'evaluators collaborating on heuristic analysis' },
+        { number: '2', desc: 'design sources of truth causing inconsistency and rework' },
         { number: '80+', desc: 'usability issues identified and categorized' },
       ],
     },
@@ -135,71 +135,70 @@ const selectedWorkItems: SelectedWorkItem[] = [
       body: 'I structured the audit around established frameworks — Nielsen Norman Group heuristics, Laws of UX, WCAG accessibility guidelines, and data visualization best practices. This gave stakeholders confidence that findings were grounded in research, not personal preference.',
       steps: [
         { num: '01', title: 'Framework Selection', desc: 'Chose evaluation criteria spanning usability heuristics, accessibility, data viz clarity, and content consistency.' },
-        { num: '02', title: 'Systematic Walkthrough', desc: 'Documented every screen with observations, severity ratings, and evidence-based recommendations.' },
-        { num: '03', title: 'Cross-Evaluator Review', desc: 'Worked with 6 evaluators to validate findings and reduce individual bias.' },
+        { num: '02', title: 'Systematic Walkthrough', desc: 'Documented every screen in Figjam with observations, severity ratings, and evidence-based recommendations.' },
+        { num: '03', title: 'Stakeholder Calibration', desc: 'Reviewed findings with the lead UX designer to align severity scoring and prioritize recommendations for implementation.' },
         { num: '04', title: 'Pattern Identification', desc: 'Grouped issues into themes to reveal systemic problems, not just surface bugs.' },
       ],
     },
 
     findings: {
-      headline: 'The problems weren\'t random — they were patterns.',
-      body: 'What initially looked like scattered usability issues revealed deeper systemic problems. The same mistakes repeated across screens, suggesting gaps in design guidelines rather than one-off errors.',
+      headline: 'The findings were distilled into 3 opportunity areas, plus accessibility across all of them.',
+      body: 'In the stakeholder deck, I translated detailed audit observations into three overarching opportunity areas: (1) adjusting visualizations to align with data visualization best practices, (2) ensuring content is consistent, clear, and valuable, and (3) leaning into a more intuitive dashboard/navigation model. Accessibility was treated as a cross-cutting requirement across all three areas, not a standalone add-on.',
       items: [
-        { icon: '📊', title: 'Data Visualization Clarity', desc: 'Charts lacked clear labels, used inconsistent color coding, and buried critical insights in visual noise.' },
-        { icon: '♿', title: 'Accessibility Gaps', desc: 'Color contrast failures, missing alt text, keyboard navigation issues — blocking users with disabilities.' },
-        { icon: '🧭', title: 'Navigation Inconsistency', desc: 'Users couldn\'t predict where they\'d land. Same actions behaved differently across sections.' },
-        { icon: '📝', title: 'Content & Labeling', desc: 'Jargon-heavy labels, inconsistent terminology, and missing context left users guessing.' },
+        { icon: '📊', title: 'Visualization Best Practices', desc: 'Several charts were undersized, visually dense, or relied on unnecessary elements/interactions, which reduced readability and interpretability.' },
+        { icon: '📝', title: 'Content Clarity & Value', desc: 'Terminology, copy, and page-to-page information structure were inconsistent, making it harder for users to understand what mattered and what to do next.' },
+        { icon: '🧭', title: 'Dashboard & Navigation UX', desc: 'Navigation patterns, spacing rules, and layout conventions were inconsistent, creating friction and reducing discoverability.' },
+        { icon: '♿', title: 'Accessibility Across All Areas', desc: 'Accessibility gaps in contrast, interaction states, responsive behavior, and keyboard navigation reinforced the need for inclusive standards in every redesign decision.' },
       ],
     },
 
     synthesis: {
-      headline: 'From 80+ sticky notes to 6 actionable themes.',
-      body: 'I clustered findings using affinity mapping in FigJam, grouping raw observations into themes that could drive design decisions. This transformed an overwhelming spreadsheet of issues into a clear story stakeholders could act on.',
+      headline: 'From detailed observations to a decision-ready framework.',
+      body: 'I used affinity mapping to cluster recurring issues, then refined those clusters into three redesign opportunity areas supported by a fourth, cross-cutting accessibility lens. This structure helped stakeholders prioritize by impact and effort while keeping the recommendations connected to concrete UX evidence.',
       themes: [
-        'Data Visualization Standards',
-        'Accessibility Compliance',
-        'Navigation & Wayfinding',
-        'Content Strategy & Labeling',
-        'Visual Consistency',
-        'Error States & Feedback',
+        'Adjust Visualizations to Data Viz Best Practices',
+        'Ensure Content is Consistent, Clear, and Valuable',
+        'Lean into Dashboard Design and Navigation Patterns',
+        'Address Accessibility Across All Opportunity Areas',
       ],
     },
 
     alignment: {
-      headline: 'Audit findings don\'t matter if nobody acts on them.',
-      body: 'I presented findings in a structured design session with cross-functional stakeholders — product managers, developers, and senior designers. The goal wasn\'t just to share problems, but to build shared ownership of solutions. I prioritized issues by severity and effort, giving the team a clear roadmap.',
+      headline: 'I presented the audit as a focused stakeholder decision deck.',
+      body: 'I used this opportunity-area framework in a cross-functional readout with product, design, and engineering stakeholders. Framing the audit this way kept the conversation anchored on implementation priorities (navigation, content, data storytelling, and accessibility) rather than one-off screen critiques, and made next-step planning more actionable.',
       quote: 'This gave us the evidence we needed to prioritize accessibility work that had been deprioritized for years.',
       quoteAttrib: '— Senior Product Designer, Synchrony',
     },
 
     redesign: {
-      headline: 'Translating critique into craft.',
-      body: 'I didn\'t stop at identifying problems. Working with the UX team, I developed design recommendations that addressed root causes — contributing to a variable design system that would prevent these issues from recurring.',
+      headline: 'Recommendations mapped directly to each opportunity area.',
+      body: 'I translated each area into concrete next steps: simplify and resize visualizations for legibility, improve copy and information consistency, modernize dashboard/navigation structure, and apply accessibility standards throughout. This made each recommendation traceable to audit evidence and easier to phase into future redesign work.',
       changes: [
-        { title: 'Chart Redesign Standards', desc: 'Created guidelines for data visualization clarity — consistent color palettes, clear axis labels, and progressive disclosure for complex datasets.' },
-        { title: 'Accessibility Patterns', desc: 'Documented accessible component patterns with proper contrast ratios, focus states, and screen reader support.' },
-        { title: 'Navigation Framework', desc: 'Proposed consistent navigation patterns that users could learn once and apply everywhere.' },
+        { title: 'Data Storytelling & Chart Clarity', desc: 'Recommended simplifying dense charts, removing unnecessary visual elements/interactions, and resizing visualizations to improve comprehension.' },
+        { title: 'Content Quality & Personalization', desc: 'Recommended copy cleanup, clearer terminology, stronger page-to-page consistency, and opportunities for personalized summaries/insights.' },
+        { title: 'Dashboard Layout & Navigation', desc: 'Recommended a more intuitive dashboard pattern (modular layout + clearer hierarchy), improved breadcrumbs/footer logic, and reduced navigation friction.' },
+        { title: 'Accessibility Baseline', desc: 'Recommended applying contrast, keyboard navigation, responsive behavior, and interaction-state standards across all redesign efforts.' },
       ],
     },
 
     impact: {
       headline: 'From audit to action.',
-      body: 'The audit became the foundation for ongoing design improvements and directly influenced the creation of a comprehensive design system.',
+      body: 'The audit deck became a shared reference point for prioritization and directly informed subsequent design-system and product improvements.',
       stats: [
+        { number: '3', desc: 'overarching opportunity areas used to structure redesign priorities' },
+        { number: '1', desc: 'cross-cutting accessibility directive applied across all recommendations' },
         { number: '100%', desc: 'of critical accessibility issues addressed in roadmap' },
-        { number: '1', desc: 'new design system initiated from audit findings' },
-        { number: '6', desc: 'design guidelines documented for future work' },
       ],
     },
 
     reflection: {
       headline: 'What 7 months of auditing taught me about design leadership.',
-      body: 'This project pushed me beyond pixel-level thinking into systems thinking. I learned that identifying problems is only half the work — the harder part is building consensus and creating documentation that outlives your tenure.',
+      body: 'This project pushed me beyond pixel-level critique into systems-level storytelling. I learned that doing the analysis is only half the job — the real leverage comes from framing findings in a way that helps stakeholders decide and act.',
       learnings: [
         'Evidence beats opinion. Grounding critique in heuristics gave my recommendations credibility with senior stakeholders.',
         'Scope discipline matters. I had to resist the urge to fix everything and focus on high-impact, achievable changes.',
-        'Documentation is design. The guidelines I created will shape decisions long after my internship ended.',
-        'Collaboration amplifies impact. Working with 6 evaluators caught blind spots I would have missed alone.',
+        'Documentation is design. Structuring findings into opportunity areas made complex observations easier for stakeholders to prioritize and act on.',
+        'Owning the full audit sharpened my systems thinking. Running it solo helped me spot recurring patterns quickly and build a clear, defensible prioritization model.',
       ],
     },
 
