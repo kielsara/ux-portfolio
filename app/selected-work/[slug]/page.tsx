@@ -533,6 +533,334 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
     )
   }
 
+  // ── App Redesign project layout (Strava) ──
+  if (cs.isAppRedesign) {
+    return (
+      <div className="layout">
+        <Sidebar variant="project" />
+
+        <div className="page-with-local-nav">
+          <LocalPageNav intro={cs.intro} toc={cs.toc} />
+
+          <main className="main">
+
+          {/* ── Header ── */}
+          <header className="case-header">
+            <div className="case-tag">{cs.tag}</div>
+            <h1>{cs.title}</h1>
+            <p>{cs.overview}</p>
+            <div className="meta-row">
+              <div className="meta-item">
+                <span className="meta-label">Role</span>
+                <span className="meta-value">{cs.role}</span>
+              </div>
+              <div className="meta-item">
+                <span className="meta-label">Duration</span>
+                <span className="meta-value">{cs.timeline}</span>
+              </div>
+              {cs.tools && (
+                <div className="meta-item">
+                  <span className="meta-label">Tools</span>
+                  <span className="meta-value">{cs.tools}</span>
+                </div>
+              )}
+              {cs.methods && (
+                <div className="meta-item meta-item-wide">
+                  <span className="meta-label">Methods</span>
+                  <span className="meta-value">{cs.methods}</span>
+                </div>
+              )}
+            </div>
+          </header>
+
+          {/* ── Hero image ── */}
+          <div
+            className="hero-image hero-image--app-redesign"
+            style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#fc4c02,#e03e00)' }}
+          >
+            <span className="hero-title-overlay">APP &amp; EXPERIENCE REDESIGN</span>
+          </div>
+
+          {/* ═══ Context ═══ */}
+          {cs.context && (
+            <section className="article-section" id="context">
+              <div className="section-eyebrow">Context</div>
+              <h2>{cs.context.headline}</h2>
+              <p>{cs.context.body}</p>
+              {cs.context.body2 && <p>{cs.context.body2}</p>}
+            </section>
+          )}
+
+          {/* ═══ Goals ═══ */}
+          {cs.goals && (
+            <section className="article-section" id="goals">
+              <div className="section-eyebrow">Goals</div>
+              {cs.goals.headline && <h2>{cs.goals.headline}</h2>}
+              <ul className="goals-list">
+                {cs.goals.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* ═══ Results ═══ */}
+          {cs.results && (
+            <section className="article-section" id="results">
+              <div className="section-eyebrow">Results</div>
+              {cs.results.headline && <h2>{cs.results.headline}</h2>}
+              <ul className="results-list">
+                {cs.results.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* ═══ Reflections ═══ */}
+          {cs.reflections && (
+            <section className="article-section" id="reflections">
+              <div className="section-eyebrow">Reflections</div>
+              <h2>{cs.reflections.headline}</h2>
+              <p>{cs.reflections.body}</p>
+            </section>
+          )}
+
+          {/* ═══ Process & Design Decisions ═══ */}
+          {cs.processSteps && cs.processSteps.length > 0 && (
+            <>
+              <div className="process-divider">
+                <div className="process-divider-line" />
+                <span className="process-divider-label">Process &amp; Design Decisions</span>
+                <div className="process-divider-line" />
+              </div>
+
+              {cs.processSteps.map((step, i) => (
+                <section
+                  key={step.id}
+                  className="article-section article-section--process"
+                  id={step.id}
+                >
+                  <div className="section-eyebrow">{step.eyebrow}</div>
+                  <h2>{step.title}</h2>
+                  <p>{step.body}</p>
+                  {step.body2 && <p>{step.body2}</p>}
+                  {step.body3 && <p>{step.body3}</p>}
+                  {step.imageLabels && step.imageLabels.map((img, j) => (
+                    <ImgPlaceholder
+                      key={j}
+                      gradient={[
+                        'linear-gradient(135deg,#2d2d44,#1a1a2e)',
+                        'linear-gradient(135deg,#1a1a2e,#16213e)',
+                        'linear-gradient(135deg,#16213e,#0f3460)',
+                        'linear-gradient(135deg,#2a2a3a,#1e1e30)',
+                      ][(i + j) % 4]}
+                      label={img.label}
+                      caption={img.caption}
+                      height={img.height ?? 280}
+                    />
+                  ))}
+                </section>
+              ))}
+            </>
+          )}
+
+          {/* ── Back to top ── */}
+          <div className="back-to-top">
+            <a href="#">click to go back to the top of page ↑</a>
+          </div>
+
+          {/* ── Case footer nav ── */}
+          <div className="case-footer">
+            {cs.prevSlug ? (
+              <Link href={`/selected-work/${cs.prevSlug}`}>← Previous project</Link>
+            ) : (
+              <Link href="/">← All projects</Link>
+            )}
+            {cs.nextSlug ? (
+              <Link href={`/selected-work/${cs.nextSlug}`}>Next project →</Link>
+            ) : (
+              <span />
+            )}
+          </div>
+
+          {/* ── Site footer ── */}
+            <SiteFooter />
+
+          </main>
+        </div>
+      </div>
+    )
+  }
+
+  // ── CX Research / Persona project layout (Busey Bank) ──
+  if (cs.isCxResearch) {
+    return (
+      <div className="layout">
+        <Sidebar variant="project" />
+
+        <div className="page-with-local-nav">
+          <LocalPageNav intro={cs.intro} toc={cs.toc} />
+
+          <main className="main">
+
+          {/* ── Header ── */}
+          <header className="case-header">
+            <div className="case-tag">{cs.tag}</div>
+            <h1>{cs.title}</h1>
+            <p>{cs.overview}</p>
+            <div className="meta-row">
+              <div className="meta-item">
+                <span className="meta-label">Role</span>
+                <span className="meta-value">{cs.role}</span>
+              </div>
+              <div className="meta-item">
+                <span className="meta-label">Duration</span>
+                <span className="meta-value">{cs.timeline}</span>
+              </div>
+              {cs.tools && (
+                <div className="meta-item">
+                  <span className="meta-label">Tools</span>
+                  <span className="meta-value">{cs.tools}</span>
+                </div>
+              )}
+              {cs.methods && (
+                <div className="meta-item meta-item-wide">
+                  <span className="meta-label">Methods</span>
+                  <span className="meta-value">{cs.methods}</span>
+                </div>
+              )}
+            </div>
+          </header>
+
+          {/* ── Hero image ── */}
+          <div
+            className="hero-image hero-image--cx-research"
+            style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#1a3a4a,#0d2633)' }}
+          >
+            <span className="hero-title-overlay">PERSONA &amp;<br/>USER JOURNEY CREATION</span>
+          </div>
+
+          {/* ═══ Context ═══ */}
+          {cs.context && (
+            <section className="article-section" id="context">
+              <div className="section-eyebrow">Context</div>
+              <h2>{cs.context.headline}</h2>
+              <p>{cs.context.body}</p>
+              {cs.context.body2 && <p>{cs.context.body2}</p>}
+              {cs.context.linkText && (
+                <a href="#research" className="context-link">{cs.context.linkText}</a>
+              )}
+            </section>
+          )}
+
+          {/* ═══ Goals ═══ */}
+          {cs.goals && (
+            <section className="article-section" id="goals">
+              <div className="section-eyebrow">Goals</div>
+              {cs.goals.headline && <h2>{cs.goals.headline}</h2>}
+              <ul className="goals-list">
+                {cs.goals.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* ═══ Results ═══ */}
+          {cs.results && (
+            <section className="article-section" id="results">
+              <div className="section-eyebrow">Results</div>
+              {cs.results.headline && <h2>{cs.results.headline}</h2>}
+              <ul className="results-list">
+                {cs.results.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* ═══ Reflections ═══ */}
+          {cs.reflections && (
+            <section className="article-section" id="reflections">
+              <div className="section-eyebrow">Reflections</div>
+              <h2>{cs.reflections.headline}</h2>
+              <p>{cs.reflections.body}</p>
+            </section>
+          )}
+
+          {/* ═══ Process & Design Decisions ═══ */}
+          {cs.processSteps && cs.processSteps.length > 0 && (
+            <>
+              <div className="process-divider">
+                <div className="process-divider-line" />
+                <span className="process-divider-label">Process &amp; Design Decisions</span>
+                <div className="process-divider-line" />
+              </div>
+
+              {cs.processSteps.map((step, i) => (
+                <section
+                  key={step.id}
+                  className="article-section article-section--process"
+                  id={step.id}
+                >
+                  <div className="section-eyebrow">{step.eyebrow}</div>
+                  <h2>{step.title}</h2>
+                  <p>{step.body}</p>
+                  {step.body2 && <p>{step.body2}</p>}
+                  {step.body3 && <p>{step.body3}</p>}
+                  {step.ndaNotice && (
+                    <div className="nda-notice">
+                      <span className="nda-icon">🔒</span>
+                      <p>{step.ndaNotice}</p>
+                    </div>
+                  )}
+                  {step.imageLabels && step.imageLabels.map((img, j) => (
+                    <ImgPlaceholder
+                      key={j}
+                      gradient={[
+                        'linear-gradient(135deg,#1a3a4a,#0d2633)',
+                        'linear-gradient(135deg,#0d2633,#1a2a36)',
+                        'linear-gradient(135deg,#2a3a44,#1a2a34)',
+                      ][(i + j) % 3]}
+                      label={img.label}
+                      caption={img.caption}
+                      height={img.height ?? 280}
+                    />
+                  ))}
+                </section>
+              ))}
+            </>
+          )}
+
+          {/* ── Back to top ── */}
+          <div className="back-to-top">
+            <a href="#">click to go back to the top of page ↑</a>
+          </div>
+
+          {/* ── Case footer nav ── */}
+          <div className="case-footer">
+            {cs.prevSlug ? (
+              <Link href={`/selected-work/${cs.prevSlug}`}>← Previous project</Link>
+            ) : (
+              <Link href="/">← All projects</Link>
+            )}
+            {cs.nextSlug ? (
+              <Link href={`/selected-work/${cs.nextSlug}`}>Next project →</Link>
+            ) : (
+              <span />
+            )}
+          </div>
+
+          {/* ── Site footer ── */}
+            <SiteFooter />
+
+          </main>
+        </div>
+      </div>
+    )
+  }
+
   // ── Standard project layout (unchanged) ──
   return (
     <div className="layout">

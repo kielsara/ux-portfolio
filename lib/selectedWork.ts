@@ -37,9 +37,23 @@ export interface SelectedWorkItem {
   heroImage?: string     // path to image in /public
   isAuditProject?: boolean  // flag for audit-style layout
   isDesignSystem?: boolean  // flag for design system layout
+  isAppRedesign?: boolean   // flag for app redesign case study layout
+  isCxResearch?: boolean     // flag for CX research / persona project layout
 
   // TOC — must match section IDs in the page
   toc: { id: string; symbol: string; label: string }[]
+
+  // Section content (app redesign / CX research projects)
+  processSteps?: {
+    id: string
+    eyebrow: string
+    title: string
+    body: string
+    body2?: string
+    body3?: string
+    ndaNotice?: string  // shown instead of images when NDA restricts visuals
+    imageLabels?: { label: string; caption?: string; height?: number }[]
+  }[]
 
   // Section content (standard project)
   whyItMattered?: { stats: Stat[] }
@@ -317,10 +331,11 @@ const selectedWorkItems: SelectedWorkItem[] = [
 
   {
     slug: 'project-four',
-    tag: 'Workflow Redesign',
-    title: 'Reducing operational friction in a multi-step internal workflow.',
-    intro: 'Simplifying handoffs and decision points for operations teams',
+    tag: 'App & Experience Redesign',
+    title: 'Improving navigation and beginner accessibility for Strava through a comprehensive audit and targeted redesign of the "Groups" ecosystem.',
+    intro: 'Redesigning Strava\'s Groups for discoverability & ease of use',
     overview:
+<<<<<<< HEAD
       'I redesigned a high-friction operational flow used daily by internal teams. The redesign reduced ambiguity at key decision points, improved status visibility, and made exception handling easier for first-time and returning users.',
     role: 'Product Designer',
     team: 'Operations, Product, Engineering',
@@ -328,40 +343,150 @@ const selectedWorkItems: SelectedWorkItem[] = [
     tools: 'Figma, Maze',
     methods: 'Task Analysis, Journey Mapping, Iterative Prototyping',
     heroGradient: 'linear-gradient(135deg,#d4b0b0,#b88080)',
+=======
+      'As part of a student-directed UX project, my team took on a comprehensive evaluation and redesign of Strava\'s "Groups" feature — tackling how new and casual users discover, navigate, and participate in group-based fitness communities. Through heuristic evaluation, competitive analysis, user interviews, and iterative prototyping, we identified core navigation friction points and redesigned the Groups experience to be more intuitive, welcoming, and accessible for beginners.',
+    role: 'UX Researcher & UX/UI Designer',
+    timeline: '4 months',
+    tools: 'Figma & FigJam',
+    methods: 'Heuristic Evaluation, Competitive Analysis, User Surveys, User Interviews, Affinity Mapping, Card Sorting, Persona Development, Journey Mapping, Information Architecture, Wireframing, Prototyping',
+    heroGradient: 'linear-gradient(135deg,#fc4c02,#e03e00)',
+    isAppRedesign: true,
+
+>>>>>>> 268eab70a36d799243c94383d674f374eb54ec02
     toc: [
-      { id: 'why-it-mattered', symbol: '◇', label: 'Why it mattered' },
-      { id: 'solution', symbol: '◈', label: 'Solution' },
-      { id: 'outcomes', symbol: '✦', label: 'Outcomes' },
+      { id: 'context',       symbol: '◇', label: 'Context'               },
+      { id: 'goals',         symbol: '◈', label: 'Goals'                 },
+      { id: 'results',       symbol: '✦', label: 'Results'               },
+      { id: 'reflections',   symbol: '↻', label: 'Reflections'           },
+      { id: 'audit',         symbol: '⊕', label: 'Audit & Analysis'      },
+      { id: 'research',      symbol: '◎', label: 'User Research'         },
+      { id: 'persona',       symbol: '⬡', label: 'Persona & Journey'     },
+      { id: 'ia',            symbol: '◐', label: 'Info Architecture'     },
+      { id: 'paper-wires',   symbol: '✎', label: 'Paper Wireframes'      },
+      { id: 'lofi-wires',    symbol: '▤', label: 'Low-Fi Wireframes'     },
+      { id: 'hifi-wires',    symbol: '◆', label: 'Hi-Fi & Prototyping'   },
     ],
-    whyItMattered: {
-      stats: [
-        { number: '17', desc: 'steps in original workflow' },
-        { number: '6', desc: 'critical error-prone moments identified' },
+
+    context: {
+      headline: 'A popular fitness platform with a hidden social layer.',
+      body: 'Strava is one of the most widely used fitness tracking platforms, with over 100 million athletes worldwide. While its core tracking features are well-regarded, the "Groups" ecosystem — including clubs, challenges, and community features — has grown organically without a cohesive design strategy. For new users, finding and joining a relevant group can feel unintuitive, buried under layers of navigation that prioritize activity feeds over community discovery.',
+      body2: 'Our team specifically focused on the Groups experience because it represents a critical retention lever: users who join groups are significantly more likely to stay active on the platform. Yet the current design creates unnecessary friction — particularly for beginners who don\'t yet know Strava\'s conventions and navigation patterns.',
+    },
+
+    goals: {
+      items: [
+        'Make it easier for users who are familiar with fitness apps — but new to Strava — to discover, navigate, and engage with the Groups ecosystem',
+        'Reduce navigation friction in the mobile experience so users can find relevant groups without getting lost or frustrated',
+        'Improve the information hierarchy so that group details, activity, and membership actions are clear and accessible at a glance',
       ],
     },
-    solution: {
-      intro: 'A clearer, guided flow with better contextual feedback.',
-      features: [
-        { title: 'Progressive disclosure', body: 'Only high-signal information appears by default, with deeper details available on demand.' },
-        { title: 'Inline guidance', body: 'Contextual helper text and status labels reduce avoidable errors and rework.' },
+
+    results: {
+      items: [
+        'Redesigned the Groups discovery flow with a clear entry point from the main navigation, improving discoverability by surfacing groups earlier in the user journey',
+        'Created a streamlined group detail page with progressive disclosure — essential info upfront, deeper content on demand — reducing cognitive load for first-time visitors',
+        'Introduced category-based browsing and improved search filters, enabling users to find groups by activity type, location, and skill level',
+        'Validated the redesign through usability testing, with participants completing group discovery tasks significantly faster than in the existing Strava interface',
       ],
     },
-    outcomes: {
-      stats: [
-        { number: '31%', desc: 'reduction in completion time during testing' },
-        { number: '22%', desc: 'drop in preventable support requests' },
-      ],
+
+    reflections: {
+      headline: 'What redesigning a live product taught me about scope and advocacy.',
+      body: 'This project was a formative experience in understanding that good UX work isn\'t just about interfaces — it\'s about advocating for users within the constraints of an existing product ecosystem. I learned to balance ambition with feasibility, to let research guide decisions rather than assumptions, and to communicate design rationale in ways that build consensus. Working through the full UX process — from heuristic evaluation to high-fidelity prototyping — gave me confidence in my ability to take a problem from discovery through delivery.',
     },
+
+    processSteps: [
+      {
+        id: 'audit',
+        eyebrow: 'Pain Point Audit & Competitive Analysis',
+        title: 'Understanding what\'s broken — and what others do better.',
+        body: 'We began by conducting a thorough heuristic evaluation of Strava\'s existing Groups feature, mapping every screen and interaction in the group discovery, joining, and participation flows. Using Nielsen\'s heuristics as our framework, we documented friction points ranging from unclear navigation labels to inconsistent interaction patterns between mobile and web.',
+        body2: 'In parallel, we performed a competitive analysis of comparable social fitness platforms — including Nike Run Club, Peloton, MapMyRun, and Garmin Connect — evaluating how each handles group discovery, onboarding, and engagement. This helped us identify design patterns that users already understand from other products, and opportunities where Strava could differentiate.',
+        body3: 'The audit surfaced several critical pain points: the Groups tab was buried in navigation, group search lacked meaningful filters, and the group detail page prioritized admin-facing information over what a prospective member would need to make a join decision.',
+        imageLabels: [
+          { label: '[ screenshot: Strava Groups current state — navigation pain points annotated ]', caption: 'Heuristic evaluation of the current Groups navigation flow, with friction points annotated.', height: 300 },
+          { label: '[ competitive analysis matrix comparing Strava, Nike Run Club, Peloton, etc. ]', caption: 'Competitive analysis comparing group discovery features across fitness platforms.', height: 280 },
+        ],
+      },
+      {
+        id: 'research',
+        eyebrow: 'Qualitative Data Collection & Analysis',
+        title: 'Hearing directly from the users we\'re designing for.',
+        body: 'To complement our heuristic findings with real user perspectives, we conducted a mixed-methods research phase. We distributed a screening survey to identify target participants — users who were active in fitness but relatively new to Strava or had tried and abandoned its Groups features.',
+        body2: 'From survey respondents, we recruited participants for semi-structured 1-on-1 interviews. These sessions explored users\' mental models around fitness communities, their expectations when discovering groups in an app, and specific moments of confusion or frustration they\'d experienced with Strava.',
+        body3: 'We synthesized findings using affinity mapping in FigJam, clustering interview excerpts and survey responses into themes. Key patterns emerged around discoverability gaps, unclear group value propositions, and a mismatch between what users wanted from groups versus what the current UI surfaced.',
+        imageLabels: [
+          { label: '[ affinity mapping board in FigJam — clustered sticky notes from interviews ]', caption: 'Affinity mapping session synthesizing qualitative data from user interviews and surveys.', height: 320 },
+        ],
+      },
+      {
+        id: 'persona',
+        eyebrow: 'User Persona & Journey Map',
+        title: 'Grounding our design decisions in a real user archetype.',
+        body: 'From our research synthesis, we developed a primary user persona that represented our core audience: a fitness-motivated individual who uses tracking apps regularly but is new to Strava and unfamiliar with its social features. The persona captured key behaviors, goals, frustrations, and the context in which they\'d encounter Groups.',
+        body2: 'We then mapped this persona\'s journey through the current Groups experience — from initial awareness to discovery, evaluation, joining, and first participation. The journey map revealed that the sharpest drop-off moments occurred during the discovery-to-evaluation transition: users could tell groups existed, but couldn\'t efficiently find relevant ones or understand what joining would actually give them.',
+        imageLabels: [
+          { label: '[ user persona card with demographics, goals, frustrations, and behaviors ]', caption: 'Primary user persona developed from synthesis of survey and interview data.', height: 340 },
+          { label: '[ journey map showing touchpoints, emotions, and pain points across the Groups flow ]', caption: 'Journey map tracking the user experience from group discovery through first participation.', height: 300 },
+        ],
+      },
+      {
+        id: 'ia',
+        eyebrow: 'Information Architecture',
+        title: 'Restructuring the navigation to match user mental models.',
+        body: 'Armed with research insights, we tackled the structural root of the navigation problems. We conducted an open card sorting exercise with participants to understand how users naturally categorize group-related content — and found significant mismatches with Strava\'s existing hierarchy.',
+        body2: 'Based on card sorting results and competitive benchmarks, we proposed a restructured information architecture for the Groups section. The key changes included elevating Groups to a primary navigation item, introducing category-based browsing (by sport, location, and experience level), and reorganizing the group detail page to lead with value-oriented content rather than admin metadata.',
+        body3: 'We validated the new IA through tree testing, confirming that users could locate target groups significantly faster under the proposed structure.',
+        imageLabels: [
+          { label: '[ card sorting results — grouped categories from participant sessions ]', caption: 'Open card sorting results revealing how users naturally categorize group content.', height: 280 },
+          { label: '[ revised information architecture diagram / sitemap for Groups ]', caption: 'Restructured information architecture for the Groups ecosystem.', height: 320 },
+        ],
+      },
+      {
+        id: 'paper-wires',
+        eyebrow: 'Paper Wireframes',
+        title: 'Rapid ideation before committing to pixels.',
+        body: 'Before moving into digital tools, we sketched paper wireframes to rapidly explore layout options for key screens: the Groups discovery hub, search & filter interface, group detail page, and the join/onboarding flow. Paper allowed us to iterate through multiple concepts quickly, testing different information hierarchies and interaction patterns without the overhead of high-fidelity tools.',
+        body2: 'We reviewed our sketches against the personas and journey map, selecting the strongest concepts for each screen based on how well they addressed our identified pain points. The paper phase helped us commit to a clear content hierarchy before investing in digital wireframes.',
+        imageLabels: [
+          { label: '[ photos of hand-drawn paper wireframes for key screens ]', caption: 'Paper wireframe explorations for the Groups discovery hub and detail page.', height: 300 },
+        ],
+      },
+      {
+        id: 'lofi-wires',
+        eyebrow: 'Low-Fidelity Wireframes',
+        title: 'Translating structure into screen-level designs.',
+        body: 'We translated our strongest paper concepts into low-fidelity digital wireframes in Figma. At this stage, the focus was on layout, flow, and content placement — not visual polish. We wireframed the complete Groups journey: discovery landing page, category browsing, search with filters, group detail pages, and the join confirmation flow.',
+        body2: 'The low-fi wireframes allowed us to conduct early usability walkthroughs with peers, catching navigation dead-ends and unclear labeling before investing in visual design. Feedback at this stage led to key refinements, including adding a "recommended for you" section to the discovery page and simplifying the group detail page to a single-scroll layout.',
+        imageLabels: [
+          { label: '[ low-fidelity wireframe screens from Figma — key flows ]', caption: 'Low-fidelity wireframes showing the redesigned Groups discovery and detail flows.', height: 320 },
+        ],
+      },
+      {
+        id: 'hifi-wires',
+        eyebrow: 'High-Fidelity Wireframes & Prototyping',
+        title: 'Bringing the redesign to life with full visual fidelity.',
+        body: 'The final phase involved applying Strava\'s visual language — including its signature orange, athletic typography, and photography-forward card layouts — to produce high-fidelity screens ready for usability validation. We designed every screen in the Groups flow at full fidelity, paying close attention to touch targets, type hierarchy, and responsive behavior.',
+        body2: 'We built an interactive prototype in Figma connecting the complete Groups journey, from the main navigation entry point through discovery, evaluation, joining, and first activity within a group. This allowed us to run moderated usability testing sessions where participants completed realistic tasks.',
+        body3: 'Usability testing with the hi-fi prototype confirmed that our redesign significantly reduced task completion time for group discovery, and participants rated the new design as more intuitive and welcoming than the existing Strava interface.',
+        imageLabels: [
+          { label: '[ high-fidelity mockup screens — Groups discovery hub and detail page ]', caption: 'High-fidelity designs for the redesigned Groups experience.', height: 360 },
+          { label: '[ before & after comparison — current Strava Groups vs redesigned version ]', caption: 'Before and after: the existing Strava Groups experience versus our redesign.', height: 300 },
+        ],
+      },
+    ],
+
     prevSlug: 'project-three',
     nextSlug: 'project-five',
   },
 
   {
     slug: 'project-five',
-    tag: 'Accessibility Sprint',
-    title: 'Improving accessibility compliance across shared interface patterns.',
-    intro: 'Raising baseline accessibility across common components',
+    tag: 'Persona & User Journey Creation',
+    title: 'Establishing a human-centered foundation for Busey Bank through the development of a formal Customer Journey Mapping and Persona program.',
+    intro: 'Building personas & journey maps for a regional bank',
     overview:
+<<<<<<< HEAD
       'This sprint focused on increasing accessibility quality across reused UI patterns. I audited key components, partnered with engineering on implementation details, and documented updated guidance for ongoing consistency.',
     role: 'UX Designer',
     team: 'Design, Engineering, QA',
@@ -369,31 +494,104 @@ const selectedWorkItems: SelectedWorkItem[] = [
     tools: 'Figma, Axe, Storybook',
     methods: 'WCAG Review, Component Audit, Cross-functional QA',
     heroGradient: 'linear-gradient(135deg,#b0d4c0,#80b898)',
+=======
+      'During my two-semester internship at Busey Bank, I supported the Customer Experience Manager in transitioning the organization from a process-centric view to a customer-centric one. I was tasked with researching and proposing a formal Customer Journey Mapping — referred to as Customer Experience Mapping (CEM) at Busey — and Persona program. My first semester focused on market research and competitive analysis to advocate for the program\'s value. In the second semester, I moved from proposal to execution, designing the bank\'s foundational persona set and a standardized journey mapping template.',
+    role: 'CX Intern',
+    timeline: '6 months',
+    tools: 'Draw.io, Microsoft Suite',
+    methods: 'Market Research, Competitive Analysis, Persona Development, Journey Mapping',
+    heroGradient: 'linear-gradient(135deg,#1a3a4a,#0d2633)',
+    isCxResearch: true,
+
+>>>>>>> 268eab70a36d799243c94383d674f374eb54ec02
     toc: [
-      { id: 'challenge', symbol: '◇', label: 'Challenge' },
-      { id: 'redesign', symbol: '◈', label: 'Redesign' },
-      { id: 'impact', symbol: '✦', label: 'Impact' },
+      { id: 'context',       symbol: '◇', label: 'Context'               },
+      { id: 'goals',         symbol: '◈', label: 'Goals'                 },
+      { id: 'results',       symbol: '✦', label: 'Results'               },
+      { id: 'reflections',   symbol: '↻', label: 'Reflections'           },
+      { id: 'research',      symbol: '⊕', label: 'Market Research'       },
+      { id: 'business-case', symbol: '◎', label: 'Business Case'         },
+      { id: 'personas',      symbol: '⬡', label: 'Persona Development'   },
+      { id: 'cem-template',  symbol: '◐', label: 'Journey Map Template'  },
+      { id: 'integration',   symbol: '◆', label: 'Org Integration'       },
     ],
-    challenge: {
-      headline: 'Critical accessibility issues were concentrated in shared components.',
-      body: 'Recurring contrast, focus-state, and keyboard-navigation issues affected multiple product surfaces because they originated in reused patterns.',
+
+    context: {
+      headline: 'A bank ready to move beyond process maps.',
+      body: 'At the time, Busey Bank relied on internal process maps that lacked the "human" element of the banking experience. These maps documented operational steps — account opening procedures, loan processing workflows — but captured nothing about how customers actually felt, what confused them, or where they dropped off.',
+      body2: 'Leveraging my human-centered design background, I was tasked with researching and proposing a formal Customer Journey Mapping and Persona program. This wasn\'t a redesign of a digital product — it was an organizational design challenge: introducing customer empathy tools into a traditional financial institution that had never used them before.',
     },
-    redesign: {
-      headline: 'Rework the patterns once, improve many screens at once.',
-      body: 'I updated component specs and states, then worked with engineering to align implementation and QA checklists.',
-      changes: [
-        { title: 'Focus visibility standards', desc: 'Introduced consistent focus behavior and state contrast across interactive controls.' },
-        { title: 'Semantic structure updates', desc: 'Improved heading hierarchy and control labeling patterns for assistive technologies.' },
+
+    goals: {
+      items: [
+        'Move beyond business-focused process maps to incorporate customer emotions, thoughts, and perceptions.',
+        'Create a unified journey mapping template that remains familiar to internal stakeholders while introducing new user-centric data.',
+        'Develop data-driven personas that represent Busey\'s diverse customer base across various life stages and financial goals.',
       ],
     },
-    impact: {
-      headline: 'Higher baseline quality and faster future review cycles.',
-      body: 'Teams now ship with stronger default accessibility behavior and fewer regressions during QA.',
-      stats: [
-        { number: '70+', desc: 'component instances improved by pattern updates' },
-        { number: '35%', desc: 'faster accessibility QA cycle on subsequent releases' },
+
+    results: {
+      items: [
+        'Presented research-backed proposals to the Marketing team, successfully gaining support to implement a formal mapping program.',
+        'Developed a suite of personas covering diverse age groups and financial motivations, complete with goals, motivators, and pain points.',
+        'Designed a comprehensive CEM template in Draw.io (due to program limitations) that integrates traditional KPIs and business goals with new customer-centric rows for emotion mapping and touchpoints.',
+        'Proposed a cross-functional accountability structure to ensure journey maps remain living, actionable documents.',
       ],
     },
+
+    reflections: {
+      headline: 'What introducing human-centered design to a traditional institution taught me.',
+      body: 'Leading the way for this program provided me an excellent experience in stakeholder management and organizational empathy. I learned that to introduce human-centered design into a traditional financial institution, I had to speak the language of the business — connecting "feelings" to "ROI" and "annual cost savings." Working within the constraints of Draw.io taught me how to maximize utility over aesthetics. The focus wasn\'t on flashy visuals, but on creating a functional tool that felt familiar enough for the team to actually use. This project reinforced that the best design solution isn\'t just the most innovative one, but the one that the organization is ready to adopt. I walk away with a deeper understanding of how to align UX methodology with high-level business strategy.',
+    },
+
+    processSteps: [
+      {
+        id: 'research',
+        eyebrow: 'Market Research & Competitive Benchmarking',
+        title: 'Understanding the landscape before proposing change.',
+        body: 'My first step was building a foundation of evidence. I conducted market research into how other financial institutions and service-oriented companies approach customer journey mapping and persona development — examining published case studies, industry reports, and journey mapping frameworks from organizations like Forrester and the Customer Experience Professionals Association.',
+        body2: 'I also performed a competitive analysis of peer regional banks and credit unions to understand where Busey stood relative to its competitors in terms of customer experience maturity. This research wasn\'t just academic — it was ammunition. I needed concrete examples and ROI benchmarks to demonstrate that investing in journey mapping and personas would produce measurable business value.',
+        body3: 'The research phase produced a comprehensive slide deck that became the centerpiece of my proposal to leadership — framing the initiative not as a "design project" but as a strategic investment in customer retention and service differentiation.',
+        imageLabels: [
+          { label: '[ research presentation slide deck — "Reimagining Service Excellence Maps" ]', caption: 'The initial research presentation used to build the business case for a formal CEM and Persona program.', height: 300 },
+        ],
+      },
+      {
+        id: 'business-case',
+        eyebrow: 'Building the Business Case',
+        title: 'Translating UX methodology into language executives understand.',
+        body: 'Presenting journey mapping to a bank\'s Marketing team required reframing UX methodology in business terms. Rather than leading with design jargon — "empathy maps," "touchpoint analysis" — I anchored every recommendation in outcomes the stakeholders already cared about: customer retention rate, Net Promoter Score, and operational efficiency.',
+        body2: 'I structured the proposal around three pillars: (1) what the bank was missing by not having journey maps, illustrated with specific customer friction examples from branch and digital interactions; (2) what peer institutions were doing that Busey wasn\'t; and (3) a phased implementation plan that showed manageable effort for meaningful return.',
+        body3: 'The presentation successfully gained approval from the Marketing team to move forward with designing the persona set and journey mapping template — transitioning me from a research role into an execution role for the second semester.',
+      },
+      {
+        id: 'personas',
+        eyebrow: 'Persona Development',
+        title: 'Building data-driven personas for a diverse customer base.',
+        body: 'With the program approved, I moved into designing the bank\'s foundational persona set. I worked with existing customer data — demographic segments, product usage patterns, and service interaction data — to define distinct customer archetypes that represented Busey\'s diverse customer base across various life stages and financial goals.',
+        body2: 'Each persona included demographic context, financial goals and motivators, pain points and frustrations, preferred channels, and the emotional journey through key banking interactions. I deliberately designed the personas to be actionable rather than decorative — each one mapped directly to specific product lines and service touchpoints that teams could reference in their day-to-day decisions.',
+        body3: 'The persona format was designed to be approachable for stakeholders who had never worked with personas before, using clear language and a structured layout that could be printed, posted in team spaces, and referenced during planning sessions.',
+        ndaNotice: 'Due to NDA restrictions, I\'m unable to display the persona deliverables created during this internship. I\'m happy to discuss my process, methodology, and design decisions in more detail — feel free to reach out.',
+      },
+      {
+        id: 'cem-template',
+        eyebrow: 'Journey Mapping Template Design',
+        title: 'Designing a CEM template that bridges process and empathy.',
+        body: 'The core deliverable of the second semester was a standardized Customer Experience Mapping (CEM) template — built in Draw.io due to tooling constraints within the bank\'s tech stack. The challenge was creating a template that introduced customer-centric data layers (emotions, perceptions, pain points) while remaining visually and structurally familiar to teams already accustomed to traditional process maps.',
+        body2: 'The template integrated traditional KPIs and business goals in the upper rows — metrics the teams already tracked — with new customer-centric rows below for emotion mapping, touchpoint quality, and moment-of-truth identification. This layered approach let teams see the business process and the customer experience side by side, making the connection between operational decisions and customer outcomes explicit.',
+        body3: 'I iterated on the template structure through multiple rounds of feedback with the CX Manager, testing readability and ease of use with internal stakeholders who would be the primary users of the tool after my internship ended.',
+        ndaNotice: 'Due to NDA restrictions, I\'m unable to display the journey mapping template created during this internship. I\'m happy to walk through the template structure, design rationale, and iteration process — feel free to reach out.',
+      },
+      {
+        id: 'integration',
+        eyebrow: 'Organizational Integration & Handoff',
+        title: 'Designing for adoption, not just delivery.',
+        body: 'A persona set and a journey mapping template only create value if the organization actually uses them. From the beginning, I designed the program with adoption in mind — structuring deliverables to fit into existing workflows rather than requiring teams to learn entirely new processes.',
+        body2: 'I proposed a cross-functional accountability structure that assigned ownership of specific journey maps to the teams closest to those customer interactions. Each journey map had a designated owner responsible for keeping it current, with a quarterly review cadence built into existing team meeting structures.',
+        body3: 'The handoff documentation included usage guidelines, examples of how to read and update the CEM template, and a roadmap for expanding the persona set as the bank\'s customer data matured. The goal was to leave behind a self-sustaining program, not a one-time deliverable.',
+      },
+    ],
+
     prevSlug: 'project-four',
     nextSlug: 'project-six',
   },

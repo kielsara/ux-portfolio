@@ -1156,6 +1156,83 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
 }
 
 /* ═══════════════════════════════════
+   APP REDESIGN PROJECT COMPONENTS
+═══════════════════════════════════ */
+
+/* ── Hero with title overlay (Strava orange) ── */
+.hero-image--app-redesign {
+  position: relative;
+}
+
+/* ── Process divider between overview & process sections ── */
+.process-divider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 60px 12px;
+  max-width: 820px;
+}
+
+.process-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.process-divider-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── Process step sections ── */
+.article-section--process {
+  border-left: 3px solid var(--border);
+  margin-left: 60px;
+  padding-left: 36px !important;
+  padding-right: 60px !important;
+}
+
+.article-section--process .section-eyebrow {
+  font-weight: 600;
+}
+
+/* ── CX Research hero ── */
+.hero-image--cx-research {
+  position: relative;
+}
+
+/* ── NDA notice block ── */
+.nda-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 20px 24px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.18);
+}
+
+.nda-notice .nda-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.nda-notice p {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════
    ABOUT PAGE
 ═══════════════════════════════════ */
 
@@ -1409,4 +1486,12 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   .chart-categories-header span:first-child { display: none; }
   .back-to-top { padding: 24px; }
   .hero-title-overlay { font-size: 1.5rem; padding: 12px 20px; }
+
+  /* App redesign responsive */
+  .process-divider { padding: 36px 24px 8px; }
+  .article-section--process {
+    margin-left: 24px;
+    padding-left: 20px !important;
+    padding-right: 24px !important;
+  }
 }
