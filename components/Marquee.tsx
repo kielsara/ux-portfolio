@@ -6,12 +6,73 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 // ── Edit this array to add/remove your projects ──
 // (mark an entry with `hidden: true` to remove it from the UI temporarily)
 const ALL_PROJECTS = [
-  { id: 'project-one',   label: 'Project One',   gradient: 'linear-gradient(135deg,#d4c5b0,#a89880)', hasLink: true,  alt: 'Screenshot of Project One' },
-  { id: 'project-two',   label: 'Project Two',   gradient: 'linear-gradient(135deg,#b8c9d4,#8aaab8)', hasLink: true,  alt: 'Screenshot of Project Two' },
-  { id: 'project-three', label: 'Project Three', gradient: 'linear-gradient(135deg,#c9c0d3,#9e91b0)', hasLink: true, alt: 'Screenshot of Project Three' },
-  { id: 'project-four',  label: 'Project Four',  gradient: 'linear-gradient(135deg,#d4b0b0,#b88080)', hasLink: true,  alt: 'Screenshot of Project Four' },
-  { id: 'project-five',  label: 'Project Five',  gradient: 'linear-gradient(135deg,#b0d4c0,#80b898)', hasLink: true, alt: 'Screenshot of Project Five' },
-  { id: 'project-six',   label: 'Project Six',   gradient: 'linear-gradient(135deg,#d4d0b0,#b8b080)', hasLink: true,  alt: 'Screenshot of Project Six', hidden: true },
+  {
+    id: 'project-one',
+    title: 'UX Audit & Redesign',
+    subtitle: 'Addressing Synchrony Analytics usability',
+    role: 'UX/UI Design Intern',
+    methods: ['Heuristic Evaluation', 'WCAG Accessibility', 'Data Viz Best Practices'],
+    image: '/selected-work/project-one/cover.jpg',
+    gradient: 'linear-gradient(135deg,#d4c5b0,#a89880)',
+    hasLink: true,
+    alt: 'Cover image for UX Audit and Redesign project',
+  },
+  {
+    id: 'project-two',
+    title: 'Design System',
+    subtitle: 'Establishing a component library & guidelines',
+    role: 'UX/UI Design Intern',
+    methods: ['Component Architecture', 'Design Systems', 'Cross-functional Alignment'],
+    image: '/selected-work/project-two/cover.jpg',
+    gradient: 'linear-gradient(135deg,#b8c9d4,#8aaab8)',
+    hasLink: true,
+    alt: 'Cover image for Design System project',
+  },
+  {
+    id: 'project-three',
+    title: 'UX/UI Design with AI',
+    subtitle: 'Prototyping a behavior reporting platform',
+    role: 'UX/UI Designer & Front-End Developer',
+    methods: ['UI Prototyping', 'Usability Testing', 'Human-in-the-Loop AI'],
+    image: '/selected-work/project-three/cover.jpg',
+    gradient: 'linear-gradient(135deg,#c9c0d3,#9e91b0)',
+    hasLink: true,
+    alt: 'Cover image for UX/UI Design with AI project',
+  },
+  {
+    id: 'project-four',
+    title: 'UX/UI Concept Redesign',
+    subtitle: 'Reimagining Strava\'s mobile experience',
+    role: 'UX Researcher & UX/UI Designer',
+    methods: ['User Interviews', 'Information Architecture', 'Prototyping'],
+    image: '/selected-work/project-four/cover.jpg',
+    gradient: 'linear-gradient(135deg,#d4b0b0,#b88080)',
+    hasLink: true,
+    alt: 'Cover image for UX/UI Concept Redesign project',
+  },
+  {
+    id: 'project-five',
+    title: 'CX Strategy & Design',
+    subtitle: 'Developing Busey\'s persona & journey map program',
+    role: 'CX Designer & Strategy Intern',
+    methods: ['Journey Mapping', 'Workshop Facilitation', 'Service Design'],
+    image: '/selected-work/project-five/cover.jpg',
+    gradient: 'linear-gradient(135deg,#b0d4c0,#80b898)',
+    hasLink: true,
+    alt: 'Cover image for CX Strategy and Design project',
+  },
+  {
+    id: 'project-six',
+    title: 'UX Research & Operations',
+    subtitle: 'Scaling research practices at Synchrony',
+    role: 'Product Designer',
+    methods: ['Research Ops', 'Usability Testing', 'Enablement'],
+    image: '/selected-work/project-six/cover.jpg',
+    gradient: 'linear-gradient(135deg,#d4d0b0,#b8b080)',
+    hasLink: true,
+    alt: 'Cover image for UX Research and Operations project',
+    hidden: true,
+  },
 ]
 
 // filter out any hidden entries before rendering
@@ -20,7 +81,7 @@ const PROJECTS = ALL_PROJECTS.filter(p => !p.hidden)
 // Triple set for seamless infinite manual navigation
 const CARDS = [...PROJECTS, ...PROJECTS, ...PROJECTS]
 const PROJECT_COUNT = PROJECTS.length
-const CARD_WIDTH_WITH_GAP = 320 + 20
+const CARD_WIDTH_WITH_GAP = 360 + 20
 const MIDDLE_SET_START = PROJECT_COUNT
 const MIDDLE_SET_END = PROJECT_COUNT * 2
 
@@ -120,7 +181,7 @@ export default function Marquee() {
     const nextProjectIndex = normalizeIndex(nextVirtualIndex)
 
     goToSlide(nextVirtualIndex)
-    setAnnouncement(`Showing ${PROJECTS[nextProjectIndex].label}, slide ${nextProjectIndex + 1} of ${PROJECTS.length}`)
+    setAnnouncement(`Showing ${PROJECTS[nextProjectIndex].title}, slide ${nextProjectIndex + 1} of ${PROJECTS.length}`)
   }, [currentVirtualIndex, goToSlide])
 
   
@@ -167,24 +228,38 @@ export default function Marquee() {
               className={"marquee-card" + (isActive ? ' marquee-card--active' : '')}
               role="group"
               aria-roledescription="slide"
-              aria-label={`${project.label}, slide ${projectIndex + 1} of ${PROJECTS.length}`}
+              aria-label={`${project.title}, slide ${projectIndex + 1} of ${PROJECTS.length}`}
               // Hide duplicated cards from screen readers
               aria-hidden={!isMiddleSet ? true : undefined}
               data-virtual-index={i}
               tabIndex={isActive ? 0 : -1}
             >
-              {/* Replace the div below with an <Image> when you have real screenshots */}
               <div
                 className="marquee-card-img"
-                style={{ background: project.gradient, width: '100%', height: '100%' }}
+                style={{
+                  background: project.image
+                    ? `linear-gradient(to top, rgba(8,14,20,0.72) 0%, rgba(8,14,20,0.22) 48%, rgba(8,14,20,0.08) 100%), url(${project.image}), ${project.gradient}`
+                    : project.gradient,
+                }}
                 role="img"
                 aria-label={project.alt}
-              />
-              <div className="card-label">
-                <span>{project.label}</span>
+              >
+                <div className="marquee-methods" aria-hidden="true">
+                  {project.methods.map((method) => (
+                    <span key={method} className="marquee-method-chip">{method}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="marquee-card-body">
+                <h3 className="marquee-card-title">{project.title}</h3>
+                <p className="marquee-card-subtitle">{project.subtitle}</p>
+                <div className="marquee-card-meta">
+                  <span className="marquee-card-role">{project.role}</span>
                 {project.hasLink && (
                   <Link href={`/selected-work/${project.id}`}>View →</Link>
                 )}
+                </div>
               </div>
             </div>
           )
@@ -226,7 +301,7 @@ export default function Marquee() {
                 const snapIndex = normalizeIndex(rawIndex)
                 const snapVirtualIndex = MIDDLE_SET_START + snapIndex
                 goToSlide(snapVirtualIndex)
-                setAnnouncement(`Slideshow paused on ${PROJECTS[snapIndex].label}`)
+                setAnnouncement(`Slideshow paused on ${PROJECTS[snapIndex].title}`)
               }
             } else {
               // Resume auto-scroll
@@ -273,7 +348,7 @@ export default function Marquee() {
 
       {/* Visible caption for quick feedback during debugging/navigation */}
       <div className="marquee-caption" aria-hidden="true">
-        {PROJECTS[currentIndex]?.label || ''}
+        {PROJECTS[currentIndex]?.title || ''}
       </div>
     </>
   )
