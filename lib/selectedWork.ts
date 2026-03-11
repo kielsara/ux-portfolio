@@ -39,6 +39,7 @@ export interface SelectedWorkItem {
   isDesignSystem?: boolean  // flag for design system layout
   isAppRedesign?: boolean   // flag for app redesign case study layout
   isCxResearch?: boolean     // flag for CX research / persona project layout
+  isAIDesign?: boolean       // flag for AI-powered UX/UI design project layout
 
   // TOC — must match section IDs in the page
   toc: { id: string; symbol: string; label: string }[]
@@ -289,42 +290,133 @@ const selectedWorkItems: SelectedWorkItem[] = [
     nextSlug: 'project-three',
   },
 
+  // ── AI-Powered UX/UI Design — ABCapture ──
   {
     slug: 'project-three',
-    tag: 'Research Synthesis',
-    title: 'Turning qualitative interview data into prioritized product opportunities.',
-    intro: 'Synthesizing behavior patterns into roadmap-ready insights',
+    tag: 'UX/UI Design with AI',
+    title: 'Designing an AI-powered tool that turns spoken classroom observations into structured behavioral reports.',
+    intro: 'An AI-assisted incident reporting tool for special education',
     overview:
-      'This project focused on structuring interview and usability findings into a synthesis framework that product and engineering could quickly act on. I translated broad observations into themes, mapped opportunity areas, and documented a sequenced set of recommendations.',
-    role: 'UX Researcher',
-    team: 'Product, Engineering, Research',
-    timeline: '8 weeks',
-    tools: 'Dovetail, FigJam, Figma',
-    methods: 'Interviews, Affinity Mapping, Opportunity Framing',
-    heroGradient: 'linear-gradient(135deg,#c9c0d3,#9e91b0)',
+      'ABCapture is a web-based incident documentation system I helped design and build as part of a four-person team. It combines a conversational AI interface with speech-to-text input to help teachers working with autistic students capture structured Antecedent-Behavior-Consequence (ABC) data in real time — reducing the cognitive burden of documentation so educators can focus on their students.',
+    role: 'UX/UI Designer & Front-End Developer',
+    team: 'Jiya Chachan, Manuela Rodriguez, Rithika Vennamaneni',
+    timeline: '4 months',
+    tools: 'Figma, React, TypeScript, Tailwind CSS',
+    methods: 'Literature Review, System Design, UI Prototyping, Usability Testing, Thematic Analysis',
+    heroGradient: 'linear-gradient(135deg,#3b1d6e,#1a3a5c)',
+    isAIDesign: true,
+
     toc: [
-      { id: 'why-it-mattered', symbol: '◇', label: 'Why it mattered' },
-      { id: 'research', symbol: '◈', label: 'Research' },
-      { id: 'outcomes', symbol: '✦', label: 'Outcomes' },
+      { id: 'context',       symbol: '◇', label: 'Context'               },
+      { id: 'goals',         symbol: '◈', label: 'Goals'                 },
+      { id: 'results',       symbol: '✦', label: 'Results'               },
+      { id: 'reflections',   symbol: '↻', label: 'Reflections'           },
+      { id: 'literature',    symbol: '⊕', label: 'Research'              },
+      { id: 'system',        symbol: '◎', label: 'System Design'         },
+      { id: 'interface',     symbol: '⬡', label: 'Interface Design'      },
+      { id: 'evaluation',    symbol: '◐', label: 'Usability Study'       },
+      { id: 'findings',      symbol: '◆', label: 'Findings'              },
+      { id: 'ethics',        symbol: '✎', label: 'Ethics in AI'          },
     ],
-    whyItMattered: {
-      stats: [
-        { number: '24', desc: 'stakeholder and user interviews synthesized' },
-        { number: '5', desc: 'opportunity themes prioritized' },
-        { number: '1', desc: 'clear implementation sequence delivered' },
+
+    context: {
+      headline: 'Teachers are documenting behavior with one hand and managing classrooms with the other.',
+      body: 'Teachers who work with autistic children are expected to document behavioral incidents quickly and accurately, yet real classrooms rarely offer the conditions needed for thorough note-taking. When a behavior occurs, teachers are managing instruction, safety, transitions, and emotional regulation all at once — leaving almost no time to write detailed ABC (Antecedent, Behavior, Consequence) notes.',
+      body2: 'The ABC method, widely used in Applied Behavior Analysis, structures observations into what happened before a behavior, the behavior itself, and what happened after. This structured format is essential for identifying triggers, understanding the function of behavior, and tracking changes over time. But capturing all three components accurately in the moment is a well-documented challenge — and the gaps directly affect the quality of support plans, pattern recognition, and collaborative decision-making with specialists and families.',
+    },
+
+    goals: {
+      items: [
+        'Reduce the cognitive burden of behavioral documentation so teachers can focus on their students, not paperwork',
+        'Combine speech-to-text input and conversational AI to extract structured ABC data from natural-language narratives',
+        'Build a full-stack prototype that demonstrates the complete workflow: capture, extraction, review, and sharing',
+        'Evaluate the system through a formative usability study to identify strengths and areas for improvement',
       ],
     },
-    research: {
-      body: 'I clustered recurring friction points across interviews and task recordings, then validated each theme with quantitative usage signals and support ticket trends.',
-      quote: 'The synthesis made our next-quarter priorities obvious.',
-      quoteAttrib: '— Product Manager',
-    },
-    outcomes: {
-      stats: [
-        { number: '3', desc: 'initiatives moved into active roadmap planning' },
-        { number: '40%', desc: 'faster decision cycles in planning sessions' },
+
+    results: {
+      items: [
+        'Designed and built a working full-stack prototype with real-time conversational AI integration, speech-to-text input, and structured ABC form extraction',
+        'Conducted a formative usability study with 9 participants across 3 task-based workflows, achieving high task success rates',
+        'Received consistently positive feedback on interface clarity, ABC auto-extraction accuracy, and incident history views',
+        'Identified actionable areas for improvement: timestamp handling, multi-step workflow clarity, and LLM consistency for follow-up prompting',
       ],
     },
+
+    reflections: {
+      headline: 'What designing with AI taught me about trust, control, and responsible defaults.',
+      body: 'This project was my deepest experience designing around AI capabilities and limitations simultaneously. I learned that the most impactful design decisions weren\'t about making the AI smarter — they were about keeping the human in control. Editable ABC fields, visible audit history, and the deliberate exclusion of automated behavioral recommendations all reinforced that AI should augment professional judgment, never replace it. Working as part of a four-person team across research, design, and engineering also strengthened my ability to advocate for UX decisions within technical constraints — a skill I know will be essential in any product environment.',
+    },
+
+    processSteps: [
+      {
+        id: 'literature',
+        eyebrow: 'Literature Review & Problem Framing',
+        title: 'Understanding the gap between what teachers need and what tools provide.',
+        body: 'Before designing anything, we immersed ourselves in the problem space. We reviewed foundational ABA literature on ABC documentation challenges, examined AI interventions in autism care, and mapped the current landscape of educator-facing tools. A consistent pattern emerged: while AI tools for autism are rapidly expanding, the vast majority are student-facing (social skill robots, gamified therapy, AR/VR). Almost nothing exists to support the adults responsible for documenting behavior.',
+        body2: 'Research from Lindsay et al. (2013) confirmed that educators often feel undertrained and overwhelmed when supporting autistic students — particularly when managing behavior documentation. This framing shifted our design goal from "build an AI tool" to "reduce cognitive burden for an already-stretched professional."',
+        body3: 'Ethical literature (Nguyen et al., 2023) and FERPA guidelines shaped our emphasis on role-based access, transparency, and editable AI outputs from the earliest stages of design.',
+        imageLabels: [
+          { label: '[ literature review synthesis — key themes and gaps identified across sources ]', caption: 'Synthesis of literature review showing the gap in educator-facing AI tools for behavioral documentation.', height: 300 },
+        ],
+      },
+      {
+        id: 'system',
+        eyebrow: 'System Architecture & Data Pipeline',
+        title: 'Designing the architecture as a UX decision, not just a technical one.',
+        body: 'We designed ABCapture as a three-tier full-stack application: a React/TypeScript client, a Node.js/Express server, and a PostgreSQL database — with integrated AI services (Groq Cloud\'s Whisper for speech-to-text and LLaMA 3.3 for conversational extraction). Every architectural decision was filtered through a UX lens.',
+        body2: 'The data pipeline flows through five stages: (1) the teacher speaks or types a narrative, (2) audio is transcribed and PII-redacted server-side, (3) the conversational AI asks clarifying follow-ups, (4) ABC fields are extracted and populated in real time alongside the chat, and (5) the teacher reviews, edits, signs, and submits. At every stage, the teacher retains full control — AI outputs are suggestions, never final answers.',
+        body3: 'This "human-in-the-loop" architecture was a deliberate design choice. We treated AI transparency and editability as first-class UX requirements, not afterthoughts. Audit history tracking ensures every edit is versioned, supporting accountability in formal school records.',
+        imageLabels: [
+          { label: '[ system architecture diagram showing client, server, AI services, and database layers ]', caption: 'Three-tier architecture with integrated AI pipeline — designed for transparency and teacher control at every stage.', height: 340 },
+          { label: '[ data pipeline flow diagram: capture → transcription → conversation → extraction → storage ]', caption: 'The five-stage data processing pipeline, from teacher narration to structured ABC report.', height: 280 },
+        ],
+      },
+      {
+        id: 'interface',
+        eyebrow: 'Interface Design & Interaction Patterns',
+        title: 'A split-screen workspace where conversation meets structure.',
+        body: 'The core interaction model centers on a split-screen interface: the left panel functions as a conversational chat (accepting typed or spoken input), while the right panel displays the structured ABC form. As the teacher describes an incident, the AI processes the conversation and continuously updates the ABC fields in real time. This dual-panel approach lets teachers see the connection between what they\'re saying and how it\'s being structured — building trust in the AI\'s interpretation.',
+        body2: '[ PLACEHOLDER — Sara, this section would benefit from more detail on your specific UI design contributions. Consider adding: your wireframing process, key design decisions around the chat interface layout, how you designed the form states (empty → populating → editable), any visual design system choices (color, typography, component library decisions), and how you iterated on the design based on team feedback. ]',
+        body3: '[ PLACEHOLDER — Describe any specific interaction patterns you designed: how the microphone button works, how ABC fields highlight as they update, the signature flow, the incident history dashboard layout, etc. ]',
+        imageLabels: [
+          { label: '[ screenshot: split-screen interface — chat panel (left) and ABC form (right) ]', caption: 'The core workspace: conversational input on the left, structured ABC form auto-populating on the right.', height: 360 },
+          { label: '[ screenshot: incident history dashboard showing logged incidents for a student ]', caption: 'Incident history view — enabling teachers to review patterns over time.', height: 300 },
+        ],
+      },
+      {
+        id: 'evaluation',
+        eyebrow: 'Usability Evaluation Design',
+        title: 'Testing with 9 participants across 3 task-based workflows.',
+        body: 'We designed a formative usability study to evaluate ABCapture across five dimensions: task success and system reliability, perceived ease and speed, speech-to-text and LLM performance, professional language and bias sensitivity, and feature discoverability. Participants completed three sequential tasks using the deployed prototype: (1) creating a new student profile, (2) submitting an incident report using speech-to-text with one intentionally omitted detail, and (3) emailing the signed report to a guardian.',
+        body2: 'We recruited 9 participants through convenience sampling. While we were unable to recruit our intended target users (elementary school special education teachers), participants were familiar with classroom software and AI conversational systems. All interactions used simulated student profiles — no real student data was involved.',
+        body3: 'The study was delivered remotely through a Google Form paired with the live prototype, capturing both quantitative metrics (task completion, ease/speed ratings) and qualitative feedback (open-ended responses, error descriptions, language concerns).',
+        imageLabels: [
+          { label: '[ usability study structure: 3 tasks × 5 evaluation dimensions ]', caption: 'Study design mapping three task-based workflows to five evaluation dimensions.', height: 280 },
+        ],
+      },
+      {
+        id: 'findings',
+        eyebrow: 'Findings & Discussion',
+        title: 'What worked, what broke, and what it means for the design.',
+        body: 'Task 1 (student creation) achieved 100% completion with ease ratings of 4-5/5 and no reported errors — validating that the core data entry workflow is highly learnable. Task 2 (incident reporting) saw 70% completion, with failures attributed to external API rate limits rather than design issues. Among those who completed it, the AI-powered ABC extraction received strong praise: "I really like the record incident features. It is intelligent and parses information correctly" (P5). However, the chatbot\'s follow-up prompting was inconsistent — only 4 of 7 participants who omitted a detail received a follow-up question.',
+        body2: 'Task 3 (guardian email) achieved 67% completion, with failures tied to workflow discoverability and a participant who used a non-functional email. The qualitative feedback was overwhelmingly positive about the interface: "The UI design was extremely impressive" (P9), "The application is clean, consistent, and easy to use" (P5). Key issues identified were timestamp parsing errors, grade validation gaps, and microphone icon confusion.',
+        body3: 'A critical participant insight flagged a security gap: "the form did not verify that the person who signed and the teacher\'s name that logged in is the same" (P9) — highlighting the importance of identity verification in formal documentation tools.',
+        imageLabels: [
+          { label: '[ task completion rates across 3 workflows — bar chart or summary visualization ]', caption: 'Task completion rates: 100% for student creation, 70% for incident reporting, 67% for guardian email.', height: 260 },
+          { label: '[ selected participant quotes — positive feedback and identified issues ]', caption: 'Participant feedback highlighting both strengths (ABC extraction, clean UI) and improvement areas.', height: 280 },
+        ],
+      },
+      {
+        id: 'ethics',
+        eyebrow: 'Ethical Design Decisions',
+        title: 'What we deliberately chose not to automate — and why it matters.',
+        body: 'One participant suggested ABCapture should provide recommended next steps to address behavior after an incident is logged. We intentionally excluded this feature because meaningful behavioral guidance for autistic students requires individualized knowledge of the child\'s history, goals, triggers, and support systems — information an LLM cannot responsibly infer. Automated advice risks oversimplification, inappropriate strategies, and liability concerns in a regulated education context.',
+        body2: 'This decision reflects a broader design principle we carried throughout the project: AI should structure and accelerate documentation, but never replace professional judgment. Every AI output in ABCapture is editable. Every submission requires a human signature. Every edit is tracked with an audit trail. These aren\'t just technical features — they\'re design decisions rooted in FERPA compliance, professional accountability, and respect for the educators using the tool.',
+        body3: 'Looking forward, the most important next step would be testing with real special education teachers in authentic classroom contexts. Our convenience sample provided valuable usability signal, but the true test of ABCapture\'s value depends on whether it meaningfully reduces documentation burden for the professionals it\'s designed to serve.',
+      },
+    ],
+
     prevSlug: 'project-two',
     nextSlug: 'project-four',
   },

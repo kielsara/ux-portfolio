@@ -1206,6 +1206,11 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   position: relative;
 }
 
+/* ── AI Design hero ── */
+.hero-image--ai-design {
+  position: relative;
+}
+
 /* ── NDA notice block ── */
 .nda-notice {
   display: flex;

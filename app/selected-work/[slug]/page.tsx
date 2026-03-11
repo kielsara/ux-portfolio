@@ -533,14 +533,159 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
     )
   }
 
+  // ── AI-Powered UX/UI Design project layout (ABCapture) ──
+  if (cs.isAIDesign) {
+    return (
+      <div className="layout">
+        <Sidebar variant="project" />
+
+        <div className="page-with-local-nav page-with-local-nav--fixed">
+          <LocalPageNav intro={cs.intro} toc={cs.toc} persistInView />
+
+          <main className="main">
+
+          {/* ── Header ── */}
+          <header className="case-header">
+            <div className="case-tag">{cs.tag}</div>
+            <h1>{cs.title}</h1>
+            <p>{cs.overview}</p>
+            <CaseMetaRow
+              role={cs.role}
+              team={cs.team}
+              timeline={cs.timeline}
+              tools={cs.tools}
+              methods={cs.methods}
+            />
+          </header>
+
+          {/* ── Hero image ── */}
+          <div
+            className="hero-image hero-image--ai-design"
+            style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#3b1d6e,#1a3a5c)' }}
+          >
+            <span className="hero-title-overlay">UX/UI DESIGN<br/>WITH AI</span>
+          </div>
+
+          {/* ═══ Context ═══ */}
+          {cs.context && (
+            <section className="article-section" id="context">
+              <div className="section-eyebrow">Context</div>
+              <h2>{cs.context.headline}</h2>
+              <p>{cs.context.body}</p>
+              {cs.context.body2 && <p>{cs.context.body2}</p>}
+            </section>
+          )}
+
+          {/* ═══ Goals ═══ */}
+          {cs.goals && (
+            <section className="article-section" id="goals">
+              <div className="section-eyebrow">Goals</div>
+              {cs.goals.headline && <h2>{cs.goals.headline}</h2>}
+              <ul className="goals-list">
+                {cs.goals.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* ═══ Results ═══ */}
+          {cs.results && (
+            <section className="article-section" id="results">
+              <div className="section-eyebrow">Results</div>
+              {cs.results.headline && <h2>{cs.results.headline}</h2>}
+              <ul className="results-list">
+                {cs.results.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* ═══ Reflections ═══ */}
+          {cs.reflections && (
+            <section className="article-section" id="reflections">
+              <div className="section-eyebrow">Reflections</div>
+              <h2>{cs.reflections.headline}</h2>
+              <p>{cs.reflections.body}</p>
+            </section>
+          )}
+
+          {/* ═══ Process & Design Decisions ═══ */}
+          {cs.processSteps && cs.processSteps.length > 0 && (
+            <>
+              <div className="process-divider">
+                <div className="process-divider-line" />
+                <span className="process-divider-label">Process &amp; Design Decisions</span>
+                <div className="process-divider-line" />
+              </div>
+
+              {cs.processSteps.map((step, i) => (
+                <section
+                  key={step.id}
+                  className="article-section article-section--process"
+                  id={step.id}
+                >
+                  <div className="section-eyebrow">{step.eyebrow}</div>
+                  <h2>{step.title}</h2>
+                  <p>{step.body}</p>
+                  {step.body2 && <p>{step.body2}</p>}
+                  {step.body3 && <p>{step.body3}</p>}
+                  {step.imageLabels && step.imageLabels.map((img, j) => (
+                    <ImgPlaceholder
+                      key={j}
+                      gradient={[
+                        'linear-gradient(135deg,#3b1d6e,#1a2a40)',
+                        'linear-gradient(135deg,#1a3a5c,#2d1b4e)',
+                        'linear-gradient(135deg,#2d1b4e,#1a3a5c)',
+                        'linear-gradient(135deg,#1a2a40,#3b1d6e)',
+                      ][(i + j) % 4]}
+                      label={img.label}
+                      caption={img.caption}
+                      height={img.height ?? 280}
+                    />
+                  ))}
+                </section>
+              ))}
+            </>
+          )}
+
+          {/* ── Back to top ── */}
+          <div className="back-to-top">
+            <a href="#">click to go back to the top of page ↑</a>
+          </div>
+
+          {/* ── Case footer nav ── */}
+          <div className="case-footer">
+            {cs.prevSlug ? (
+              <Link href={`/selected-work/${cs.prevSlug}`}>← Previous project</Link>
+            ) : (
+              <Link href="/">← All projects</Link>
+            )}
+            {cs.nextSlug ? (
+              <Link href={`/selected-work/${cs.nextSlug}`}>Next project →</Link>
+            ) : (
+              <span />
+            )}
+          </div>
+
+          {/* ── Site footer ── */}
+            <SiteFooter />
+
+          </main>
+        </div>
+      </div>
+    )
+  }
+
   // ── App Redesign project layout (Strava) ──
   if (cs.isAppRedesign) {
     return (
       <div className="layout">
         <Sidebar variant="project" />
 
-        <div className="page-with-local-nav">
-          <LocalPageNav intro={cs.intro} toc={cs.toc} />
+        <div className="page-with-local-nav page-with-local-nav--fixed">
+          <LocalPageNav intro={cs.intro} toc={cs.toc} persistInView />
 
           <main className="main">
 
@@ -699,8 +844,8 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
       <div className="layout">
         <Sidebar variant="project" />
 
-        <div className="page-with-local-nav">
-          <LocalPageNav intro={cs.intro} toc={cs.toc} />
+        <div className="page-with-local-nav page-with-local-nav--fixed">
+          <LocalPageNav intro={cs.intro} toc={cs.toc} persistInView />
 
           <main className="main">
 
