@@ -335,15 +335,6 @@ const selectedWorkItems: SelectedWorkItem[] = [
     title: 'Improving navigation and beginner accessibility for Strava through a comprehensive audit and targeted redesign of the "Groups" ecosystem.',
     intro: 'Redesigning Strava\'s Groups for discoverability & ease of use',
     overview:
-<<<<<<< HEAD
-      'I redesigned a high-friction operational flow used daily by internal teams. The redesign reduced ambiguity at key decision points, improved status visibility, and made exception handling easier for first-time and returning users.',
-    role: 'Product Designer',
-    team: 'Operations, Product, Engineering',
-    timeline: '10 weeks',
-    tools: 'Figma, Maze',
-    methods: 'Task Analysis, Journey Mapping, Iterative Prototyping',
-    heroGradient: 'linear-gradient(135deg,#d4b0b0,#b88080)',
-=======
       'As part of a student-directed UX project, my team took on a comprehensive evaluation and redesign of Strava\'s "Groups" feature — tackling how new and casual users discover, navigate, and participate in group-based fitness communities. Through heuristic evaluation, competitive analysis, user interviews, and iterative prototyping, we identified core navigation friction points and redesigned the Groups experience to be more intuitive, welcoming, and accessible for beginners.',
     role: 'UX Researcher & UX/UI Designer',
     timeline: '4 months',
@@ -351,8 +342,6 @@ const selectedWorkItems: SelectedWorkItem[] = [
     methods: 'Heuristic Evaluation, Competitive Analysis, User Surveys, User Interviews, Affinity Mapping, Card Sorting, Persona Development, Journey Mapping, Information Architecture, Wireframing, Prototyping',
     heroGradient: 'linear-gradient(135deg,#fc4c02,#e03e00)',
     isAppRedesign: true,
-
->>>>>>> 268eab70a36d799243c94383d674f374eb54ec02
     toc: [
       { id: 'context',       symbol: '◇', label: 'Context'               },
       { id: 'goals',         symbol: '◈', label: 'Goals'                 },
@@ -486,15 +475,6 @@ const selectedWorkItems: SelectedWorkItem[] = [
     title: 'Establishing a human-centered foundation for Busey Bank through the development of a formal Customer Journey Mapping and Persona program.',
     intro: 'Building personas & journey maps for a regional bank',
     overview:
-<<<<<<< HEAD
-      'This sprint focused on increasing accessibility quality across reused UI patterns. I audited key components, partnered with engineering on implementation details, and documented updated guidance for ongoing consistency.',
-    role: 'UX Designer',
-    team: 'Design, Engineering, QA',
-    timeline: '6 weeks',
-    tools: 'Figma, Axe, Storybook',
-    methods: 'WCAG Review, Component Audit, Cross-functional QA',
-    heroGradient: 'linear-gradient(135deg,#b0d4c0,#80b898)',
-=======
       'During my two-semester internship at Busey Bank, I supported the Customer Experience Manager in transitioning the organization from a process-centric view to a customer-centric one. I was tasked with researching and proposing a formal Customer Journey Mapping — referred to as Customer Experience Mapping (CEM) at Busey — and Persona program. My first semester focused on market research and competitive analysis to advocate for the program\'s value. In the second semester, I moved from proposal to execution, designing the bank\'s foundational persona set and a standardized journey mapping template.',
     role: 'CX Intern',
     timeline: '6 months',
@@ -502,8 +482,6 @@ const selectedWorkItems: SelectedWorkItem[] = [
     methods: 'Market Research, Competitive Analysis, Persona Development, Journey Mapping',
     heroGradient: 'linear-gradient(135deg,#1a3a4a,#0d2633)',
     isCxResearch: true,
-
->>>>>>> 268eab70a36d799243c94383d674f374eb54ec02
     toc: [
       { id: 'context',       symbol: '◇', label: 'Context'               },
       { id: 'goals',         symbol: '◈', label: 'Goals'                 },
