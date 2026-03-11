@@ -556,15 +556,29 @@ summary:focus-visible {
   display: flex;
   flex-direction: column;
 }
-.marquee-card:hover .marquee-card-img { transform: scale(1.03); }
+.marquee-card:hover .marquee-card-img img { transform: scale(1.03); }
 .marquee-card-img {
   width: 100%;
   height: 200px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: transform 0.4s ease;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marquee-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.marquee-card-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,14,20,0.72) 0%, rgba(8,14,20,0.22) 48%, rgba(8,14,20,0.08) 100%);
+  pointer-events: none;
 }
 
 .marquee-methods {

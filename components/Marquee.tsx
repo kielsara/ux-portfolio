@@ -34,7 +34,7 @@ const ALL_PROJECTS = [
     subtitle: 'Prototyping a behavior reporting platform',
     role: 'UX/UI Designer & Front-End Developer',
     methods: ['UI Prototyping', 'Usability Testing', 'Human-in-the-Loop AI'],
-    image: '/selected-work/project-three/cover.jpg',
+    image: '/selected-work/project-three/cover.png',
     gradient: 'linear-gradient(135deg,#c9c0d3,#9e91b0)',
     hasLink: true,
     alt: 'Cover image for UX/UI Design with AI project',
@@ -45,10 +45,10 @@ const ALL_PROJECTS = [
     subtitle: 'Reimagining Strava\'s mobile experience',
     role: 'UX Researcher & UX/UI Designer',
     methods: ['User Interviews', 'Information Architecture', 'Prototyping'],
-    image: '/selected-work/project-four/cover.jpg',
+    image: '/selected-work/project-four/cover.png',
     gradient: 'linear-gradient(135deg,#d4b0b0,#b88080)',
     hasLink: true,
-    alt: 'Cover image for UX/UI Concept Redesign project',
+    alt: 'Cover image for UX/UI Concept Redesidgn project',
   },
   {
     id: 'project-five',
@@ -56,11 +56,13 @@ const ALL_PROJECTS = [
     subtitle: 'Developing Busey\'s persona & journey map program',
     role: 'CX Designer & Strategy Intern',
     methods: ['Journey Mapping', 'Workshop Facilitation', 'Service Design'],
-    image: '/selected-work/project-five/cover.jpg',
+    // updated to png since you uploaded cover.png
+    image: '/selected-work/project-five/cover.png',
     gradient: 'linear-gradient(135deg,#b0d4c0,#80b898)',
     hasLink: true,
     alt: 'Cover image for CX Strategy and Design project',
   },
+
   {
     id: 'project-six',
     title: 'UX Research & Operations',
@@ -234,16 +236,23 @@ export default function Marquee() {
               data-virtual-index={i}
               tabIndex={isActive ? 0 : -1}
             >
-              <div
-                className="marquee-card-img"
-                style={{
-                  background: project.image
-                    ? `linear-gradient(to top, rgba(8,14,20,0.72) 0%, rgba(8,14,20,0.22) 48%, rgba(8,14,20,0.08) 100%), url(${project.image}), ${project.gradient}`
-                    : project.gradient,
-                }}
-                role="img"
-                aria-label={project.alt}
-              >
+              <div className="marquee-card-img" role="img" aria-label={project.alt}>
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt=""
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      background: project.gradient,
+                    }}
+                  />
+                )}
+                <div className="marquee-card-img-overlay" />
                 <div className="marquee-methods" aria-hidden="true">
                   {project.methods.map((method) => (
                     <span key={method} className="marquee-method-chip">{method}</span>
