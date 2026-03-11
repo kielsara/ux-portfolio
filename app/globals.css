@@ -740,14 +740,14 @@ summary:focus-visible {
 .meta-item-team { max-width: 220px; }
 .meta-item-tools { grid-column: 1 / 2; }
 .meta-item-methods {
-  /* occupy same column as team to keep horizontal spacing consistent */
+  /* occupy the same column and width as team for consistency */
   grid-column: 2 / 3;
-  max-width: 420px;
+  max-width: 220px;
 }
 .meta-item-methods-full {
-  /* when tools are absent, match the width of the team column as well */
+  /* when tools are absent, still match the team column width */
   grid-column: 2 / 3;
-  max-width: 420px;
+  max-width: 220px;
 }
 .meta-label {
   font-size: 0.68rem;

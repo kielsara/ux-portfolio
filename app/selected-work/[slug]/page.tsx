@@ -60,12 +60,10 @@ function CaseMetaRow({
         <span className="meta-label">Role</span>
         <span className="meta-value">{role}</span>
       </div>
-      {team && (
-        <div className="meta-item meta-item-team">
-          <span className="meta-label">Team</span>
-          <span className="meta-value">{team}</span>
-        </div>
-      )}
+      <div className="meta-item meta-item-team">
+        <span className="meta-label">Team</span>
+        <span className="meta-value">{team ?? 'Individual project'}</span>
+      </div>
       <div className="meta-item">
         <span className="meta-label">Duration</span>
         <span className="meta-value">{timeline}</span>
@@ -694,28 +692,13 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
             <div className="case-tag">{cs.tag}</div>
             <h1>{cs.title}</h1>
             <p>{cs.overview}</p>
-            <div className="meta-row">
-              <div className="meta-item">
-                <span className="meta-label">Role</span>
-                <span className="meta-value">{cs.role}</span>
-              </div>
-              <div className="meta-item">
-                <span className="meta-label">Duration</span>
-                <span className="meta-value">{cs.timeline}</span>
-              </div>
-              {cs.tools && (
-                <div className="meta-item">
-                  <span className="meta-label">Tools</span>
-                  <span className="meta-value">{cs.tools}</span>
-                </div>
-              )}
-              {cs.methods && (
-                <div className="meta-item meta-item-wide">
-                  <span className="meta-label">Methods</span>
-                  <span className="meta-value">{cs.methods}</span>
-                </div>
-              )}
-            </div>
+            <CaseMetaRow
+              role={cs.role}
+              team={cs.team}
+              timeline={cs.timeline}
+              tools={cs.tools}
+              methods={cs.methods}
+            />
           </header>
 
           {/* ── Hero image ── */}
@@ -854,28 +837,13 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
             <div className="case-tag">{cs.tag}</div>
             <h1>{cs.title}</h1>
             <p>{cs.overview}</p>
-            <div className="meta-row">
-              <div className="meta-item">
-                <span className="meta-label">Role</span>
-                <span className="meta-value">{cs.role}</span>
-              </div>
-              <div className="meta-item">
-                <span className="meta-label">Duration</span>
-                <span className="meta-value">{cs.timeline}</span>
-              </div>
-              {cs.tools && (
-                <div className="meta-item">
-                  <span className="meta-label">Tools</span>
-                  <span className="meta-value">{cs.tools}</span>
-                </div>
-              )}
-              {cs.methods && (
-                <div className="meta-item meta-item-wide">
-                  <span className="meta-label">Methods</span>
-                  <span className="meta-value">{cs.methods}</span>
-                </div>
-              )}
-            </div>
+            <CaseMetaRow
+              role={cs.role}
+              team={cs.team}
+              timeline={cs.timeline}
+              tools={cs.tools}
+              methods={cs.methods}
+            />
           </header>
 
           {/* ── Hero image ── */}

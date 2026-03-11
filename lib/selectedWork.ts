@@ -214,7 +214,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     overview:
       'Following my comprehensive UX audit, I identified that inconsistent visual patterns, fragmented layouts, and scattered interaction rules were contributing to significant usability issues. To support future design improvements without disrupting existing product components, I created a component-based design system that translated audit insights into reusable UI patterns, layout rules, and interactive elements.',
     role: 'UX/UI Design Intern',
-    team: 'UX, Product, Engineering',
+    team: 'Grace Blondell, Lead UX Designer',
     timeline: '4.5 months',
     tools: 'Figma',
     methods: 'Design System Architecture, Component-Driven Design, Data Visualization Best Practices, Usage Documentation',
@@ -293,11 +293,11 @@ const selectedWorkItems: SelectedWorkItem[] = [
   {
     slug: 'project-three',
     tag: 'UX/UI Design with AI',
-    title: 'Designing an AI-powered tool that turns spoken classroom observations into structured behavioral reports.',
+    title: 'Designing an AI-powered tool that turns classroom observations into structured behavioral reports.',
     intro: 'An AI-assisted incident reporting tool for special education',
     overview:
-      'ABCapture is a web-based incident documentation system I helped design and build as part of a four-person team. It combines a conversational AI interface with speech-to-text input to help teachers working with autistic students capture structured Antecedent-Behavior-Consequence (ABC) data in real time — reducing the cognitive burden of documentation so educators can focus on their students.',
-    role: 'UX/UI Designer & Front-End Developer',
+      'ABCapture is a web-based incident documentation system I helped design and build as part of a four-person team. It combines a conversational AI interface with speech-to-text input to help adults working with children with autism capture structured Antecedent-Behavior-Consequence (ABC) data in real time — reducing the cognitive burden of documentation so the adults can focus on the children under their care.',
+    role: 'Lead UX/UI Designer, Front-End Developer',
     team: 'Jiya Chachan, Manuela Rodriguez, Rithika Vennamaneni',
     timeline: '4 months',
     tools: 'Figma, React, TypeScript, Tailwind CSS',
@@ -319,14 +319,14 @@ const selectedWorkItems: SelectedWorkItem[] = [
     ],
 
     context: {
-      headline: 'Teachers are documenting behavior with one hand and managing classrooms with the other.',
-      body: 'Teachers who work with autistic children are expected to document behavioral incidents quickly and accurately, yet real classrooms rarely offer the conditions needed for thorough note-taking. When a behavior occurs, teachers are managing instruction, safety, transitions, and emotional regulation all at once — leaving almost no time to write detailed ABC (Antecedent, Behavior, Consequence) notes.',
+      headline: 'Teachers and caretakers are documenting behavior with one hand and managing classrooms/children groups with the other.',
+      body: 'Adults who work with children with autism are expected to document behavioral incidents quickly and accurately, yet real worl scenarios rarely offer the conditions needed for thorough note-taking. When a behavior occurs, caretakers are managing instruction, safety, transitions, and emotional regulation all at once — leaving almost no time to write detailed ABC (Antecedent, Behavior, Consequence) notes.',
       body2: 'The ABC method, widely used in Applied Behavior Analysis, structures observations into what happened before a behavior, the behavior itself, and what happened after. This structured format is essential for identifying triggers, understanding the function of behavior, and tracking changes over time. But capturing all three components accurately in the moment is a well-documented challenge — and the gaps directly affect the quality of support plans, pattern recognition, and collaborative decision-making with specialists and families.',
     },
 
     goals: {
       items: [
-        'Reduce the cognitive burden of behavioral documentation so teachers can focus on their students, not paperwork',
+        'Reduce the cognitive burden of behavioral documentation so teachers and caretakers can focus on the children under their care, not paperwork',
         'Combine speech-to-text input and conversational AI to extract structured ABC data from natural-language narratives',
         'Build a full-stack prototype that demonstrates the complete workflow: capture, extraction, review, and sharing',
         'Evaluate the system through a formative usability study to identify strengths and areas for improvement',
@@ -423,14 +423,15 @@ const selectedWorkItems: SelectedWorkItem[] = [
   {
     slug: 'project-four',
     tag: 'App & Experience Redesign',
-    title: 'Improving navigation and beginner accessibility for Strava through a comprehensive audit and targeted redesign of the "Groups" ecosystem.',
-    intro: 'Redesigning Strava\'s Groups for discoverability & ease of use',
+    title: 'Leading the Groups redesign within a team-based Strava app overhaul to improve navigation, discoverability, and beginner accessibility.',
+    intro: 'Redesigning Strava for discoverability & ease of use',
     overview:
-      'As part of a student-directed UX project, my team took on a comprehensive evaluation and redesign of Strava\'s "Groups" feature — tackling how new and casual users discover, navigate, and participate in group-based fitness communities. Through heuristic evaluation, competitive analysis, user interviews, and iterative prototyping, we identified core navigation friction points and redesigned the Groups experience to be more intuitive, welcoming, and accessible for beginners.',
+      'As part of a student-directed UX project, our team redesigned Strava end-to-end by splitting feature ownership based on capacity while maintaining shared critique and alignment throughout the process. I fully owned the Groups experience (Clubs and Challenges), while teammates led Profile, Maps, Home, and Record Activity. Each of us conducted research for our own section, then came together to compare findings, challenge assumptions, and provide feedback before moving into design. We also built a simple, shared design system so the final prototype felt cohesive when all sections were merged.',
     role: 'UX Researcher & UX/UI Designer',
+    team: 'Diana Ngo, Team Lead; Daria Meshcheriakova; Brianna Regione; Allie Bosch',
     timeline: '4 months',
     tools: 'Figma & FigJam',
-    methods: 'Heuristic Evaluation, Competitive Analysis, User Surveys, User Interviews, Affinity Mapping, Card Sorting, Persona Development, Journey Mapping, Information Architecture, Wireframing, Prototyping',
+    methods: 'Heuristic Evaluation, Competitive Analysis, User Surveys, User Interviews, Affinity Mapping, Information Architecture, Persona Development, Journey Mapping, Wireframing, Prototyping',
     heroGradient: 'linear-gradient(135deg,#fc4c02,#e03e00)',
     isAppRedesign: true,
     toc: [
@@ -449,30 +450,32 @@ const selectedWorkItems: SelectedWorkItem[] = [
 
     context: {
       headline: 'A popular fitness platform with a hidden social layer.',
-      body: 'Strava is one of the most widely used fitness tracking platforms, with over 100 million athletes worldwide. While its core tracking features are well-regarded, the "Groups" ecosystem — including clubs, challenges, and community features — has grown organically without a cohesive design strategy. For new users, finding and joining a relevant group can feel unintuitive, buried under layers of navigation that prioritize activity feeds over community discovery.',
-      body2: 'Our team specifically focused on the Groups experience because it represents a critical retention lever: users who join groups are significantly more likely to stay active on the platform. Yet the current design creates unnecessary friction — particularly for beginners who don\'t yet know Strava\'s conventions and navigation patterns.',
+      body: 'Strava is one of the most widely used fitness tracking platforms, with over 100 million athletes worldwide. Our student-run UX club team chose to redesign the broader mobile experience, but divided ownership by feature area so each person could go deep: I focused on Groups, while other teammates focused on Profile, Maps, Home, and Record Activity.',
+      body2: 'Although implementation was split, the process stayed collaborative. We regularly reviewed each other\'s findings, aligned on shared interaction patterns, and assembled one consistent prototype using a simple co-created design system. Within that larger effort, my scope was the complete Groups flow — from research and problem framing through final high-fidelity design.',
     },
 
     goals: {
       items: [
-        'Make it easier for users who are familiar with fitness apps — but new to Strava — to discover, navigate, and engage with the Groups ecosystem',
-        'Reduce navigation friction in the mobile experience so users can find relevant groups without getting lost or frustrated',
-        'Improve the information hierarchy so that group details, activity, and membership actions are clear and accessible at a glance',
+        'Lead a full redesign of the Groups experience so workout beginners or those new to Strava can discover, evaluate, and join communities and challenges more easily',
+        'Reduce navigation friction in the Groups journey while keeping interaction patterns consistent with the team\'s broader app redesign',
+        'Improve information hierarchy so group and challenge value, activity, and membership actions are clear at a glance for first-time users',
+        'Address gaps in a beginner\'s Groups experience by introducing new features as necessary',
       ],
     },
 
     results: {
       items: [
-        'Redesigned the Groups discovery flow with a clear entry point from the main navigation, improving discoverability by surfacing groups earlier in the user journey',
-        'Created a streamlined group detail page with progressive disclosure — essential info upfront, deeper content on demand — reducing cognitive load for first-time visitors',
-        'Introduced category-based browsing and improved search filters, enabling users to find groups by activity type, location, and skill level',
-        'Validated the redesign through usability testing, with participants completing group discovery tasks significantly faster than in the existing Strava interface',
+        'Owned and delivered the complete Groups redesign, including discovery, detail, and join flow improvements that made community entry more intuitive for beginners',
+        'Introduced a pull-up search/filter interaction that functioned in prototype testing and was reused in both Groups and the Maps section as a shared interaction pattern',
+        'Built high-fidelity Groups screens using Strava-authentic visual elements, including sourced activity icons, logos, and challenge/group imagery to improve realism and fidelity',
+        'Validated feature-level improvements through team-run usability testing, where each member tested the features they owned while using a single integrated prototype',
+        'Implemented 2 new features to address gaps in the existing experience: beginner-friendly, untimed challenges and reviews for challenges',
       ],
     },
 
     reflections: {
       headline: 'What redesigning a live product taught me about scope and advocacy.',
-      body: 'This project was a formative experience in understanding that good UX work isn\'t just about interfaces — it\'s about advocating for users within the constraints of an existing product ecosystem. I learned to balance ambition with feasibility, to let research guide decisions rather than assumptions, and to communicate design rationale in ways that build consensus. Working through the full UX process — from heuristic evaluation to high-fidelity prototyping — gave me confidence in my ability to take a problem from discovery through delivery.',
+      body: 'This project taught me how to own one feature deeply while still contributing to a larger product vision. I led the Groups redesign independently, but worked in constant dialogue with teammates to compare findings, pressure-test decisions, and maintain consistency across features. I also saw how valuable cross-feature contributions can be: interactions I designed, like the pull-up search/filter tab, improved usability beyond my section and strengthened the final integrated prototype. The experience reinforced my ability to drive end-to-end UX for a feature while collaborating effectively in a multi-designer team environment.',
     },
 
     processSteps: [
@@ -480,8 +483,8 @@ const selectedWorkItems: SelectedWorkItem[] = [
         id: 'audit',
         eyebrow: 'Pain Point Audit & Competitive Analysis',
         title: 'Understanding what\'s broken — and what others do better.',
-        body: 'We began by conducting a thorough heuristic evaluation of Strava\'s existing Groups feature, mapping every screen and interaction in the group discovery, joining, and participation flows. Using Nielsen\'s heuristics as our framework, we documented friction points ranging from unclear navigation labels to inconsistent interaction patterns between mobile and web.',
-        body2: 'In parallel, we performed a competitive analysis of comparable social fitness platforms — including Nike Run Club, Peloton, MapMyRun, and Garmin Connect — evaluating how each handles group discovery, onboarding, and engagement. This helped us identify design patterns that users already understand from other products, and opportunities where Strava could differentiate.',
+        body: 'I began by conducting a heuristic evaluation of Strava\'s existing Groups feature, mapping every screen and interaction in the discovery, joining, and participation flow. Using Nielsen\'s heuristics as my framework, I documented friction points ranging from unclear navigation labels to inconsistent interaction patterns between mobile and web.',
+        body2: 'In parallel, I performed a competitive analysis of social fitness platforms — including Nike Run Club, Peloton, MapMyRun, and Garmin Connect — to evaluate how each handles group discovery, onboarding, and engagement. This helped me identify patterns users already understood and opportunities where Strava\'s Groups experience could improve.',
         body3: 'The audit surfaced several critical pain points: the Groups tab was buried in navigation, group search lacked meaningful filters, and the group detail page prioritized admin-facing information over what a prospective member would need to make a join decision.',
         imageLabels: [
           { label: '[ screenshot: Strava Groups current state — navigation pain points annotated ]', caption: 'Heuristic evaluation of the current Groups navigation flow, with friction points annotated.', height: 300 },
@@ -492,9 +495,9 @@ const selectedWorkItems: SelectedWorkItem[] = [
         id: 'research',
         eyebrow: 'Qualitative Data Collection & Analysis',
         title: 'Hearing directly from the users we\'re designing for.',
-        body: 'To complement our heuristic findings with real user perspectives, we conducted a mixed-methods research phase. We distributed a screening survey to identify target participants — users who were active in fitness but relatively new to Strava or had tried and abandoned its Groups features.',
-        body2: 'From survey respondents, we recruited participants for semi-structured 1-on-1 interviews. These sessions explored users\' mental models around fitness communities, their expectations when discovering groups in an app, and specific moments of confusion or frustration they\'d experienced with Strava.',
-        body3: 'We synthesized findings using affinity mapping in FigJam, clustering interview excerpts and survey responses into themes. Key patterns emerged around discoverability gaps, unclear group value propositions, and a mismatch between what users wanted from groups versus what the current UI surfaced.',
+        body: 'To complement my heuristic findings with real user perspectives, I conducted research focused on Groups. I distributed a screening survey to identify participants who were active in fitness but relatively new to Strava or who had tried and abandoned Groups features.',
+        body2: 'From respondents, I recruited participants for semi-structured 1-on-1 interviews. These sessions explored users\' mental models around fitness communities, their expectations when discovering groups in an app, and moments of confusion or frustration they experienced with Strava.',
+        body3: 'I synthesized findings using affinity mapping in FigJam, clustering interview excerpts and survey responses into themes. At the team level, we then compared section-specific findings together, asked follow-up questions, and provided cross-feedback before design began.',
         imageLabels: [
           { label: '[ affinity mapping board in FigJam — clustered sticky notes from interviews ]', caption: 'Affinity mapping session synthesizing qualitative data from user interviews and surveys.', height: 320 },
         ],
@@ -546,9 +549,9 @@ const selectedWorkItems: SelectedWorkItem[] = [
         id: 'hifi-wires',
         eyebrow: 'High-Fidelity Wireframes & Prototyping',
         title: 'Bringing the redesign to life with full visual fidelity.',
-        body: 'The final phase involved applying Strava\'s visual language — including its signature orange, athletic typography, and photography-forward card layouts — to produce high-fidelity screens ready for usability validation. We designed every screen in the Groups flow at full fidelity, paying close attention to touch targets, type hierarchy, and responsive behavior.',
-        body2: 'We built an interactive prototype in Figma connecting the complete Groups journey, from the main navigation entry point through discovery, evaluation, joining, and first activity within a group. This allowed us to run moderated usability testing sessions where participants completed realistic tasks.',
-        body3: 'Usability testing with the hi-fi prototype confirmed that our redesign significantly reduced task completion time for group discovery, and participants rated the new design as more intuitive and welcoming than the existing Strava interface.',
+        body: 'The final phase involved applying Strava\'s visual language to produce high-fidelity Groups screens ready for validation. I designed every screen in the Groups flow at full fidelity, paying close attention to touch targets, type hierarchy, and responsive behavior. To increase realism, I sourced Strava-authentic UI assets such as activity icons, logos, and challenge/group imagery from Strava\'s web ecosystem.',
+        body2: 'In parallel, our team aligned all feature sections using a simple shared design system, then merged our work into one interactive prototype in Figma. I also contributed a pull-up search/filter pattern that was implemented in my Groups section and reused in Maps to support consistency across the combined experience.',
+        body3: 'Usability testing was run as a team on the integrated prototype, with each member testing the feature area they owned. In my sessions, participants completed Groups discovery tasks faster and rated the redesigned flow as more intuitive and welcoming than the current Strava experience.',
         imageLabels: [
           { label: '[ high-fidelity mockup screens — Groups discovery hub and detail page ]', caption: 'High-fidelity designs for the redesigned Groups experience.', height: 360 },
           { label: '[ before & after comparison — current Strava Groups vs redesigned version ]', caption: 'Before and after: the existing Strava Groups experience versus our redesign.', height: 300 },
