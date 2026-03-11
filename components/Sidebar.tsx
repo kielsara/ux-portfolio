@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 // ── Types ──────────────────────────────────────────────
 interface NavItem {
@@ -60,24 +60,107 @@ const CONTACT_GROUP = NAV_GROUPS[2]
 interface LocalPageNavProps {
   intro?: string
   toc?: { id: string; symbol: string; label: string }[]
+  persistInView?: boolean
 }
 
-export function LocalPageNav({ intro, toc }: LocalPageNavProps) {
+export function LocalPageNav({ intro, toc, persistInView = false }: LocalPageNavProps) {
+  const [activeId, setActiveId] = useState<string | null>(toc?.[0]?.id ?? null)
+  const [isTopActive, setIsTopActive] = useState(true)
+
+  useEffect(() => {
+    if (!toc || toc.length === 0) {
+      setActiveId(null)
+      return
+    }
+
+    const sections = toc
+      .map((entry) => document.getElementById(entry.id))
+      .filter((section): section is HTMLElement => section instanceof HTMLElement)
+
+    if (sections.length === 0) {
+      setActiveId(toc[0].id)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (window.scrollY < 140) {
+          return
+        }
+
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+        if (visibleEntries.length > 0) {
+          setActiveId(visibleEntries[0].target.id)
+        }
+      },
+      {
+        rootMargin: '-18% 0px -58% 0px',
+        threshold: [0.2, 0.35, 0.5, 0.7],
+      }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
+    const handleScroll = () => {
+      if (window.scrollY < 140) {
+        setIsTopActive(true)
+        setActiveId(null)
+        return
+      }
+
+      setIsTopActive(false)
+      const nextSection = sections.findLast((section) => section.getBoundingClientRect().top <= 140)
+      if (nextSection) {
+        setActiveId((currentId) => (currentId === nextSection.id ? currentId : nextSection.id))
+      }
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [toc])
+
   return (
-    <aside className="local-sidebar" aria-label="Local page navigation">
+    <aside
+      className={`local-sidebar${persistInView ? ' local-sidebar--fixed' : ''}`}
+      aria-label="Local page navigation"
+    >
       <div className="local-sidebar-inner">
-        <div className="sidebar-back">
-          <Link href="/">← Index</Link>
-        </div>
         {intro && <p className="sidebar-intro">{intro}</p>}
 
         {toc && toc.length > 0 && (
           <nav className="local-toc">
             <span className="local-toc-label">On this page</span>
+            <a
+              href="#"
+              className={`local-toc-link${isTopActive ? ' is-active' : ''}`}
+              aria-current={isTopActive ? 'location' : undefined}
+            >
+              <span className="toc-symbol">↑</span>
+              Top of Page
+              <span className="local-toc-arrow" aria-hidden="true">
+                {isTopActive ? '←' : ''}
+              </span>
+            </a>
             {toc.map((entry) => (
-              <a key={entry.id} href={`#${entry.id}`} className="local-toc-link">
+              <a
+                key={entry.id}
+                href={`#${entry.id}`}
+                className={`local-toc-link${activeId === entry.id ? ' is-active' : ''}`}
+                aria-current={activeId === entry.id ? 'location' : undefined}
+              >
                 <span className="toc-symbol">{entry.symbol}</span>
                 {entry.label}
+                <span className="local-toc-arrow" aria-hidden="true">
+                  {activeId === entry.id ? '←' : ''}
+                </span>
               </a>
             ))}
           </nav>

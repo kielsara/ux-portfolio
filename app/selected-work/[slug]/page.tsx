@@ -41,6 +41,51 @@ function ImgPlaceholder({
   )
 }
 
+function CaseMetaRow({
+  role,
+  team,
+  timeline,
+  tools,
+  methods,
+}: {
+  role: string
+  team?: string
+  timeline: string
+  tools?: string
+  methods?: string
+}) {
+  return (
+    <div className="meta-row">
+      <div className="meta-item">
+        <span className="meta-label">Role</span>
+        <span className="meta-value">{role}</span>
+      </div>
+      {team && (
+        <div className="meta-item meta-item-team">
+          <span className="meta-label">Team</span>
+          <span className="meta-value">{team}</span>
+        </div>
+      )}
+      <div className="meta-item">
+        <span className="meta-label">Duration</span>
+        <span className="meta-value">{timeline}</span>
+      </div>
+      {tools && (
+        <div className="meta-item meta-item-tools">
+          <span className="meta-label">Tools</span>
+          <span className="meta-value">{tools}</span>
+        </div>
+      )}
+      {methods && (
+        <div className="meta-item meta-item-methods">
+          <span className="meta-label">Methods</span>
+          <span className="meta-value">{methods}</span>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default async function SelectedWorkPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const cs = getSelectedWork(slug)
@@ -52,8 +97,8 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
       <div className="layout">
         <Sidebar variant="project" />
 
-        <div className="page-with-local-nav">
-          <LocalPageNav intro={cs.intro} toc={cs.toc} />
+        <div className="page-with-local-nav page-with-local-nav--fixed">
+          <LocalPageNav intro={cs.intro} toc={cs.toc} persistInView />
 
           <main className="main">
 
@@ -62,28 +107,13 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
             <div className="case-tag">{cs.tag}</div>
             <h1>{cs.title}</h1>
             <p>{cs.overview}</p>
-            <div className="meta-row">
-              <div className="meta-item">
-                <span className="meta-label">Role</span>
-                <span className="meta-value">{cs.role}</span>
-              </div>
-              <div className="meta-item">
-                <span className="meta-label">Duration</span>
-                <span className="meta-value">{cs.timeline}</span>
-              </div>
-              {cs.tools && (
-                <div className="meta-item">
-                  <span className="meta-label">Tools</span>
-                  <span className="meta-value">{cs.tools}</span>
-                </div>
-              )}
-              {cs.methods && (
-                <div className="meta-item meta-item-wide">
-                  <span className="meta-label">Methods</span>
-                  <span className="meta-value">{cs.methods}</span>
-                </div>
-              )}
-            </div>
+            <CaseMetaRow
+              role={cs.role}
+              team={cs.team}
+              timeline={cs.timeline}
+              tools={cs.tools}
+              methods={cs.methods}
+            />
           </header>
 
           {/* ── Hero image ── */}
@@ -309,8 +339,8 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
       <div className="layout">
         <Sidebar variant="project" />
 
-        <div className="page-with-local-nav">
-          <LocalPageNav intro={cs.intro} toc={cs.toc} />
+        <div className="page-with-local-nav page-with-local-nav--fixed">
+          <LocalPageNav intro={cs.intro} toc={cs.toc} persistInView />
 
           <main className="main">
 
@@ -319,28 +349,13 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
             <div className="case-tag">{cs.tag}</div>
             <h1>{cs.title}</h1>
             <p>{cs.overview}</p>
-            <div className="meta-row">
-              <div className="meta-item">
-                <span className="meta-label">Role</span>
-                <span className="meta-value">{cs.role}</span>
-              </div>
-              <div className="meta-item">
-                <span className="meta-label">Duration</span>
-                <span className="meta-value">{cs.timeline}</span>
-              </div>
-              {cs.tools && (
-                <div className="meta-item">
-                  <span className="meta-label">Tools</span>
-                  <span className="meta-value">{cs.tools}</span>
-                </div>
-              )}
-              {cs.methods && (
-                <div className="meta-item meta-item-wide">
-                  <span className="meta-label">Methods</span>
-                  <span className="meta-value">{cs.methods}</span>
-                </div>
-              )}
-            </div>
+            <CaseMetaRow
+              role={cs.role}
+              team={cs.team}
+              timeline={cs.timeline}
+              tools={cs.tools}
+              methods={cs.methods}
+            />
           </header>
 
           {/* ── Hero image ── */}
@@ -523,8 +538,8 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
     <div className="layout">
       <Sidebar variant="project" />
 
-      <div className="page-with-local-nav">
-        <LocalPageNav intro={cs.intro} toc={cs.toc} />
+      <div className="page-with-local-nav page-with-local-nav--fixed">
+        <LocalPageNav intro={cs.intro} toc={cs.toc} persistInView />
 
         <main className="main">
 
@@ -533,16 +548,13 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           <div className="case-tag">{cs.tag}</div>
           <h1>{cs.title}</h1>
           <p>{cs.overview}</p>
-          <div className="meta-row">
-            <div className="meta-item">
-              <span className="meta-label">Role</span>
-              <span className="meta-value">{cs.role}</span>
-            </div>
-            <div className="meta-item">
-              <span className="meta-label">Timeline</span>
-              <span className="meta-value">{cs.timeline}</span>
-            </div>
-          </div>
+          <CaseMetaRow
+            role={cs.role}
+            team={cs.team}
+            timeline={cs.timeline}
+            tools={cs.tools}
+            methods={cs.methods}
+          />
         </header>
 
         {/* ── Hero image ── */}

@@ -29,6 +29,7 @@ export interface SelectedWorkItem {
   intro: string          // sidebar italic subtitle
   overview: string       // paragraph below h1
   role: string
+  team?: string
   timeline: string
   tools?: string
   methods?: string
@@ -86,6 +87,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     overview:
       'I led a comprehensive UX audit of Synchrony Business Solutions\' analytics platform — a tool used by small-to-medium sized business clients to track performance, spending, and business insights. What started as a usability review became a 7-month deep dive into data visualization clarity, accessibility, a product redesign, and design system foundations.',
     role: 'UX/UI Design Intern',
+    team: 'Senior Product Design, Product Management, Engineering',
     timeline: '7 months',
     tools: 'Figma & FigJam',
     methods: 'Heuristic Evaluation, Laws of UX, WCAG Accessibility, Data Viz Best Practices',
@@ -198,6 +200,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     overview:
       'Following my comprehensive UX audit, I identified that inconsistent visual patterns, fragmented layouts, and scattered interaction rules were contributing to significant usability issues. To support future design improvements without disrupting existing product components, I created a component-based design system that translated audit insights into reusable UI patterns, layout rules, and interactive elements.',
     role: 'UX/UI Design Intern',
+    team: 'UX, Product, Engineering',
     timeline: '4.5 months',
     tools: 'Figma',
     methods: 'Design System Architecture, Component-Driven Design, Data Visualization Best Practices, Usage Documentation',
@@ -280,6 +283,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     overview:
       'This project focused on structuring interview and usability findings into a synthesis framework that product and engineering could quickly act on. I translated broad observations into themes, mapped opportunity areas, and documented a sequenced set of recommendations.',
     role: 'UX Researcher',
+    team: 'Product, Engineering, Research',
     timeline: '8 weeks',
     tools: 'Dovetail, FigJam, Figma',
     methods: 'Interviews, Affinity Mapping, Opportunity Framing',
@@ -319,6 +323,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     overview:
       'I redesigned a high-friction operational flow used daily by internal teams. The redesign reduced ambiguity at key decision points, improved status visibility, and made exception handling easier for first-time and returning users.',
     role: 'Product Designer',
+    team: 'Operations, Product, Engineering',
     timeline: '10 weeks',
     tools: 'Figma, Maze',
     methods: 'Task Analysis, Journey Mapping, Iterative Prototyping',
@@ -359,6 +364,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     overview:
       'This sprint focused on increasing accessibility quality across reused UI patterns. I audited key components, partnered with engineering on implementation details, and documented updated guidance for ongoing consistency.',
     role: 'UX Designer',
+    team: 'Design, Engineering, QA',
     timeline: '6 weeks',
     tools: 'Figma, Axe, Storybook',
     methods: 'WCAG Review, Component Audit, Cross-functional QA',
@@ -400,6 +406,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     overview:
       'I redesigned onboarding touchpoints to improve early-user confidence and reduce setup friction. The work focused on clear progression, better language, and guidance tailored to role-specific needs.',
     role: 'Product Designer',
+    team: 'Product, Content, Engineering',
     timeline: '7 weeks',
     tools: 'Figma, GA4, Hotjar',
     methods: 'Funnel Analysis, Usability Testing, Content Design',

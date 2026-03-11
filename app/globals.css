@@ -219,6 +219,12 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: flex-start;
   min-height: calc(100vh - 78px);
+  position: relative;
+}
+
+.page-with-local-nav--fixed {
+  display: block;
+  padding-left: var(--sidebar-w);
 }
 
 .local-sidebar {
@@ -231,17 +237,28 @@ a { color: inherit; text-decoration: none; }
   height: calc(100vh - 78px);
   overflow-y: auto;
   overflow-x: hidden;
+  background: var(--bg);
+  backdrop-filter: none;
+}
+
+.local-sidebar--fixed {
+  position: fixed;
+  top: 78px;
+  left: 0;
+  bottom: 0;
+  height: auto;
+  z-index: 15;
 }
 
 .local-sidebar-inner {
-  padding: 18px 20px 28px;
+  padding: 24px 20px 32px;
 }
 
 .local-toc {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 22px;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .local-toc-label {
@@ -249,7 +266,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .local-toc-link {
@@ -259,16 +276,32 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.82rem;
   color: var(--muted);
   line-height: 1.35;
-  transition: color 0.15s;
+  transition: color 0.15s, transform 0.15s;
 }
 
 .local-toc-link:hover {
   color: var(--text);
 }
 
+.local-toc-link.is-active {
+  color: var(--text);
+}
+
+.local-toc-arrow {
+  width: 12px;
+  flex: 0 0 12px;
+  color: var(--accent);
+  margin-left: auto;
+  text-align: right;
+}
+
 .page-with-local-nav > .main {
   flex: 1;
   min-width: 0;
+}
+
+.page-with-local-nav--fixed > .main {
+  width: 100%;
 }
 
 /* ── Main area ── */
@@ -329,6 +362,10 @@ a { color: inherit; text-decoration: none; }
     flex-direction: column;
     min-height: auto;
   }
+  .page-with-local-nav--fixed {
+    display: flex;
+    padding-left: 0;
+  }
   .local-sidebar {
     width: 100%;
     flex: 0 0 auto;
@@ -337,6 +374,14 @@ a { color: inherit; text-decoration: none; }
     height: auto;
     border-right: none;
     border-bottom: 1px solid var(--border);
+    background: transparent;
+    backdrop-filter: none;
+  }
+  .local-sidebar--fixed {
+    position: static;
+    left: auto;
+    bottom: auto;
+    z-index: auto;
   }
   .local-sidebar-inner {
     padding: 16px 20px;
@@ -584,21 +629,38 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 36px;
 }
 .meta-row {
-  display: flex;
-  column-gap: 48px;
-  row-gap: 36px;
-  flex-wrap: wrap;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  column-gap: 32px;
+  row-gap: 24px;
+  align-items: start;
   max-width: 820px;
 }
-.meta-item { display: flex; flex-direction: column; gap: 4px; }
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.meta-item-team { max-width: 220px; }
+.meta-item-tools { grid-column: 1 / 2; }
+.meta-item-methods {
+  /* occupy same column as team to keep horizontal spacing consistent */
+  grid-column: 2 / 3;
+  max-width: 420px;
+}
+.meta-item-methods-full {
+  /* when tools are absent, match the width of the team column as well */
+  grid-column: 2 / 3;
+  max-width: 420px;
+}
 .meta-label {
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
 }
-.meta-value { font-size: 0.85rem; line-height: 1.5; }
+.meta-value { font-size: 0.85rem; line-height: 1.55; }
 
 .hero-image {
   width: min(700px, calc(100% - 120px));
@@ -623,6 +685,7 @@ a { color: inherit; text-decoration: none; }
   padding: 72px 60px;
   border-bottom: 1px solid var(--border);
   max-width: 820px;
+  scroll-margin-top: 120px;
 }
 .section-eyebrow {
   font-size: 0.68rem;
@@ -753,7 +816,7 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
 
 /* ── Meta row for audit projects ── */
 .meta-item-wide {
-  flex: 1 1 100%;
+  grid-column: 1 / -1;
   margin-top: 0;
   min-width: 0;
   max-width: 560px;
@@ -1322,7 +1385,10 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   .outcome-row { flex-direction: column; }
   .outcome-item { border-right: none; border-bottom: 1px solid var(--border); }
   .outcome-item:last-child { border-bottom: none; }
-  .meta-row { flex-direction: column; gap: 20px; }
+  .meta-row { grid-template-columns: 1fr; gap: 20px; }
+  .meta-item-tools,
+  .meta-item-methods,
+  .meta-item-methods-full { grid-column: 1 / -1; max-width: none; }
   .hero-image {
     width: min(700px, calc(100% - 48px));
     margin-left: 24px;
