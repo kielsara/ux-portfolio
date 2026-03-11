@@ -4,14 +4,18 @@ import Link from 'next/link'
 import { useRef, useState, useCallback, useEffect } from 'react'
 
 // ── Edit this array to add/remove your projects ──
-const PROJECTS = [
+// (mark an entry with `hidden: true` to remove it from the UI temporarily)
+const ALL_PROJECTS = [
   { id: 'project-one',   label: 'Project One',   gradient: 'linear-gradient(135deg,#d4c5b0,#a89880)', hasLink: true,  alt: 'Screenshot of Project One' },
   { id: 'project-two',   label: 'Project Two',   gradient: 'linear-gradient(135deg,#b8c9d4,#8aaab8)', hasLink: true,  alt: 'Screenshot of Project Two' },
   { id: 'project-three', label: 'Project Three', gradient: 'linear-gradient(135deg,#c9c0d3,#9e91b0)', hasLink: true, alt: 'Screenshot of Project Three' },
   { id: 'project-four',  label: 'Project Four',  gradient: 'linear-gradient(135deg,#d4b0b0,#b88080)', hasLink: true,  alt: 'Screenshot of Project Four' },
   { id: 'project-five',  label: 'Project Five',  gradient: 'linear-gradient(135deg,#b0d4c0,#80b898)', hasLink: true, alt: 'Screenshot of Project Five' },
-  { id: 'project-six',   label: 'Project Six',   gradient: 'linear-gradient(135deg,#d4d0b0,#b8b080)', hasLink: true,  alt: 'Screenshot of Project Six' },
+  { id: 'project-six',   label: 'Project Six',   gradient: 'linear-gradient(135deg,#d4d0b0,#b8b080)', hasLink: true,  alt: 'Screenshot of Project Six', hidden: true },
 ]
+
+// filter out any hidden entries before rendering
+const PROJECTS = ALL_PROJECTS.filter(p => !p.hidden)
 
 // Triple set for seamless infinite manual navigation
 const CARDS = [...PROJECTS, ...PROJECTS, ...PROJECTS]

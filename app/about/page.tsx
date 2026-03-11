@@ -47,10 +47,11 @@ export default function AboutPage() {
     <div className="layout">
       <Sidebar variant="project" />
 
-      <div className="page-with-local-nav">
+      <div className="page-with-local-nav page-with-local-nav--fixed">
         <LocalPageNav
           intro="Designer + researcher focused on reducing complexity and improving confidence in high-friction workflows."
           toc={ABOUT_TOC}
+          persistInView
         />
 
         <main className="main">

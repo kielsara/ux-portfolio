@@ -9,6 +9,7 @@ interface NavItem {
   label: string
   sub?: string
   external?: boolean
+  hidden?: boolean          // set to true to remove item from UI navigation
 }
 
 interface NavGroup {
@@ -40,7 +41,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: '/selected-work/project-three', label: 'UX/UI Design with AI',  sub: 'Prototyping a behavior reporting platform' },
       { href: '/selected-work/project-four',  label: 'UX/UI Concept Redesign',   sub: 'Reimagining Strava\'s mobile experience' },
       { href: '/selected-work/project-five',  label: 'CX Strategy & Design',   sub: 'Developing Busey\'s persona & journey map program' },
-      { href: '/selected-work/project-six',   label: 'UX Research & Operations',    sub: 'Scaling research practices at Synchrony' },
+      { href: '/selected-work/project-six',   label: 'UX Research & Operations',    sub: 'Scaling research practices at Synchrony', hidden: true },
     ],
   },
   {
@@ -215,7 +216,9 @@ export default function Sidebar({ variant = 'home' }: SidebarProps) {
           <details className="menu-dropdown">
             <summary className="top-nav-link top-nav-link--summary">Selected Work</summary>
             <div className="menu-panel" role="menu" aria-label="Selected Work links">
-              {SELECTED_WORK_GROUP.items.map((item) => (
+              {SELECTED_WORK_GROUP.items
+                .filter(item => !item.hidden)
+                .map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
