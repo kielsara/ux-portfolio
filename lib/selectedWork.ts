@@ -22,6 +22,24 @@ export interface Finding {
   desc: string
 }
 
+export interface CaseStudyImage {
+  src: string
+  alt: string
+  caption?: string
+  height?: number
+}
+
+export interface CanvasImageItem {
+  src: string
+  alt: string
+  width: number
+  height: number
+  x: number
+  y: number
+  rot: number
+  objectFit?: 'cover' | 'contain'
+}
+
 export interface SelectedWorkItem {
   slug: string
   title: string
@@ -33,8 +51,10 @@ export interface SelectedWorkItem {
   timeline: string
   tools?: string
   methods?: string
+  canvasImages?: CanvasImageItem[]
   heroGradient?: string  // fallback if no hero image
   heroImage?: string     // path to image in /public
+  heroImagePosition?: string // CSS object-position override for hero crop
   isAuditProject?: boolean  // flag for audit-style layout
   isDesignSystem?: boolean  // flag for design system layout
   isAppRedesign?: boolean   // flag for app redesign case study layout
@@ -71,12 +91,12 @@ export interface SelectedWorkItem {
   takeaway?: { body: string }
 
   // Section content (audit project)
-  challenge?: { headline: string; body: string; stats?: Stat[] }
-  approach?: { headline: string; body: string; steps?: { num: string; title: string; desc: string }[] }
-  findings?: { headline: string; body: string; items?: Finding[] }
+  challenge?: { headline: string; body: string; stats?: Stat[]; image?: CaseStudyImage }
+  approach?: { headline: string; body: string; steps?: { num: string; title: string; desc: string }[]; image?: CaseStudyImage }
+  findings?: { headline: string; body: string; items?: Finding[]; image?: CaseStudyImage }
   synthesis?: { headline: string; body: string; themes?: string[] }
-  alignment?: { headline: string; body: string; quote?: string; quoteAttrib?: string }
-  redesign?: { headline: string; body: string; changes?: { title: string; desc: string }[] }
+  alignment?: { headline: string; body: string; quote?: string; quoteAttrib?: string; image?: CaseStudyImage }
+  redesign?: { headline: string; body: string; changes?: { title: string; desc: string; image?: CaseStudyImage }[] }
   impact?: { headline: string; body: string; stats?: Stat[] }
   reflection?: { headline: string; body: string; learnings?: string[] }
 
@@ -100,12 +120,87 @@ const selectedWorkItems: SelectedWorkItem[] = [
     title: 'Turning 7 months of heuristic analysis into actionable design change.',
     intro: 'A systematic UX audit for enterprise analytics',
     overview:
-      'I led a comprehensive UX audit of Synchrony Business Solutions\' analytics platform — a tool used by small-to-medium sized business clients to track customer reviews, marketing efforts, and business operations. What started as a usability review became a 7-month deep dive into data visualization clarity, accessibility, a product redesign, and design system foundations.',
+      'I led a comprehensive UX audit of Synchrony Business Solutions\' analytics platform — a tool used by small-to-medium sized business clients to track customer reviews, marketing efforts, and business operations. What started as a usability review became a 7-month deep dive into data visualization clarity, accessibility, and design system foundations. The audit didn\'t stop at findings — it drove a product redesign, a new-year design roadmap, and ultimately sparked the design system documented in my next case study.',
+    heroImage: '/selected-work/project-one/hero.png',
     role: 'UX/UI Design Intern',
     team: 'Grace Blondell, Lead UX Designer',
     timeline: '7 months',
     tools: 'Figma, FigJam',
     methods: 'Heuristic Evaluation, Laws of UX, WCAG Accessibility, Data Viz Best Practices',
+    canvasImages: [
+      {
+        src: '/selected-work/project-one/canvas-one.png',
+        alt: 'screenshot one from the figjam board',
+        width: 200,
+        height: 200,
+        x: 34,
+        y: 62,
+        rot: -1.4,
+      },
+      {
+        src: '/selected-work/project-one/canvas-two.png',
+        alt: 'screenshot two from the figjam board',
+        width: 200,
+        height: 185,
+        x: 100,
+        y: 56,
+        rot: 1.1,
+      },
+      {
+        src: '/selected-work/project-one/canvas-three.png',
+        alt: 'screenshot three from the figjam board',
+        width: 200,
+        height: 300,
+        x: 72,
+        y: 275,
+        rot: -0.8,
+      },
+      {
+        src: '/selected-work/project-one/canvas-four.png',
+        alt: 'screenshot four from the figjam board',
+        width: 270,
+        height: 150,
+        x: 0,
+        y: 200,
+        rot: 0.9,
+      },
+      {
+        src: '/selected-work/project-one/canvas-five.png',
+        alt: 'screenshot five from the audit board',
+        width: 260,
+        height: 200,
+        x: 120,
+        y: 220,
+        rot: -2.0,
+      },
+      {
+        src: '/selected-work/project-one/cavas-six.png',
+        alt: 'screenshot six from the audit board',
+        width: 225,
+        height: 225,
+        x: 220,
+        y: 164,
+        rot: 2.2,
+      },
+      {
+        src: '/selected-work/project-one/canvas-seven.png',
+        alt: 'screenshot seven from the audit board',
+        width: 300,
+        height: 250,
+        x: 350,
+        y: 200,
+        rot: 0,
+      },
+      {
+        src: '/selected-work/project-one/canvas-eight.png',
+        alt: 'screenshot eight from the audit board',
+        width: 200,
+        height: 200,
+        x: 200,
+        y: 200,
+        rot: 0,
+      }
+    ],
     heroGradient: 'linear-gradient(135deg,#1a1a2e,#16213e)',
     isAuditProject: true,
 
@@ -128,6 +223,11 @@ const selectedWorkItems: SelectedWorkItem[] = [
         { number: '2', desc: 'design sources of truth causing inconsistency and rework' },
         { number: '80+', desc: 'usability issues identified and categorized' },
       ],
+      image: {
+        src: '/selected-work/project-one/challenge.png',
+        alt: 'Analytics dashboard before UX audit work',
+        caption: 'Unnamed layers, ungrouped elements, and screenshot-based content — the design file reflected years of unstructured additions.',
+      },
     },
 
     approach: {
@@ -139,6 +239,12 @@ const selectedWorkItems: SelectedWorkItem[] = [
         { num: '03', title: 'Stakeholder Calibration', desc: 'Reviewed findings with the lead UX designer to align severity scoring and prioritize recommendations for implementation.' },
         { num: '04', title: 'Pattern Identification', desc: 'Grouped issues into themes to reveal systemic problems, not just surface bugs.' },
       ],
+      image: {
+        src: '/selected-work/project-one/approach.png',
+        alt: 'FigJam board showing UX audit approach and notes',
+        caption: 'Systematic walkthrough documented in FigJam with heuristic annotations.',
+        height: 320,
+      },
     },
 
     findings: {
@@ -150,6 +256,12 @@ const selectedWorkItems: SelectedWorkItem[] = [
         { icon: '🧭', title: 'Dashboard & Navigation UX', desc: 'Navigation patterns, spacing rules, and layout conventions were inconsistent, creating friction and reducing discoverability.' },
         { icon: '♿', title: 'Accessibility Across All Areas', desc: 'Accessibility gaps in contrast, interaction states, responsive behavior, and keyboard navigation reinforced the need for inclusive standards in every redesign decision.' },
       ],
+      image: {
+        src: '/selected-work/project-one/findings.png',
+        alt: 'Annotated UX issues from audit findings',
+        caption: 'Example findings: contrast failures, unclear data labels, inconsistent navigation patterns.',
+        height: 300,
+      },
     },
 
     synthesis: {
@@ -168,16 +280,53 @@ const selectedWorkItems: SelectedWorkItem[] = [
       body: 'I used this opportunity-area framework in a cross-functional readout with product, design, and engineering stakeholders. Framing the audit this way kept the conversation anchored on implementation priorities (navigation, content, data storytelling, and accessibility) rather than one-off screen critiques, and made next-step planning more actionable.',
       quote: 'This gave us the evidence we needed to prioritize accessibility work that had been deprioritized for years.',
       quoteAttrib: '— Senior Product Designer, Synchrony',
+      image: {
+        src: '/selected-work/project-one/alignment.png',
+        alt: 'Stakeholder readout slide for UX audit alignment',
+        caption: 'Audit readout presentation with prioritized recommendations.',
+      },
     },
 
     redesign: {
       headline: 'Recommendations mapped directly to each opportunity area.',
       body: 'I translated each area into concrete next steps: simplify and resize visualizations for legibility, improve copy and information consistency, modernize dashboard/navigation structure, and apply accessibility standards throughout. This made each recommendation traceable to audit evidence and easier to phase into future redesign work.',
       changes: [
-        { title: 'Data Storytelling & Chart Clarity', desc: 'Recommended simplifying dense charts, removing unnecessary visual elements/interactions, and resizing visualizations to improve comprehension.' },
-        { title: 'Content Quality & Personalization', desc: 'Recommended copy cleanup, clearer terminology, stronger page-to-page consistency, and opportunities for personalized summaries/insights.' },
-        { title: 'Dashboard Layout & Navigation', desc: 'Recommended a more intuitive dashboard pattern (modular layout + clearer hierarchy), improved breadcrumbs/footer logic, and reduced navigation friction.' },
-        { title: 'Accessibility Baseline', desc: 'Recommended applying contrast, keyboard navigation, responsive behavior, and interaction-state standards across all redesign efforts.' },
+        {
+          title: 'Data Storytelling & Chart Clarity',
+          desc: 'Recommended simplifying dense charts, removing unnecessary visual elements/interactions, and resizing visualizations to improve comprehension.',
+          image: {
+            src: '/selected-work/project-one/redesign-1.png',
+            alt: 'Before and after redesign for data storytelling and chart clarity',
+            height: 260,
+          },
+        },
+        {
+          title: 'Content Quality & Personalization',
+          desc: 'Recommended copy cleanup, clearer terminology, stronger page-to-page consistency, and opportunities for personalized summaries/insights.',
+          image: {
+            src: '/selected-work/project-one/redesign-2.png',
+            alt: 'Before and after redesign for content quality and personalization',
+            height: 260,
+          },
+        },
+        {
+          title: 'Dashboard Layout & Navigation',
+          desc: 'Recommended a more intuitive dashboard pattern (modular layout + clearer hierarchy), improved breadcrumbs/footer logic, and reduced navigation friction.',
+          image: {
+            src: '/selected-work/project-one/redesign-3.png',
+            alt: 'Before and after redesign for dashboard layout and navigation',
+            height: 260,
+          },
+        },
+        {
+          title: 'Accessibility Baseline',
+          desc: 'Recommended applying contrast, keyboard navigation, responsive behavior, and interaction-state standards across all redesign efforts.',
+          image: {
+            src: '/selected-work/project-one/redesign-4.png',
+            alt: 'Before and after redesign for accessibility baseline',
+            height: 260,
+          },
+        },
       ],
     },
 
@@ -213,11 +362,13 @@ const selectedWorkItems: SelectedWorkItem[] = [
     intro: 'From audit findings to reusable components',
     overview:
       'Following my comprehensive UX audit, I identified that inconsistent visual patterns, fragmented layouts, and scattered interaction rules were contributing to significant usability issues. To support future design improvements without disrupting existing product components, I created a component-based design system that translated audit insights into reusable UI patterns, layout rules, and interactive elements.',
+    heroImage: '/selected-work/project-two/hero.png',
     role: 'UX/UI Design Intern',
     team: 'Grace Blondell, Lead UX Designer',
     timeline: '4.5 months',
     tools: 'Figma',
     methods: 'Design System Architecture, Component-Driven Design, Data Visualization Best Practices, Usage Documentation',
+    heroImagePosition: '20% center',
     heroGradient: 'linear-gradient(135deg,#1a1a2e,#16213e)',
     isDesignSystem: true,
 
@@ -297,6 +448,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     intro: 'An AI-assisted incident reporting tool for special education',
     overview:
       'ABCapture is a web-based incident documentation system I helped design and build as part of a four-person team. It combines a conversational AI interface with speech-to-text input to help adults working with children with autism capture structured Antecedent-Behavior-Consequence (ABC) data in real time — reducing the cognitive burden of documentation so the adults can focus on the children under their care.',
+    heroImage: '/selected-work/project-three/hero.png',
     role: 'Lead UX/UI Designer, Front-End Developer',
     team: 'Jiya Chachan, Manuela Rodriguez, Rithika Vennamaneni',
     timeline: '4 months',
@@ -427,6 +579,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     intro: 'Redesigning Strava for discoverability & ease of use',
     overview:
       'As part of a student-directed UX project, our team redesigned Strava end-to-end by splitting feature ownership based on capacity while maintaining shared critique and alignment throughout the process. I fully owned the Groups experience (Clubs and Challenges), while teammates led Profile, Maps, Home, and Record Activity. Each of us conducted research for our own section, then came together to compare findings, challenge assumptions, and provide feedback before moving into design. We also built a simple, shared design system so the final prototype felt cohesive when all sections were merged.',
+    heroImage: '/selected-work/project-four/hero.png',
     role: 'UX Researcher & UX/UI Designer',
     team: 'Diana Ngo, Team Lead; Daria Meshcheriakova; Brianna Regione; Allie Bosch',
     timeline: '4 months',
@@ -570,6 +723,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     intro: 'Building personas & journey maps for a regional bank',
     overview:
       'During my two-semester internship at Busey Bank, I supported the Customer Experience Manager in transitioning the organization from a process-centric view to a customer-centric one. I was tasked with researching and proposing a formal Customer Journey Mapping — referred to as Customer Experience Mapping (CEM) at Busey — and Persona program. My first semester focused on market research and competitive analysis to advocate for the program\'s value. In the second semester, I moved from proposal to execution, designing the bank\'s foundational persona set and a standardized journey mapping template.',
+    heroImage: '/selected-work/project-five/hero.png',
     role: 'CX Intern',
     timeline: '6 months',
     tools: 'Draw.io, Microsoft Suite',
@@ -675,6 +829,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     intro: 'Designing first-run experiences that reduce uncertainty',
     overview:
       'I redesigned onboarding touchpoints to improve early-user confidence and reduce setup friction. The work focused on clear progression, better language, and guidance tailored to role-specific needs.',
+    heroImage: '/selected-work/project-six/hero.png',
     role: 'Product Designer',
     team: 'Product, Content, Engineering',
     timeline: '7 weeks',

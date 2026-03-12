@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Sidebar, { LocalPageNav } from '@/components/Sidebar'
 import DraggableCanvas from '@/components/DraggableCanvas'
+import HeroZoomImage from '@/components/HeroZoomImage'
+import ZoomableImage from '../../../components/ZoomableImage'
 import { getAllSlugs, getSelectedWork } from '@/lib/selectedWork'
 import SiteFooter from '@/components/SiteFooter'
 
@@ -18,24 +20,40 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 // ── Placeholder image block ────────────────────────────
 function ImgPlaceholder({
+  src,
+  alt,
   gradient,
   caption,
   height = 280,
   label,
 }: {
-  gradient: string
+  src?: string
+  alt?: string
+  gradient?: string
   caption?: string
   height?: number
   label?: string
 }) {
   return (
     <figure className="section-image">
-      <div
-        className="img-placeholder"
-        style={{ background: gradient, height }}
-      >
-        {label && <span className="img-placeholder-label">{label}</span>}
-      </div>
+      {src ? (
+        <ZoomableImage
+          src={src}
+          alt={alt ?? 'Case study section image'}
+          wrapperClassName="section-image-media"
+          imageClassName="section-image-img"
+          imageStyle={{ height }}
+          triggerClassName="section-image-zoom-trigger"
+          dialogLabel="Full section image preview"
+        />
+      ) : (
+        <div
+          className="img-placeholder"
+          style={{ background: gradient ?? 'linear-gradient(135deg,#2d2d44,#1a1a2e)', height }}
+        >
+          {label && <span className="img-placeholder-label">{label}</span>}
+        </div>
+      )}
       {caption && <figcaption>{caption}</figcaption>}
     </figure>
   )
@@ -88,6 +106,7 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
   const { slug } = await params
   const cs = getSelectedWork(slug)
   if (!cs) notFound()
+  const isProjectOne = cs.slug === 'project-one'
 
   // Render audit-style project
   if (cs.isAuditProject) {
@@ -115,12 +134,20 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           </header>
 
           {/* ── Hero image ── */}
-          <div
-            className="hero-image"
-            style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#1a1a2e,#16213e)' }}
-          >
-            <span className="img-placeholder-label">[ before &amp; after hero image ]</span>
-          </div>
+          {cs.heroImage ? (
+            <HeroZoomImage
+              src={cs.heroImage}
+              alt={`${cs.title} hero image`}
+              imagePosition={cs.heroImagePosition}
+            />
+          ) : (
+            <div
+              className="hero-image"
+              style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#1a1a2e,#16213e)' }}
+            >
+              <span className="img-placeholder-label">[ before &amp; after hero image ]</span>
+            </div>
+          )}
 
           {/* ═══ The Challenge ═══ */}
           {cs.challenge && (
@@ -139,9 +166,12 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                 </div>
               )}
               <ImgPlaceholder
+                src={cs.challenge.image?.src}
+                alt={cs.challenge.image?.alt}
                 gradient="linear-gradient(135deg,#2d2d44,#1a1a2e)"
                 label="[ screenshot of problematic UI state ]"
-                caption="The analytics dashboard before the audit — accumulated UX debt from years of feature additions."
+                caption={cs.challenge.image?.caption}
+                height={cs.challenge.image?.height ?? 500}
               />
             </section>
           )}
@@ -166,10 +196,12 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                 </div>
               )}
               <ImgPlaceholder
+                src={cs.approach.image?.src}
+                alt={cs.approach.image?.alt}
                 gradient="linear-gradient(135deg,#16213e,#0f3460)"
                 label="[ FigJam audit board overview ]"
-                caption="Systematic walkthrough documented in FigJam with heuristic annotations."
-                height={320}
+                caption={cs.approach.image?.caption}
+                height={cs.approach.image?.height ?? 300}
               />
             </section>
           )}
@@ -191,12 +223,23 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                   ))}
                 </div>
               )}
-              <ImgPlaceholder
-                gradient="linear-gradient(135deg,#1a1a2e,#2d2d44)"
-                label="[ annotated screenshot showing specific issues ]"
-                caption="Example findings: contrast failures, unclear data labels, inconsistent navigation patterns."
-                height={300}
-              />
+              {isProjectOne ? (
+                <div className="canvas-section">
+                  <DraggableCanvas items={cs.canvasImages} />
+                  <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, marginTop: '16px' }}>
+                    A look inside the audit — findings captured in FigJam.
+                  </p>
+                </div>
+              ) : (
+                <ImgPlaceholder
+                  src={cs.findings.image?.src}
+                  alt={cs.findings.image?.alt}
+                  gradient="linear-gradient(135deg,#1a1a2e,#2d2d44)"
+                  label="[ annotated screenshot showing specific issues ]"
+                  caption={cs.findings.image?.caption}
+                  height={cs.findings.image?.height ?? 300}
+                />
+              )}
             </section>
           )}
 
@@ -213,16 +256,28 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                   ))}
                 </div>
               )}
+              {isProjectOne && cs.findings?.image && (
+                <ImgPlaceholder
+                  src={cs.findings.image.src}
+                  alt={cs.findings.image.alt}
+                  gradient="linear-gradient(135deg,#1a1a2e,#2d2d44)"
+                  label="[ annotated screenshot showing specific issues ]"
+                  caption={cs.findings.image.caption}
+                  height={cs.findings.image.height ?? 300}
+                />
+              )}
             </section>
           )}
 
           {/* ── Interactive Canvas ── */}
-          <div className="canvas-section">
-            <DraggableCanvas />
-            <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, marginTop: '16px' }}>
-              Affinity mapping in FigJam &mdash; clustering 80+ observations into actionable themes.
-            </p>
-          </div>
+          {!isProjectOne && (
+            <div className="canvas-section">
+              <DraggableCanvas items={cs.canvasImages} />
+              <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, marginTop: '16px' }}>
+                Affinity mapping in FigJam &mdash; clustering 80+ observations into actionable themes.
+              </p>
+            </div>
+          )}
 
           {/* ═══ Getting Buy-In (Alignment) ═══ */}
           {cs.alignment && (
@@ -231,9 +286,12 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
               <h2>{cs.alignment.headline}</h2>
               <p>{cs.alignment.body}</p>
               <ImgPlaceholder
+                src={cs.alignment.image?.src}
+                alt={cs.alignment.image?.alt}
                 gradient="linear-gradient(135deg,#0f3460,#16213e)"
                 label="[ stakeholder presentation slide ]"
-                caption="Audit readout presentation with prioritized recommendations."
+                caption={cs.alignment.image?.caption}
+                height={cs.alignment.image?.height ?? 280}
               />
               {cs.alignment.quote && (
                 <blockquote>
@@ -255,13 +313,16 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                   <h3>{change.title}</h3>
                   <p>{change.desc}</p>
                   <ImgPlaceholder
+                    src={change.image?.src}
+                    alt={change.image?.alt}
                     gradient={[
                       'linear-gradient(135deg,#1a1a2e,#2d2d44)',
                       'linear-gradient(135deg,#16213e,#0f3460)',
                       'linear-gradient(135deg,#2d2d44,#1a1a2e)',
                     ][i % 3]}
                     label={`[ before & after: ${change.title.toLowerCase()} ]`}
-                    height={260}
+                    caption={change.image?.caption}
+                    height={change.image?.height ?? 260}
                   />
                 </div>
               ))}
@@ -357,12 +418,20 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           </header>
 
           {/* ── Hero image ── */}
-          <div
-            className="hero-image hero-image--ds"
-            style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#1a1a2e,#16213e)' }}
-          >
-            <span className="hero-title-overlay">DESIGN SYSTEM</span>
-          </div>
+          {cs.heroImage ? (
+            <HeroZoomImage
+              src={cs.heroImage}
+              alt={`${cs.title} hero image`}
+              imagePosition={cs.heroImagePosition}
+            />
+          ) : (
+            <div
+              className="hero-image hero-image--ds"
+              style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#1a1a2e,#16213e)' }}
+            >
+              <span className="hero-title-overlay">DESIGN SYSTEM</span>
+            </div>
+          )}
 
           {/* ═══ Context ═══ */}
           {cs.context && (
@@ -497,7 +566,7 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
 
           {/* ── Interactive Canvas ── */}
           <div className="canvas-section">
-            <DraggableCanvas />
+            <DraggableCanvas items={cs.canvasImages} />
             <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, marginTop: '16px' }}>
               Component library exploration &mdash; drag to explore the design system structure.
             </p>
@@ -557,12 +626,20 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           </header>
 
           {/* ── Hero image ── */}
-          <div
-            className="hero-image hero-image--ai-design"
-            style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#3b1d6e,#1a3a5c)' }}
-          >
-            <span className="hero-title-overlay">UX/UI DESIGN<br/>WITH AI</span>
-          </div>
+          {cs.heroImage ? (
+            <HeroZoomImage
+              src={cs.heroImage}
+              alt={`${cs.title} hero image`}
+              imagePosition={cs.heroImagePosition}
+            />
+          ) : (
+            <div
+              className="hero-image hero-image--ai-design"
+              style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#3b1d6e,#1a3a5c)' }}
+            >
+              <span className="hero-title-overlay">UX/UI DESIGN<br/>WITH AI</span>
+            </div>
+          )}
 
           {/* ═══ Context ═══ */}
           {cs.context && (
@@ -702,12 +779,20 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           </header>
 
           {/* ── Hero image ── */}
-          <div
-            className="hero-image hero-image--app-redesign"
-            style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#fc4c02,#e03e00)' }}
-          >
-            <span className="hero-title-overlay">APP &amp; EXPERIENCE REDESIGN</span>
-          </div>
+          {cs.heroImage ? (
+            <HeroZoomImage
+              src={cs.heroImage}
+              alt={`${cs.title} hero image`}
+              imagePosition={cs.heroImagePosition}
+            />
+          ) : (
+            <div
+              className="hero-image hero-image--app-redesign"
+              style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#fc4c02,#e03e00)' }}
+            >
+              <span className="hero-title-overlay">APP &amp; EXPERIENCE REDESIGN</span>
+            </div>
+          )}
 
           {/* ═══ Context ═══ */}
           {cs.context && (
@@ -847,12 +932,20 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
           </header>
 
           {/* ── Hero image ── */}
-          <div
-            className="hero-image hero-image--cx-research"
-            style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#1a3a4a,#0d2633)' }}
-          >
-            <span className="hero-title-overlay">PERSONA &amp;<br/>USER JOURNEY CREATION</span>
-          </div>
+          {cs.heroImage ? (
+            <HeroZoomImage
+              src={cs.heroImage}
+              alt={`${cs.title} hero image`}
+              imagePosition={cs.heroImagePosition}
+            />
+          ) : (
+            <div
+              className="hero-image hero-image--cx-research"
+              style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#1a3a4a,#0d2633)' }}
+            >
+              <span className="hero-title-overlay">PERSONA &amp;<br/>USER JOURNEY CREATION</span>
+            </div>
+          )}
 
           {/* ═══ Context ═══ */}
           {cs.context && (
@@ -999,14 +1092,20 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
         </header>
 
         {/* ── Hero image ── */}
-        <div
-          className="hero-image"
-          style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#d4c5b0,#c0ae96)' }}
-        >
-          {!cs.heroImage && (
+        {cs.heroImage ? (
+          <HeroZoomImage
+            src={cs.heroImage}
+            alt={`${cs.title} hero image`}
+            imagePosition={cs.heroImagePosition}
+          />
+        ) : (
+          <div
+            className="hero-image"
+            style={{ background: cs.heroGradient ?? 'linear-gradient(135deg,#d4c5b0,#c0ae96)' }}
+          >
             <span className="img-placeholder-label">[ your hero screenshot / mockup ]</span>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* ═══ Why it mattered ═══ */}
         {cs.whyItMattered && (
@@ -1051,7 +1150,7 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
         {/* ═══ Interactive Canvas ═══ */}
         {cs.research && (
           <div className="canvas-section">
-            <DraggableCanvas />
+            <DraggableCanvas items={cs.canvasImages} />
             <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, marginTop: '16px' }}>
               Used AI to analyze chat threads at scale &mdash; identifying 16 distinct message
               categories across 1,000+ conversations.

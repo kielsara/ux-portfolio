@@ -436,7 +436,7 @@ summary:focus-visible {
 .hero {
   padding: 40px 60px 40px;
   border-bottom: 1px solid var(--border);
-  max-width: 680px;
+  max-width: 820px;
 }
 
 .home-hero-layout {
@@ -483,7 +483,7 @@ summary:focus-visible {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 28px;
-  max-width: 680px;
+  max-width: 820px;
 }
 
 .hero-chip {
@@ -727,23 +727,24 @@ summary:focus-visible {
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  max-width: 620px;
+  max-width: 860px;
   margin-bottom: 32px;
 }
 .case-header p {
   font-size: 0.92rem;
   line-height: 1.8;
   color: var(--body-text);
-  max-width: 560px;
+  max-width: 860px;
   margin-bottom: 36px;
 }
 .meta-row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(150px, 1fr));
-  column-gap: 32px;
+  grid-template-columns: repeat(3, auto);
+  column-gap: 48px;
   row-gap: 24px;
   align-items: start;
-  max-width: 820px;
+  justify-content: start;
+  max-width: 860px;
 }
 .meta-item {
   display: flex;
@@ -754,14 +755,13 @@ summary:focus-visible {
 .meta-item-team { max-width: 220px; }
 .meta-item-tools { grid-column: 1 / 2; }
 .meta-item-methods {
-  /* occupy the same column and width as team for consistency */
-  grid-column: 2 / 3;
-  max-width: 220px;
+  /* let methods use the right side of the row for longer lists */
+  grid-column: 2 / 4;
+  max-width: none;
 }
 .meta-item-methods-full {
-  /* when tools are absent, still match the team column width */
-  grid-column: 2 / 3;
-  max-width: 220px;
+  grid-column: 2 / 4;
+  max-width: none;
 }
 .meta-label {
   font-size: 0.68rem;
@@ -772,8 +772,8 @@ summary:focus-visible {
 .meta-value { font-size: 0.85rem; line-height: 1.55; }
 
 .hero-image {
-  width: min(700px, calc(100% - 120px));
-  height: clamp(280px, 34vh, 340px);
+  width: min(860px, calc(100% - 120px));
+  height: clamp(500px, 34vh, 340px);
   background: linear-gradient(135deg, #d4c5b0 0%, #c0ae96 100%);
   display: flex;
   align-items: center;
@@ -783,6 +783,7 @@ summary:focus-visible {
   overflow: hidden;
   margin-left: 60px;
   margin-right: 0;
+  position: relative;
 }
 .hero-image .img-placeholder-label {
   font-size: 0.78rem;
@@ -790,10 +791,104 @@ summary:focus-visible {
   letter-spacing: 0.08em;
 }
 
+.hero-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-zoom-trigger,
+.section-image-zoom-trigger {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: rgba(21, 20, 19, 0.62);
+  color: #f2eee9;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease;
+}
+
+.hero-image:hover .hero-zoom-trigger,
+.hero-image:focus-within .hero-zoom-trigger,
+.section-image:hover .section-image-zoom-trigger,
+.section-image:focus-within .section-image-zoom-trigger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-zoom-trigger:hover,
+.hero-zoom-trigger:focus-visible,
+.section-image-zoom-trigger:hover,
+.section-image-zoom-trigger:focus-visible {
+  background: rgba(21, 20, 19, 0.78);
+}
+
+.hero-zoom-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+}
+
+.hero-zoom-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(13, 12, 12, 0.56);
+  width: 100%;
+  padding: 0;
+  cursor: zoom-out;
+}
+
+.hero-zoom-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(1040px, calc(100vw - 64px));
+  max-height: calc(100vh - 88px);
+  background: #ebe7e2;
+  border: 1px solid rgba(74, 68, 62, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.32);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-zoom-close {
+  align-self: flex-end;
+  border: 0;
+  background: transparent;
+  color: #4a4845;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 4px;
+  cursor: pointer;
+}
+
+.hero-zoom-image {
+  width: 100%;
+  height: min(76vh, 820px);
+  object-fit: contain;
+  background: #ded8d0;
+  border-radius: 8px;
+}
+
 .article-section {
   padding: 72px 60px;
   border-bottom: 1px solid var(--border);
-  max-width: 820px;
+  max-width: 960px;
   scroll-margin-top: 120px;
 }
 .section-eyebrow {
@@ -874,6 +969,14 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   font-size: 0.78rem;
   color: rgba(26,25,22,0.35);
   letter-spacing: 0.06em;
+}
+.section-image-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.section-image-media {
+  position: relative;
 }
 .section-image figcaption {
   padding: 10px 16px;
@@ -1173,7 +1276,7 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
 
 /* ── Wide article sections ── */
 .article-section--wide {
-  max-width: 920px;
+  max-width: 1060px;
 }
 
 /* ── Section subhead ── */
@@ -1287,7 +1390,7 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   align-items: center;
   gap: 20px;
   padding: 48px 60px 12px;
-  max-width: 820px;
+  max-width: 960px;
 }
 
 .process-divider-line {
@@ -1505,7 +1608,7 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
 .canvas-section {
   padding: 0 60px 72px;
   border-bottom: 1px solid var(--border);
-  max-width: 820px;
+  max-width: 960px;
 }
 .canvas-wrapper {
   position: relative;
@@ -1605,6 +1708,13 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   color: rgba(255,255,255,0.3);
   letter-spacing: 0.04em;
 }
+.c-canvas-image-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
 
 /* AI badge */
 .c-badge { padding: 16px 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); width: 160px; }
@@ -1651,6 +1761,20 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
     margin-right: 0;
     height: clamp(200px, 30vh, 280px);
   }
+  .hero-zoom-trigger {
+    opacity: 1;
+    transform: translateY(0);
+    right: 10px;
+    bottom: 10px;
+    font-size: 0.66rem;
+    padding: 6px 10px;
+  }
+  .hero-zoom-window {
+    width: calc(100vw - 24px);
+    max-height: calc(100vh - 32px);
+    padding: 10px;
+  }
+  .hero-zoom-image { height: min(72vh, 620px); }
   .case-footer { padding: 24px; }
   
   /* Audit project responsive */
