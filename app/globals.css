@@ -817,6 +817,14 @@ summary:focus-visible {
   font-weight: 400;
   margin: 40px 0 12px;
 }
+
+/* sub‑headings inside sections (e.g. skill categories) */
+.article-section h4 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 24px 0 8px;
+}
 .article-section p {
   font-size: 0.92rem;
   line-height: 1.8;
@@ -1431,6 +1439,63 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   font-size: 0.8rem;
   color: var(--text);
   background: transparent;
+}
+
+/* ── Tool Dock (macOS-style) ── */
+.tool-dock {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 20px 12px;
+  margin-top: 12px;
+  background: transparent;
+  border: none;
+  border-radius: 18px;
+  min-height: 96px;
+  width: fit-content;
+}
+
+.tool-dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  transition: width 0.15s ease, height 0.15s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.tool-dock-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  pointer-events: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.tool-dock-label {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background: var(--text);
+  color: var(--bg);
+  padding: 3px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.tool-dock-item:hover .tool-dock-label {
+  opacity: 1;
 }
 
 /* ═══════════════════════════════════

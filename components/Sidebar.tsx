@@ -83,28 +83,6 @@ export function LocalPageNav({ intro, toc, persistInView = false }: LocalPageNav
       return
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (window.scrollY < 140) {
-          return
-        }
-
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-
-        if (visibleEntries.length > 0) {
-          setActiveId(visibleEntries[0].target.id)
-        }
-      },
-      {
-        rootMargin: '-18% 0px -58% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.7],
-      }
-    )
-
-    sections.forEach((section) => observer.observe(section))
-
     const handleScroll = () => {
       if (window.scrollY < 140) {
         setIsTopActive(true)
@@ -113,9 +91,20 @@ export function LocalPageNav({ intro, toc, persistInView = false }: LocalPageNav
       }
 
       setIsTopActive(false)
+
+      // if we're scrolled to the very bottom, force the last section active
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+        const last = sections[sections.length - 1]
+        if (last) setActiveId(last.id)
+        return
+      }
+
       const nextSection = sections.findLast((section) => section.getBoundingClientRect().top <= 140)
       if (nextSection) {
-        setActiveId((currentId) => (currentId === nextSection.id ? currentId : nextSection.id))
+        setActiveId(nextSection.id)
+      } else {
+        // fallback when the first section is still below threshold
+        setActiveId(sections[0].id)
       }
     }
 
@@ -123,7 +112,6 @@ export function LocalPageNav({ intro, toc, persistInView = false }: LocalPageNav
     window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
-      observer.disconnect()
       window.removeEventListener('scroll', handleScroll)
     }
   }, [toc])
@@ -141,13 +129,13 @@ export function LocalPageNav({ intro, toc, persistInView = false }: LocalPageNav
             <span className="local-toc-label">On this page</span>
             <a
               href="#"
-              className={`local-toc-link${isTopActive ? ' is-active' : ''}`}
-              aria-current={isTopActive ? 'location' : undefined}
+              className={`local-toc-link${isTopActive && !activeId ? ' is-active' : ''}`}
+              aria-current={isTopActive && !activeId ? 'location' : undefined}
             >
               <span className="toc-symbol">↑</span>
               Top of Page
               <span className="local-toc-arrow" aria-hidden="true">
-                {isTopActive ? '←' : ''}
+                {isTopActive && !activeId ? '←' : ''}
               </span>
             </a>
             {toc.map((entry) => (
