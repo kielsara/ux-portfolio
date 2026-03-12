@@ -258,7 +258,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
       ],
       image: {
         src: '/selected-work/project-one/findings.png',
-        alt: 'Annotated UX issues from audit findings',
+        alt: 'Organizing audit findings into thematic areas',
         caption: 'Example findings: contrast failures, unclear data labels, inconsistent navigation patterns.',
         height: 300,
       },
