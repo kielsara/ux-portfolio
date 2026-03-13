@@ -258,8 +258,8 @@ const selectedWorkItems: SelectedWorkItem[] = [
       ],
       image: {
         src: '/selected-work/project-one/findings.png',
-        alt: 'Organizing audit findings into thematic areas',
-        caption: 'Example findings: contrast failures, unclear data labels, inconsistent navigation patterns.',
+        alt: 'Affinity mapping sticky notes into issue areas',
+        caption: 'Audit findings were organized into thematic issues areas, then refined three opportunity areas supported by accessibility.',
         height: 300,
       },
     },
@@ -278,22 +278,22 @@ const selectedWorkItems: SelectedWorkItem[] = [
     alignment: {
       headline: 'I presented the audit as a focused stakeholder decision deck.',
       body: 'I used this opportunity-area framework in a cross-functional readout with product, design, and engineering stakeholders. Framing the audit this way kept the conversation anchored on implementation priorities (navigation, content, data storytelling, and accessibility) rather than one-off screen critiques, and made next-step planning more actionable.',
-      quote: 'This gave us the evidence we needed to prioritize accessibility work that had been deprioritized for years.',
-      quoteAttrib: '— Senior Product Designer, Synchrony',
+      quote: 'This gave us the evidence we needed to prioritize accessibility work that had been deprioritized for years. We did not realize the potential accessibility concerns with our visualizations.',
+      quoteAttrib: '— Developer, Synchrony Business Solutions',
       image: {
-        src: '/selected-work/project-one/alignment.png',
-        alt: 'Stakeholder readout slide for UX audit alignment',
-        caption: 'Audit readout presentation with prioritized recommendations.',
+        src: '/selected-work/project-one/alignment-presentation.pdf',
+        alt: 'Stakeholder readout presentation for UX audit alignment',
+        caption: 'Stakeholder readout deck (PDF).',
       },
     },
 
     redesign: {
-      headline: 'Recommendations mapped directly to each opportunity area.',
-      body: 'I translated each area into concrete next steps: simplify and resize visualizations for legibility, improve copy and information consistency, modernize dashboard/navigation structure, and apply accessibility standards throughout. This made each recommendation traceable to audit evidence and easier to phase into future redesign work.',
+      headline: 'Recommendations were phased based on real delivery constraints.',
+      body: 'These were the next steps I recommended, but business constraints required prioritizing immediate, lower-risk fixes. With an upcoming code freeze and a parallel transition to a new data-visualization platform, the team focused on updates that could be implemented quickly without disrupting release readiness.',
       changes: [
         {
           title: 'Data Storytelling & Chart Clarity',
-          desc: 'Recommended simplifying dense charts, removing unnecessary visual elements/interactions, and resizing visualizations to improve comprehension.',
+          desc: 'Implemented: I simplified dense chart treatments, reduced unnecessary visual noise/interactions, and resized key visualizations to improve legibility and scanability.',
           image: {
             src: '/selected-work/project-one/redesign-1.png',
             alt: 'Before and after redesign for data storytelling and chart clarity',
@@ -301,17 +301,17 @@ const selectedWorkItems: SelectedWorkItem[] = [
           },
         },
         {
-          title: 'Content Quality & Personalization',
-          desc: 'Recommended copy cleanup, clearer terminology, stronger page-to-page consistency, and opportunities for personalized summaries/insights.',
+          title: 'Content Quality',
+          desc: 'Partially implemented: I updated copy, clarified terminology, and improved cross-page consistency. Personalization concepts were defined but deferred due to timeline and engineering constraints.',
           image: {
             src: '/selected-work/project-one/redesign-2.png',
-            alt: 'Before and after redesign for content quality and personalization',
+            alt: 'Before and after redesign for content quality updates',
             height: 260,
           },
         },
         {
           title: 'Dashboard Layout & Navigation',
-          desc: 'Recommended a more intuitive dashboard pattern (modular layout + clearer hierarchy), improved breadcrumbs/footer logic, and reduced navigation friction.',
+          desc: 'Deferred: I proposed a more intuitive modular dashboard structure, clearer hierarchy, and navigation improvements, but these changes were postponed during the code freeze window and platform transition work.',
           image: {
             src: '/selected-work/project-one/redesign-3.png',
             alt: 'Before and after redesign for dashboard layout and navigation',
@@ -320,7 +320,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
         },
         {
           title: 'Accessibility Baseline',
-          desc: 'Recommended applying contrast, keyboard navigation, responsive behavior, and interaction-state standards across all redesign efforts.',
+          desc: 'Partially implemented: accessibility improvements began with color and contrast updates as seen above. Broader interaction-state, keyboard-navigation, and responsive behavior enhancements were documented for follow-on phases.',
           image: {
             src: '/selected-work/project-one/redesign-4.png',
             alt: 'Before and after redesign for accessibility baseline',
@@ -332,11 +332,11 @@ const selectedWorkItems: SelectedWorkItem[] = [
 
     impact: {
       headline: 'From audit to action.',
-      body: 'The audit deck became a shared reference point for prioritization and directly informed subsequent design-system and product improvements.',
+      body: 'The audit deck became a shared reference point for prioritization and directly informed the product roadmap for the new year.',
       stats: [
         { number: '3', desc: 'overarching opportunity areas used to structure redesign priorities' },
-        { number: '1', desc: 'cross-cutting accessibility directive applied across all recommendations' },
-        { number: '100%', desc: 'of critical accessibility issues addressed in roadmap' },
+        { number: '15', desc: 'potential design features identified during a backlog work session' },
+        { number: '9', desc: 'audit-driven Jira stories handed off to the incoming design team' },
       ],
     },
 

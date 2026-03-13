@@ -978,6 +978,13 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
 .section-image-media {
   position: relative;
 }
+.section-image-pdf {
+  width: 100%;
+  display: block;
+  border: 0;
+  background: #f8f6f2;
+  min-height: 500px;
+}
 .section-image figcaption {
   padding: 10px 16px;
   font-size: 0.75rem;

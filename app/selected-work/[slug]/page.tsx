@@ -34,9 +34,22 @@ function ImgPlaceholder({
   height?: number
   label?: string
 }) {
+  const isPdf = src?.toLowerCase().endsWith('.pdf')
+  // use a taller default/ minimum height for embedded PDFs
+  const effectiveHeight = isPdf ? Math.max(height, 500) : height
+
   return (
     <figure className="section-image">
-      {src ? (
+      {src && isPdf ? (
+        <div className="section-image-media">
+          <iframe
+            src={`${src}#view=FitH`}
+            title={alt ?? 'Case study section PDF'}
+            className="section-image-pdf"
+            style={{ height: effectiveHeight }}
+          />
+        </div>
+      ) : src ? (
         <ZoomableImage
           src={src}
           alt={alt ?? 'Case study section image'}
