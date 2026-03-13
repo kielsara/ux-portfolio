@@ -369,7 +369,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
       { id: 'reflections',   symbol: '↻', label: 'Reflections'       },
       { id: 'architecture',  symbol: '⊕', label: 'Architecture'      },
       { id: 'charts',        symbol: '◎', label: 'Charts & Graphs'   },
-      { id: 'mockups',       symbol: '◐', label: 'Static Mockups'    },
+      { id: 'components',       symbol: '◐', label: 'System-Driven Components'    },
     ],
 
     context: {

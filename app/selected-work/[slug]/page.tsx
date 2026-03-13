@@ -506,10 +506,10 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
               {cs.componentArchitecture.body2 && <p>{cs.componentArchitecture.body2}</p>}
               {cs.componentArchitecture.body3 && <p>{cs.componentArchitecture.body3}</p>}
               <ImgPlaceholder
-                gradient="linear-gradient(135deg,#1a1a2e,#2d2d44)"
-                label="[ component architecture diagram ]"
-                caption="Design system structure showing foundations, styles, and component layers."
-                height={360}
+                src="/selected-work/project-two/architecture.png"
+                alt="design system figma file layers and sample page setup"
+                caption="Design system architecture overview — organized Figma file structure with clear component hierarchy and naming conventions."
+                height={600}
               />
             </section>
           )}
@@ -539,19 +539,18 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
               {cs.chartComponents.body2 && <p>{cs.chartComponents.body2}</p>}
               
               <ImgPlaceholder
-                gradient="linear-gradient(135deg,#16213e,#0f3460)"
-                label="[ chart component library overview ]"
-                caption="Chart and graph components with usage guidelines and documentation."
+                src="/selected-work/project-two/overview.png"
+                alt="Chart and graph components with usage guidelines and documentation."
+                caption="Overview of chart and graph components with usage guidelines and documentation."
                 height={320}
               />
             </section>
           )}
 
-          {/* ═══ Static Mockups — System-Driven Components ═══ */}
+          {/* ═══ System-Driven Components ═══ */}
           {cs.staticMockups && (
-            <section className="article-section article-section--wide" id="mockups">
-              <h2 className="section-subhead">Static Mockups</h2>
-              <div className="section-eyebrow" style={{ marginTop: 0 }}>System-Driven Components</div>
+            <section className="article-section article-section--wide" id="components">
+              <h2 className="section-subhead">System-Driven Components</h2>
               <h3>{cs.staticMockups.headline}</h3>
               <p>{cs.staticMockups.body}</p>
               {cs.staticMockups.body2 && <p>{cs.staticMockups.body2}</p>}
