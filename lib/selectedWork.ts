@@ -297,35 +297,25 @@ const selectedWorkItems: SelectedWorkItem[] = [
           image: {
             src: '/selected-work/project-one/redesign-1.png',
             alt: 'Before and after redesign for data storytelling and chart clarity',
-            height: 260,
+            height: 420,
           },
         },
         {
           title: 'Content Quality',
-          desc: 'Partially implemented: I updated copy, clarified terminology, and improved cross-page consistency. Personalization concepts were defined but deferred due to timeline and engineering constraints.',
+          desc: 'Partially implemented: I updated copy — including the design of error state charts (see top of page hero image), clarified terminology, and improved cross-page consistency. Personalization concepts were defined but deferred due to timeline and engineering constraints.',
           image: {
             src: '/selected-work/project-one/redesign-2.png',
             alt: 'Before and after redesign for content quality updates',
-            height: 260,
+            height: 420,
           },
         },
         {
           title: 'Dashboard Layout & Navigation',
           desc: 'Deferred: I proposed a more intuitive modular dashboard structure, clearer hierarchy, and navigation improvements, but these changes were postponed during the code freeze window and platform transition work.',
-          image: {
-            src: '/selected-work/project-one/redesign-3.png',
-            alt: 'Before and after redesign for dashboard layout and navigation',
-            height: 260,
-          },
         },
         {
           title: 'Accessibility Baseline',
           desc: 'Partially implemented: accessibility improvements began with color and contrast updates as seen above. Broader interaction-state, keyboard-navigation, and responsive behavior enhancements were documented for follow-on phases.',
-          image: {
-            src: '/selected-work/project-one/redesign-4.png',
-            alt: 'Before and after redesign for accessibility baseline',
-            height: 260,
-          },
         },
       ],
     },

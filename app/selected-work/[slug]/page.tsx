@@ -325,18 +325,20 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                 <div key={i} className="redesign-block">
                   <h3>{change.title}</h3>
                   <p>{change.desc}</p>
-                  <ImgPlaceholder
-                    src={change.image?.src}
-                    alt={change.image?.alt}
-                    gradient={[
-                      'linear-gradient(135deg,#1a1a2e,#2d2d44)',
-                      'linear-gradient(135deg,#16213e,#0f3460)',
-                      'linear-gradient(135deg,#2d2d44,#1a1a2e)',
-                    ][i % 3]}
-                    label={`[ before & after: ${change.title.toLowerCase()} ]`}
-                    caption={change.image?.caption}
-                    height={change.image?.height ?? 260}
-                  />
+                  {change.image?.src && (
+                    <ImgPlaceholder
+                      src={change.image.src}
+                      alt={change.image.alt}
+                      gradient={[
+                        'linear-gradient(135deg,#1a1a2e,#2d2d44)',
+                        'linear-gradient(135deg,#16213e,#0f3460)',
+                        'linear-gradient(135deg,#2d2d44,#1a1a2e)',
+                      ][i % 3]}
+                      label={`[ before & after: ${change.title.toLowerCase()} ]`}
+                      caption={change.image?.caption}
+                      height={change.image?.height ?? 260}
+                    />
+                  )}
                 </div>
               ))}
             </section>
