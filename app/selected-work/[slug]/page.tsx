@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Sidebar, { LocalPageNav } from '@/components/Sidebar'
 import DraggableCanvas from '@/components/DraggableCanvas'
+import ChartPreviewPile from '@/components/ChartPreviewPile'
 import HeroZoomImage from '@/components/HeroZoomImage'
 import ZoomableImage from '../../../components/ZoomableImage'
 import { getAllSlugs, getSelectedWork } from '@/lib/selectedWork'
@@ -521,7 +522,9 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
               <h3>{cs.chartComponents.headline}</h3>
               <p>{cs.chartComponents.body}</p>
               
-              {cs.chartComponents.tableData && (
+              {cs.chartComponents.previews ? (
+                <ChartPreviewPile previews={cs.chartComponents.previews} />
+              ) : cs.chartComponents.tableData && (
                 <div className="chart-categories">
                   <div className="chart-categories-header">
                     <span>Overview/Summary</span>
@@ -537,13 +540,6 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
               )}
               
               {cs.chartComponents.body2 && <p>{cs.chartComponents.body2}</p>}
-              
-              <ImgPlaceholder
-                src="/selected-work/project-two/overview.png"
-                alt="Chart and graph components with usage guidelines and documentation."
-                caption="Overview of chart and graph components with usage guidelines and documentation."
-                height={320}
-              />
             </section>
           )}
 
@@ -577,14 +573,6 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
               {cs.staticMockups.body3 && <p>{cs.staticMockups.body3}</p>}
             </section>
           )}
-
-          {/* ── Interactive Canvas ── */}
-          <div className="canvas-section">
-            <DraggableCanvas items={cs.canvasImages} />
-            <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, marginTop: '16px' }}>
-              Component library exploration &mdash; drag to explore the design system structure.
-            </p>
-          </div>
 
           {/* ── Back to top ── */}
           <div className="back-to-top">

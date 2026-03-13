@@ -40,6 +40,14 @@ export interface CanvasImageItem {
   objectFit?: 'cover' | 'contain'
 }
 
+export interface ChartPreviewItem {
+  title: string
+  src: string
+  alt: string
+  objectPosition?: string
+  accent?: string
+}
+
 export interface SelectedWorkItem {
   slug: string
   title: string
@@ -106,7 +114,13 @@ export interface SelectedWorkItem {
   results?: { headline?: string; items: string[] }
   reflections?: { headline: string; body: string }
   componentArchitecture?: { headline: string; body: string; body2?: string; body3?: string }
-  chartComponents?: { headline: string; body: string; body2?: string; tableData?: { label: string; value: string }[] }
+  chartComponents?: {
+    headline: string
+    body: string
+    body2?: string
+    tableData?: { label: string; value: string }[]
+    previews?: ChartPreviewItem[]
+  }
   staticMockups?: { headline: string; body: string; body2?: string; body3?: string }
 
   prevSlug?: string
@@ -409,13 +423,114 @@ const selectedWorkItems: SelectedWorkItem[] = [
 
     chartComponents: {
       headline: 'Data visualization as a core focus.',
-      body: 'Given the analytical nature of SBS Analytics, the data visualization components were a core focus of my design system work, with this area of the system aiming to provide fast-to-implement modules that fit the product theme. While the charts and graphs were initially adapted from Microsoft Power BI visualization templates, they were significantly modified to align with the product\'s needs, interaction patterns, and accessibility requirements.',
+      body: 'Given the analytical nature of SBS Analytics, the data visualization components were a core focus of my design system work, with this area of the system aiming to provide fast-to-implement modules that fit the product theme. While the charts and graphs were initially adapted from the Advanced Data Visualization Community Figma file, they were significantly modified to align with the product\'s needs, interaction patterns, and accessibility requirements.',
       body2: 'To support consistent implementation, each chart type includes usage guidance and documentation outlining use context, key elements, and appearance variations. Guidelines cover chart type behaviors, and color-based styling — all designed to reduce ambiguity and support accurate data interpretation across the team.',
-      tableData: [
-        { label: 'Overview/Summary', value: 'High-level KPI cards and summary statistics' },
-        { label: 'Delivery Dashboard', value: 'Time-series and comparative visualizations' },
-        { label: 'Tabular Components', value: 'Data tables with sorting and filtering' },
-        { label: 'Multi-dimensional', value: 'Complex charts for cross-sectional analysis' },
+      previews: [
+        {
+          title: 'KPI Cards',
+          src: '/selected-work/project-two/cards/card-1.png',
+          alt: 'KPI card components from the design system',
+          objectPosition: 'center',
+          accent: '#9cc9b0',
+        },
+        {
+          title: 'Summary Tiles',
+          src: '/selected-work/project-two/cards/card-2.png',
+          alt: 'Summary tile components from the design system',
+          objectPosition: 'center',
+          accent: '#e0b85f',
+        },
+        {
+          title: 'Bar Chart',
+          src: '/selected-work/project-two/cards/card-3.png',
+          alt: 'Bar chart component from the design system',
+          objectPosition: 'center',
+          accent: '#7da9d8',
+        },
+        {
+          title: 'Stacked Bars',
+          src: '/selected-work/project-two/cards/card-4.png',
+          alt: 'Stacked bar chart component from the design system',
+          objectPosition: 'center',
+          accent: '#d98e7d',
+        },
+        {
+          title: 'Line Chart',
+          src: '/selected-work/project-two/cards/card-5.png',
+          alt: 'Line chart component from the design system',
+          objectPosition: 'center',
+          accent: '#87b9b6',
+        },
+        {
+          title: 'Area Trend',
+          src: '/selected-work/project-two/cards/card-6.png',
+          alt: 'Area trend chart component from the design system',
+          objectPosition: 'center',
+          accent: '#bea5d6',
+        },
+        {
+          title: 'Donut Chart',
+          src: '/selected-work/project-two/cards/card-7.png',
+          alt: 'Donut chart component from the design system',
+          objectPosition: 'center',
+          accent: '#5da7b8',
+        },
+        {
+          title: 'Mixed Axis',
+          src: '/selected-work/project-two/cards/card-8.png',
+          alt: 'Mixed axis chart component from the design system',
+          objectPosition: 'center',
+          accent: '#b790d4',
+        },
+        {
+          title: 'Table View',
+          src: '/selected-work/project-two/cards/card-9.png',
+          alt: 'Table view components from the design system',
+          objectPosition: 'center',
+          accent: '#d4b276',
+        },
+        {
+          title: 'Sortable Table',
+          src: '/selected-work/project-two/cards/card-10.png',
+          alt: 'Sortable table components from the design system',
+          objectPosition: 'center',
+          accent: '#90a97d',
+        },
+        {
+          title: 'Filter Panel',
+          src: '/selected-work/project-two/cards/card-11.png',
+          alt: 'Filter panel components from the design system',
+          objectPosition: 'center',
+          accent: '#cf9c72',
+        },
+        {
+          title: 'Legend System',
+          src: '/selected-work/project-two/cards/card-12.png',
+          alt: 'Legend and labeling components from the design system',
+          objectPosition: 'center',
+          accent: '#9dbf68',
+        },
+        {
+          title: 'Heatmap View',
+          src: '/selected-work/project-two/cards/card-13.png',
+          alt: 'Heatmap or dense comparison chart components from the design system',
+          objectPosition: 'center',
+          accent: '#d39098',
+        },
+        {
+          title: 'Multi-Series',
+          src: '/selected-work/project-two/cards/card-14.png',
+          alt: 'Multi-series comparison chart component from the design system',
+          objectPosition: 'center',
+          accent: '#c79acb',
+        },
+        {
+          title: 'Annotations',
+          src: '/selected-work/project-two/cards/card-15.png',
+          alt: 'Annotation and documentation components from the design system',
+          objectPosition: 'center',
+          accent: '#76a8a2',
+        },
       ],
     },
 
