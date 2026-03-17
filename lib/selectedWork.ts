@@ -570,14 +570,13 @@ const selectedWorkItems: SelectedWorkItem[] = [
     title: 'Designing an AI-powered tool that turns classroom observations into structured behavioral reports.',
     intro: 'An AI-assisted incident reporting tool for special education',
     overview:
-      'ABCapture is a web-based incident documentation system I helped design and build as part of a four-person team. It combines a conversational AI interface with speech-to-text input to help adults working with children with autism capture structured Antecedent-Behavior-Consequence (ABC) data in real time — reducing the cognitive burden of documentation so the adults can focus on the children under their care.',
+      'ABCapture is a web-based incident documentation system I helped design and build as part of a four-person team. The design challenge was brought to us by a local community daycare whose staff work directly with children with autism, and their staff participated in our usability testing. It combines a conversational AI interface with speech-to-text input to help adults working with children with autism capture structured Antecedent-Behavior-Consequence (ABC) data in real time — reducing the cognitive burden of documentation so the adults can focus on the children under their care.',
     heroImage: '/selected-work/project-three/hero.png',
     role: 'Lead UX/UI Designer, Front-End Developer',
-    team: 'Jiya Chachan, Manuela Rodriguez, Rithika Vennamaneni',
+    team: 'Manuela Rodriguez (PM & Developer), Jiya Chachan (Developer), Rithika Vennamaneni (Developer)',
     timeline: '4 months',
-    tools: 'Figma, React, TypeScript, Tailwind CSS',
-    methods: 'Literature Review, System Design, UI Prototyping, Usability Testing, Thematic Analysis',
-    heroGradient: 'linear-gradient(135deg,#3b1d6e,#1a3a5c)',
+    tools: 'Figma, Cursor, Windsurf, Replit, Claude',
+    methods: 'Literature Review, Competitive Analysis, System Design, UI Prototyping with AI, Usability Testing, Thematic Analysis',
     isAIDesign: true,
 
     toc: [
@@ -590,13 +589,12 @@ const selectedWorkItems: SelectedWorkItem[] = [
       { id: 'interface',     symbol: '⬡', label: 'Interface Design'      },
       { id: 'evaluation',    symbol: '◐', label: 'Usability Study'       },
       { id: 'findings',      symbol: '◆', label: 'Findings'              },
-      { id: 'ethics',        symbol: '✎', label: 'Ethics in AI'          },
+      { id: 'ethics',        symbol: '✎', label: 'Ethical Design'          },
     ],
 
     context: {
       headline: 'Teachers and caretakers are documenting behavior with one hand and managing classrooms/children groups with the other.',
-      body: 'Adults who work with children with autism are expected to document behavioral incidents quickly and accurately, yet real worl scenarios rarely offer the conditions needed for thorough note-taking. When a behavior occurs, caretakers are managing instruction, safety, transitions, and emotional regulation all at once — leaving almost no time to write detailed ABC (Antecedent, Behavior, Consequence) notes.',
-      body2: 'The ABC method, widely used in Applied Behavior Analysis, structures observations into what happened before a behavior, the behavior itself, and what happened after. This structured format is essential for identifying triggers, understanding the function of behavior, and tracking changes over time. But capturing all three components accurately in the moment is a well-documented challenge — and the gaps directly affect the quality of support plans, pattern recognition, and collaborative decision-making with specialists and families.',
+      body2: 'The ABC (Antecedent, Behavior, Consequence) incident documentation method, widely used in Applied Behavior Analysis, structures observations into what happened before a behavior, the behavior itself, and what happened after. This structured format is essential for identifying triggers, understanding the function of behavior, and tracking changes over time. But capturing all three components accurately in the moment is a well-documented challenge — and the gaps directly affect the quality of support plans, pattern recognition, and collaborative decision-making with specialists and families.',
     },
 
     goals: {
@@ -651,8 +649,8 @@ const selectedWorkItems: SelectedWorkItem[] = [
         eyebrow: 'Interface Design & Interaction Patterns',
         title: 'A split-screen workspace where conversation meets structure.',
         body: 'The core interaction model centers on a split-screen interface: the left panel functions as a conversational chat (accepting typed or spoken input), while the right panel displays the structured ABC form. As the teacher describes an incident, the AI processes the conversation and continuously updates the ABC fields in real time. This dual-panel approach lets teachers see the connection between what they\'re saying and how it\'s being structured — building trust in the AI\'s interpretation.',
-        body2: '[ PLACEHOLDER — Sara, this section would benefit from more detail on your specific UI design contributions. Consider adding: your wireframing process, key design decisions around the chat interface layout, how you designed the form states (empty → populating → editable), any visual design system choices (color, typography, component library decisions), and how you iterated on the design based on team feedback. ]',
-        body3: '[ PLACEHOLDER — Describe any specific interaction patterns you designed: how the microphone button works, how ABC fields highlight as they update, the signature flow, the incident history dashboard layout, etc. ]',
+        body2: '[ PLACEHOLDER — this section would benefit from more detail on your specific UI design contributions. wireframing process, key design decisions around the chat interface layout, how designed the form states (empty → populating → editable), any visual design system choices (color, typography, component library decisions), and how iterated on the design based on team feedback. ]',
+        body3: '[ PLACEHOLDER — Describe any specific interaction patterns designed: how the microphone button works, how ABC fields highlight as they update, the signature flow, the incident history dashboard layout, etc. ]',
         imageLabels: [
           { label: '[ screenshot: split-screen interface — chat panel (left) and ABC form (right) ]', caption: 'The core workspace: conversational input on the left, structured ABC form auto-populating on the right.', height: 360 },
           { label: '[ screenshot: incident history dashboard showing logged incidents for a student ]', caption: 'Incident history view — enabling teachers to review patterns over time.', height: 300 },
@@ -685,9 +683,9 @@ const selectedWorkItems: SelectedWorkItem[] = [
         id: 'ethics',
         eyebrow: 'Ethical Design Decisions',
         title: 'What we deliberately chose not to automate — and why it matters.',
-        body: 'One participant suggested ABCapture should provide recommended next steps to address behavior after an incident is logged. We intentionally excluded this feature because meaningful behavioral guidance for autistic students requires individualized knowledge of the child\'s history, goals, triggers, and support systems — information an LLM cannot responsibly infer. Automated advice risks oversimplification, inappropriate strategies, and liability concerns in a regulated education context.',
+        body: 'One participant suggested ABCapture should provide recommended next steps to address behavior after an incident is logged. I personally advocated for the exclusion of this feature because meaningful behavioral guidance for autistic students requires individualized knowledge of the child\'s history, goals, triggers, and support systems — information an LLM cannot responsibly infer. Automated advice risks oversimplification, inappropriate strategies, and liability concerns in a regulated education context.',
         body2: 'This decision reflects a broader design principle we carried throughout the project: AI should structure and accelerate documentation, but never replace professional judgment. Every AI output in ABCapture is editable. Every submission requires a human signature. Every edit is tracked with an audit trail. These aren\'t just technical features — they\'re design decisions rooted in FERPA compliance, professional accountability, and respect for the educators using the tool.',
-        body3: 'Looking forward, the most important next step would be testing with real special education teachers in authentic classroom contexts. Our convenience sample provided valuable usability signal, but the true test of ABCapture\'s value depends on whether it meaningfully reduces documentation burden for the professionals it\'s designed to serve.',
+        body3: 'Looking forward, the most important next step would be to tackle the pain points and concerns identified in usability testing — particularly around workflow clarity, timestamp handling, and LLM consistency. But the ethical guardrails we established from day one will remain non-negotiable pillars of the design as we iterate and improve.',
       },
     ],
 

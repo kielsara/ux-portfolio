@@ -975,6 +975,12 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   display: block;
   object-fit: cover;
 }
+.section-image-video {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  background: #ded8d0;
+}
 .section-image-media {
   position: relative;
 }

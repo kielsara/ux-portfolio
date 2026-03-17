@@ -5,6 +5,7 @@ import DraggableCanvas from '@/components/DraggableCanvas'
 import ChartPreviewPile from '@/components/ChartPreviewPile'
 import HeroZoomImage from '@/components/HeroZoomImage'
 import ZoomableImage from '../../../components/ZoomableImage'
+import ZoomableVideo from '@/components/ZoomableVideo'
 import { getAllSlugs, getSelectedWork } from '@/lib/selectedWork'
 import SiteFooter from '@/components/SiteFooter'
 
@@ -36,6 +37,7 @@ function ImgPlaceholder({
   label?: string
 }) {
   const isPdf = src?.toLowerCase().endsWith('.pdf')
+  const isVideo = src?.toLowerCase().endsWith('.mp4')
   // use a taller default/ minimum height for embedded PDFs
   const effectiveHeight = isPdf ? Math.max(height, 500) : height
 
@@ -50,6 +52,16 @@ function ImgPlaceholder({
             style={{ height: effectiveHeight }}
           />
         </div>
+      ) : src && isVideo ? (
+        <ZoomableVideo
+          src={src}
+          title={alt ?? 'Case study section video'}
+          wrapperClassName="section-image-media"
+          videoClassName="section-image-video"
+          videoStyle={{ height }}
+          triggerClassName="section-image-zoom-trigger"
+          dialogLabel="Full section video preview"
+        />
       ) : src ? (
         <ZoomableImage
           src={src}
@@ -510,7 +522,7 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                 src="/selected-work/project-two/architecture.png"
                 alt="design system figma file layers and sample page setup"
                 caption="Design system architecture overview — organized Figma file structure with clear component hierarchy and naming conventions."
-                height={600}
+                height={400}
               />
             </section>
           )}
@@ -555,20 +567,27 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                 <div className="before-after-item">
                   <div className="before-after-label">Before</div>
                   <ImgPlaceholder
-                    gradient="linear-gradient(135deg,#2d2d44,#1a1a2e)"
-                    label="[ before: ad-hoc frames ]"
+                    src="/selected-work/project-two/components-before.png"
+                    alt="Before state: ad-hoc chart component frame"
                     height={240}
                   />
                 </div>
                 <div className="before-after-item">
                   <div className="before-after-label">After</div>
                   <ImgPlaceholder
-                    gradient="linear-gradient(135deg,#1a1a2e,#16213e)"
-                    label="[ after: system-driven components ]"
+                    src="/selected-work/project-two/components-after.png"
+                    alt="After state: system-driven chart component"
                     height={240}
                   />
                 </div>
               </div>
+
+              <ImgPlaceholder
+                src="/selected-work/project-two/components.mp4"
+                alt="Video walkthrough: auto-layout, variants, and properties transforming a placeholder chart card into a functioning column chart"
+                caption="Component behavior walkthrough — auto-layout, variants, and properties transform a basic chart card with placeholder imagery into a functioning column chart."
+                height={420}
+              />
               
               {cs.staticMockups.body3 && <p>{cs.staticMockups.body3}</p>}
             </section>
