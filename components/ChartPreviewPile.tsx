@@ -24,6 +24,9 @@ const LAYOUT = [
   { x: 0.75, y: 0.52, rot: -2.2 },
   { x: 0.90, y: 0.60, rot: 4.0 },
   { x: 0.58, y: 0.72, rot: -3.6 },
+  { x: 0.22, y: 0.44, rot: 3.1 },
+  { x: 0.70, y: 0.64, rot: -5.0 },
+  { x: 0.40, y: 0.58, rot: 4.3 },
 ]
 
 const getLayoutSlot = (index: number) => {
