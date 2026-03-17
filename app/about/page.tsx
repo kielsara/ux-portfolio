@@ -75,29 +75,44 @@ export default function AboutPage() {
         />
 
         <main className="main">
-        <header className="case-header" id="about">
-          <div className="case-tag">About</div>
-          <h1>Designing practical, evidence-backed experiences for people doing hard work.</h1>
-          <p>
-            My name is Sara. I bring a social science perspective to UX research and design — 
-            studying how people behave, communicate, and navigate digital systems to create intuitive, 
-            inclusive, and accessible experiences.
-          </p>
-          <div className="meta-row">
-            <div className="meta-item">
-              <span className="meta-label">Location</span>
-              <span className="meta-value">U.S. Based</span>
-            </div>
-            <div className="meta-item">
-              <span className="meta-label">Focus</span>
-              <span className="meta-value">UX/UI Design and Research, Accessibility Design, CX Strategy</span>
-            </div>
-            <div className="meta-item">
-              <span className="meta-label">Open To</span>
-              <span className="meta-value">Full-time UX/Product roles</span>
+          <div className="case-header-wrapper">
+            <header className="case-header" id="about">
+              <div className="case-tag">About</div>
+              <h1>Designing human-centered digital experiences through <em>research + data + empathy.</em></h1>
+              <p>
+                My name is Sara. I bring a social science perspective to UX research and design — 
+                studying how people behave, communicate, and navigate digital systems to create intuitive, 
+                inclusive, and accessible experiences.
+              </p>
+
+              <div className="meta-row">
+                <div className="meta-item">
+                  <span className="meta-label">Location</span>
+                  <span className="meta-value">U.S. Based</span>
+                </div>
+                <div className="meta-item">
+                  <span className="meta-label">Focus</span>
+                  <span className="meta-value">UX/UI Design and Research, Accessibility Design, CX Strategy</span>
+                </div>
+              </div>
+
+              <div className="meta-row meta-row--stacked">
+                <div className="meta-item">
+                  <span className="meta-label">Open To</span>
+                  <span className="meta-value">Full-time UX/Product roles</span>
+                </div>
+              </div>
+            </header>
+
+            <div className="case-header-portrait">
+              <img
+                src="/sara-truffle.png"
+                alt="Sara Kiel"
+                className="about-portrait-img"
+                loading="lazy"
+              />
             </div>
           </div>
-        </header>
 
         <section className="article-section" id="education">
           <div className="section-eyebrow">Education</div>
