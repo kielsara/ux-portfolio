@@ -81,7 +81,7 @@ export interface SelectedWorkItem {
     body2?: string
     body3?: string
     ndaNotice?: string  // shown instead of images when NDA restricts visuals
-    imageLabels?: { label: string; caption?: string; height?: number }[]
+    imageLabels?: { src?: string; alt?: string; label: string; caption?: string; height?: number }[]
   }[]
 
   // Section content (standard project)
@@ -594,6 +594,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
 
     context: {
       headline: 'Teachers and caretakers are documenting behavior with one hand and managing classrooms/children groups with the other.',
+      body: 'Adults supporting children with autism must document incidents quickly and accurately while simultaneously managing safety, instruction, and emotional regulation, leaving little room for thorough note-taking in the moment.',
       body2: 'The ABC (Antecedent, Behavior, Consequence) incident documentation method, widely used in Applied Behavior Analysis, structures observations into what happened before a behavior, the behavior itself, and what happened after. This structured format is essential for identifying triggers, understanding the function of behavior, and tracking changes over time. But capturing all three components accurately in the moment is a well-documented challenge — and the gaps directly affect the quality of support plans, pattern recognition, and collaborative decision-making with specialists and families.',
     },
 
@@ -900,7 +901,13 @@ const selectedWorkItems: SelectedWorkItem[] = [
         body2: 'I also performed a competitive analysis of peer regional banks and credit unions to understand where Busey stood relative to its competitors in terms of customer experience maturity. This research wasn\'t just academic — it was ammunition. I needed concrete examples and ROI benchmarks to demonstrate that investing in journey mapping and personas would produce measurable business value.',
         body3: 'The research phase produced a comprehensive slide deck that became the centerpiece of my proposal to leadership — framing the initiative not as a "design project" but as a strategic investment in customer retention and service differentiation.',
         imageLabels: [
-          { label: '[ research presentation slide deck — "Reimagining Service Excellence Maps" ]', caption: 'The initial research presentation used to build the business case for a formal CEM and Persona program.', height: 300 },
+          {
+            src: '/selected-work/project-five/research.pdf',
+            alt: 'Research presentation slide deck titled Reimagining Service Excellence Maps',
+            label: '[ research presentation slide deck — "Reimagining Service Excellence Maps" ]',
+            caption: 'The initial research presentation used to build the business case for a formal CEM and Persona program.',
+            height: 520,
+          },
         ],
       },
       {

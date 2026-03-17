@@ -1045,6 +1045,8 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                   {step.imageLabels && step.imageLabels.map((img, j) => (
                     <ImgPlaceholder
                       key={j}
+                      src={img.src}
+                      alt={img.alt}
                       gradient={[
                         'linear-gradient(135deg,#1a3a4a,#0d2633)',
                         'linear-gradient(135deg,#0d2633,#1a2a36)',
