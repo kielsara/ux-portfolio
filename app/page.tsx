@@ -8,38 +8,35 @@ export default function Home() {
       <Sidebar variant="home" />
 
       <main className="main home-main">
-        <div className="home-top-layout">
-          <div className="home-left-column">
-            {/* ── Hero ── */}
-            <div className="home-hero-layout">
-              <section className="hero">
-                <h1>
-                  Designing human-centered digital experiences through<br />
-                  <em>research + data + empathy.</em>
-                </h1>
-                <p style={{ marginBottom: '1.5em' }}>
-                  My name is Sara. I bring a social science perspective to UX research and design —
-                  studying how people behave, communicate, and navigate digital systems to create
-                  intuitive, inclusive, and accessible experiences.
-                </p>
-                <p>
-                  <em><strong>Please note:</strong> This portfolio is a work in progress — you will notice missing images throughout that I am actively working on uploading.
-                  If you have any questions about my work or experience, please feel free to reach out!</em>
-                </p>
-                <div className="hero-chips" aria-label="Education and certifications">
-                  <span className="hero-chip">MS Information Management</span>
-                  <span className="hero-chip">BA Anthropology</span>
-                  <span className="hero-chip">Human-Centered Design Certificate</span>
-                  <span className="hero-chip">Accessibility Design Certificate</span>
-                </div>
-              </section>
-            </div>
-          </div>
+        <div className="home-top-row">
+          <section className="home-hero-section" aria-label="Introduction">
+            <section className="hero" aria-label="Introduction">
+              <h1>
+                Designing human-centered digital experiences through<br />
+                <em>research + data + empathy.</em>
+              </h1>
+              <p style={{ marginBottom: '1.5em' }}>
+                My name is Sara. I bring a social science perspective to UX research and design —
+                studying how people behave, communicate, and navigate digital systems to create
+                intuitive, inclusive, and accessible experiences.
+              </p>
+              <p>
+                <em><strong>Please note:</strong> This portfolio is a work in progress — you will notice missing images throughout that I am actively working on uploading.
+                If you have any questions about my work or experience, please feel free to reach out!</em>
+              </p>
+              <div className="hero-chips" aria-label="Education and certifications">
+                <span className="hero-chip">MS Information Management</span>
+                <span className="hero-chip">BA Anthropology</span>
+                <span className="hero-chip">Human-Centered Design Certificate</span>
+                <span className="hero-chip">Accessibility Design Certificate</span>
+              </div>
+            </section>
+          </section>
 
-          <aside className="home-right-rail" aria-label="Selected work highlights">
+          <section className="home-work-section" aria-label="Selected work highlights">
             <div className="section-header">Selected Work</div>
             <Marquee orientation="vertical" />
-          </aside>
+          </section>
         </div>
 
         {/* ── Footer ── */}
