@@ -26,7 +26,7 @@ export default function Home() {
               </p>
               <div className="hero-chips" aria-label="Education and certifications">
                 <span className="hero-chip">MS Information Management</span>
-                <span className="hero-chip">BA Anthropology</span>
+                <span className="hero-chip">BA Sociocultural Anthropology</span>
                 <span className="hero-chip">Human-Centered Design Certificate</span>
                 <span className="hero-chip">Accessibility Design Certificate</span>
               </div>
