@@ -694,6 +694,8 @@ const selectedWorkItems: SelectedWorkItem[] = [
     nextSlug: 'project-four',
   },
 
+  // ── App Redesign — Strava Groups ──
+
   {
     slug: 'project-four',
     tag: 'App & Experience Redesign',
@@ -758,12 +760,12 @@ const selectedWorkItems: SelectedWorkItem[] = [
         id: 'audit',
         eyebrow: 'Pain Point Audit & Competitive Analysis',
         title: 'Understanding what\'s broken — and what others do better.',
-        body: 'I began by conducting a heuristic evaluation of Strava\'s existing Groups feature, mapping every screen and interaction in the discovery, joining, and participation flow. Using Nielsen\'s heuristics as my framework, I documented friction points ranging from unclear navigation labels to inconsistent interaction patterns between mobile and web.',
-        body2: 'In parallel, I performed a competitive analysis of social fitness platforms — including Nike Run Club, Peloton, MapMyRun, and Garmin Connect — to evaluate how each handles group discovery, onboarding, and engagement. This helped me identify patterns users already understood and opportunities where Strava\'s Groups experience could improve.',
-        body3: 'The audit surfaced several critical pain points: the Groups tab was buried in navigation, group search lacked meaningful filters, and the group detail page prioritized admin-facing information over what a prospective member would need to make a join decision.',
+        body: 'We began by conducting a heuristic evaluation of our assigned features, with my focus being Strava\'s existing Groups experience, mapping every screen and interaction in the discovery, joining, and participation flow. Using Nielsen\'s heuristics as our framework, we documented friction points ranging from unclear navigation labels to inconsistent interaction patterns between mobile and web.',
+        body2: 'In parallel, the team collectively performed a competitive analysis of social fitness platforms — including Nike Run Club, Peloton, MapMyRun, and Garmin Connect — to evaluate how each handles group discovery, onboarding, and engagement. I chose to analyze Garmin and how it compares to Strava. This helped us identify patterns users already understood and opportunities where Strava\'s Groups experience could improve.',
+        body3: 'The audit surfaced several critical pain points. As for the Groups experience: the Groups tab was buried in navigation, group search lacked meaningful filters, and the group detail page prioritized admin-facing information over what a prospective member would need to make a join decision.',
         imageLabels: [
-          { label: '[ screenshot: Strava Groups current state — navigation pain points annotated ]', caption: 'Heuristic evaluation of the current Groups navigation flow, with friction points annotated.', height: 300 },
-          { label: '[ competitive analysis matrix comparing Strava, Nike Run Club, Peloton, etc. ]', caption: 'Competitive analysis comparing group discovery features across fitness platforms.', height: 280 },
+          { src: '/selected-work/project-four/heuristic-eval.png', label: '[ screenshot: Strava Groups current state — navigation pain points annotated ]', caption: 'Heuristic evaluation of the current Groups navigation flow, with friction points annotated.', height: 320 },
+          { src: '/selected-work/project-four/comp-analysis.png', label: '[ competitive analysis matrix comparing Strava and Garmin ]', caption: 'Competitive analysis comparing group discovery features to Garmin equivalents', height: 280 },
         ],
       },
       {
@@ -774,7 +776,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
         body2: 'From respondents, I recruited participants for semi-structured 1-on-1 interviews. These sessions explored users\' mental models around fitness communities, their expectations when discovering groups in an app, and moments of confusion or frustration they experienced with Strava.',
         body3: 'I synthesized findings using affinity mapping in FigJam, clustering interview excerpts and survey responses into themes. At the team level, we then compared section-specific findings together, asked follow-up questions, and provided cross-feedback before design began.',
         imageLabels: [
-          { label: '[ affinity mapping board in FigJam — clustered sticky notes from interviews ]', caption: 'Affinity mapping session synthesizing qualitative data from user interviews and surveys.', height: 320 },
+          { src: '/selected-work/project-four/research.png', label: '[ affinity mapping board in FigJam — clustered sticky notes from interviews ]', caption: 'Affinity mapping session synthesizing qualitative data from user interviews and surveys.', height: 320 },
         ],
       },
       {
@@ -784,8 +786,8 @@ const selectedWorkItems: SelectedWorkItem[] = [
         body: 'From our research synthesis, we developed a primary user persona that represented our core audience: a fitness-motivated individual who uses tracking apps regularly but is new to Strava and unfamiliar with its social features. The persona captured key behaviors, goals, frustrations, and the context in which they\'d encounter Groups.',
         body2: 'We then mapped this persona\'s journey through the current Groups experience — from initial awareness to discovery, evaluation, joining, and first participation. The journey map revealed that the sharpest drop-off moments occurred during the discovery-to-evaluation transition: users could tell groups existed, but couldn\'t efficiently find relevant ones or understand what joining would actually give them.',
         imageLabels: [
-          { label: '[ user persona card with demographics, goals, frustrations, and behaviors ]', caption: 'Primary user persona developed from synthesis of survey and interview data.', height: 340 },
-          { label: '[ journey map showing touchpoints, emotions, and pain points across the Groups flow ]', caption: 'Journey map tracking the user experience from group discovery through first participation.', height: 300 },
+          { src: '/selected-work/project-four/persona.png', label: '[ user persona card with demographics, goals, frustrations, and behaviors ]', caption: 'Primary user persona developed from synthesis of survey and interview data.', height: 400 },
+          { src: '/selected-work/project-four/journey-map.png', label: '[ journey map showing touchpoints, emotions, and pain points across the Groups flow ]', caption: 'Journey map tracking the user experience from group discovery through first participation.', height: 400 },
         ],
       },
       {
@@ -794,10 +796,8 @@ const selectedWorkItems: SelectedWorkItem[] = [
         title: 'Restructuring the navigation to match user mental models.',
         body: 'Armed with research insights, we tackled the structural root of the navigation problems. We conducted an open card sorting exercise with participants to understand how users naturally categorize group-related content — and found significant mismatches with Strava\'s existing hierarchy.',
         body2: 'Based on card sorting results and competitive benchmarks, we proposed a restructured information architecture for the Groups section. The key changes included elevating Groups to a primary navigation item, introducing category-based browsing (by sport, location, and experience level), and reorganizing the group detail page to lead with value-oriented content rather than admin metadata.',
-        body3: 'We validated the new IA through tree testing, confirming that users could locate target groups significantly faster under the proposed structure.',
         imageLabels: [
-          { label: '[ card sorting results — grouped categories from participant sessions ]', caption: 'Open card sorting results revealing how users naturally categorize group content.', height: 280 },
-          { label: '[ revised information architecture diagram / sitemap for Groups ]', caption: 'Restructured information architecture for the Groups ecosystem.', height: 320 },
+          { src: '/selected-work/project-four/info-arch.png', label: '[ information architecture exploration — current Groups flow versus proposed flows ]', caption: 'A comparison of the current and proposed information architectures for the Groups section.', height: 400 },
         ],
       },
       {
@@ -807,7 +807,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
         body: 'Before moving into digital tools, we sketched paper wireframes to rapidly explore layout options for key screens: the Groups discovery hub, search & filter interface, group detail page, and the join/onboarding flow. Paper allowed us to iterate through multiple concepts quickly, testing different information hierarchies and interaction patterns without the overhead of high-fidelity tools.',
         body2: 'We reviewed our sketches against the personas and journey map, selecting the strongest concepts for each screen based on how well they addressed our identified pain points. The paper phase helped us commit to a clear content hierarchy before investing in digital wireframes.',
         imageLabels: [
-          { label: '[ photos of hand-drawn paper wireframes for key screens ]', caption: 'Paper wireframe explorations for the Groups discovery hub and detail page.', height: 300 },
+          { src: '/selected-work/project-four/paper-wireframe.png', label: '[ photos of hand-drawn paper wireframes for key screens ]', caption: 'Paper wireframe explorations for the Groups discovery hub and detail page.', height: 350 },
         ],
       },
       {
@@ -817,7 +817,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
         body: 'We translated our strongest paper concepts into low-fidelity digital wireframes in Figma. At this stage, the focus was on layout, flow, and content placement — not visual polish. We wireframed the complete Groups journey: discovery landing page, category browsing, search with filters, group detail pages, and the join confirmation flow.',
         body2: 'The low-fi wireframes allowed us to conduct early usability walkthroughs with peers, catching navigation dead-ends and unclear labeling before investing in visual design. Feedback at this stage led to key refinements, including adding a "recommended for you" section to the discovery page and simplifying the group detail page to a single-scroll layout.',
         imageLabels: [
-          { label: '[ low-fidelity wireframe screens from Figma — key flows ]', caption: 'Low-fidelity wireframes showing the redesigned Groups discovery and detail flows.', height: 320 },
+          { src: '/selected-work/project-four/lo-fi.png', label: '[ low-fidelity wireframe screens from Figma — key flows ]', caption: 'Low-fidelity wireframes showing the redesigned Groups discovery and detail flows.', height: 350 },
         ],
       },
       {
@@ -828,8 +828,8 @@ const selectedWorkItems: SelectedWorkItem[] = [
         body2: 'In parallel, our team aligned all feature sections using a simple shared design system, then merged our work into one interactive prototype in Figma. I also contributed a pull-up search/filter pattern that was implemented in my Groups section and reused in Maps to support consistency across the combined experience.',
         body3: 'Usability testing was run as a team on the integrated prototype, with each member testing the feature area they owned. In my sessions, participants completed Groups discovery tasks faster and rated the redesigned flow as more intuitive and welcoming than the current Strava experience.',
         imageLabels: [
-          { label: '[ high-fidelity mockup screens — Groups discovery hub and detail page ]', caption: 'High-fidelity designs for the redesigned Groups experience.', height: 360 },
-          { label: '[ before & after comparison — current Strava Groups vs redesigned version ]', caption: 'Before and after: the existing Strava Groups experience versus our redesign.', height: 300 },
+          { src: '/selected-work/project-four/hero.png', label: '[ high-fidelity mockup screens — Groups discovery hub and detail page ]', caption: 'High-fidelity designs for the redesigned Groups experience.', height: 360 },
+          { src: '/selected-work/project-four/cover.png', label: '[ before & after comparison — current Strava Groups vs redesigned version ]', caption: 'Before and after: the existing Strava Groups experience versus our redesign.', height: 300 },
         ],
       },
     ],
@@ -837,6 +837,8 @@ const selectedWorkItems: SelectedWorkItem[] = [
     prevSlug: 'project-three',
     nextSlug: 'project-five',
   },
+
+  // ── CX Research & Organizational Design — Busey Bank ──
 
   {
     slug: 'project-five',

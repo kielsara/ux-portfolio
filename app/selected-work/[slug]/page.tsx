@@ -68,7 +68,12 @@ function ImgPlaceholder({
           alt={alt ?? 'Case study section image'}
           wrapperClassName="section-image-media"
           imageClassName="section-image-img"
-          imageStyle={{ height }}
+          imageStyle={{
+            width: '100%',
+            height,
+            objectFit: 'cover',
+            background: src.includes('heuristic-eval') ? '#fff' : undefined,
+          }}
           triggerClassName="section-image-zoom-trigger"
           dialogLabel="Full section image preview"
         />
@@ -730,12 +735,18 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                   {step.imageLabels && step.imageLabels.map((img, j) => (
                     <ImgPlaceholder
                       key={j}
-                      gradient={[
-                        'linear-gradient(135deg,#3b1d6e,#1a2a40)',
-                        'linear-gradient(135deg,#1a3a5c,#2d1b4e)',
-                        'linear-gradient(135deg,#2d1b4e,#1a3a5c)',
-                        'linear-gradient(135deg,#1a2a40,#3b1d6e)',
-                      ][(i + j) % 4]}
+                      src={img.src}
+                      alt={img.alt}
+                      gradient={
+                        img.src
+                          ? undefined
+                          : [
+                              'linear-gradient(135deg,#3b1d6e,#1a2a40)',
+                              'linear-gradient(135deg,#1a3a5c,#2d1b4e)',
+                              'linear-gradient(135deg,#2d1b4e,#1a3a5c)',
+                              'linear-gradient(135deg,#1a2a40,#3b1d6e)',
+                            ][(i + j) % 4]
+                      }
                       label={img.label}
                       caption={img.caption}
                       height={img.height ?? 280}
@@ -883,8 +894,13 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                   {step.imageLabels && step.imageLabels.map((img, j) => (
                     <ImgPlaceholder
                       key={j}
-                      gradient={[
-                        'linear-gradient(135deg,#2d2d44,#1a1a2e)',
+                      src={img.src}
+                      alt={img.alt}
+                      gradient={
+                        img.src
+                          ? undefined
+                          : [
+                              'linear-gradient(135deg,#2d2d44,#1a1a2e)',
                         'linear-gradient(135deg,#1a1a2e,#16213e)',
                         'linear-gradient(135deg,#16213e,#0f3460)',
                         'linear-gradient(135deg,#2a2a3a,#1e1e30)',
