@@ -752,6 +752,29 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                       height={img.height ?? 280}
                     />
                   ))}
+
+                  {step.beforeAfter && (
+                    <div className="before-after-grid before-after-grid--app-redesign">
+                      <div className="before-after-item">
+                        <div className="before-after-label">Before</div>
+                        <ImgPlaceholder
+                          src={step.beforeAfter.before.src}
+                          alt={step.beforeAfter.before.alt}
+                          caption={step.beforeAfter.before.caption}
+                          height={step.beforeAfter.before.height ?? 280}
+                        />
+                      </div>
+                      <div className="before-after-item">
+                        <div className="before-after-label">After</div>
+                        <ImgPlaceholder
+                          src={step.beforeAfter.after.src}
+                          alt={step.beforeAfter.after.alt}
+                          caption={step.beforeAfter.after.caption}
+                          height={step.beforeAfter.after.height ?? 280}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </section>
               ))}
             </>
@@ -910,6 +933,29 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                       height={img.height ?? 280}
                     />
                   ))}
+
+                  {step.beforeAfter && (
+                    <div className="before-after-grid before-after-grid--app-redesign">
+                      <div className="before-after-item">
+                        <div className="before-after-label">Before</div>
+                        <ImgPlaceholder
+                          src={step.beforeAfter.before.src}
+                          alt={step.beforeAfter.before.alt}
+                          caption={step.beforeAfter.before.caption}
+                          height={step.beforeAfter.before.height ?? 280}
+                        />
+                      </div>
+                      <div className="before-after-item">
+                        <div className="before-after-label">After</div>
+                        <ImgPlaceholder
+                          src={step.beforeAfter.after.src}
+                          alt={step.beforeAfter.after.alt}
+                          caption={step.beforeAfter.after.caption}
+                          height={step.beforeAfter.after.height ?? 280}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </section>
               ))}
             </>

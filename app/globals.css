@@ -1558,6 +1558,12 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   margin: 32px 0;
 }
 
+.before-after-grid--app-redesign {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .before-after-item {
   display: flex;
   flex-direction: column;
@@ -2037,6 +2043,7 @@ blockquote cite { font-size: 0.78rem; color: var(--muted); font-style: normal; }
   
   /* Design system responsive */
   .before-after-grid { grid-template-columns: 1fr; gap: 32px; }
+  .article-section--process .before-after-grid { margin-top: 20px; }
   .chart-pile-stage {
     height: clamp(470px, 88vw, 760px);
   }

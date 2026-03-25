@@ -82,6 +82,10 @@ export interface SelectedWorkItem {
     body3?: string
     ndaNotice?: string  // shown instead of images when NDA restricts visuals
     imageLabels?: { src?: string; alt?: string; label: string; caption?: string; height?: number }[]
+    beforeAfter?: {
+      before: { src?: string; alt?: string; caption?: string; height?: number }
+      after: { src?: string; alt?: string; caption?: string; height?: number }
+    }
   }[]
 
   // Section content (standard project)
@@ -828,10 +832,13 @@ const selectedWorkItems: SelectedWorkItem[] = [
         body2: 'In parallel, our team aligned all feature sections using a simple shared design system, then merged our work into one interactive prototype in Figma. I also contributed a pull-up search/filter pattern that was implemented in my Groups section and reused in Maps to support consistency across the combined experience.',
         body3: 'Usability testing was run as a team on the integrated prototype, with each member testing the feature area they owned. In my sessions, participants completed Groups discovery tasks faster and rated the redesigned flow as more intuitive and welcoming than the current Strava experience.',
         imageLabels: [
-          { src: '/selected-work/project-four/hero.png', label: '[ high-fidelity mockup screens — Groups discovery hub and detail page ]', caption: 'High-fidelity designs for the redesigned Groups experience.', height: 360 },
-          { src: '/selected-work/project-four/cover.png', label: '[ before & after comparison — current Strava Groups vs redesigned version ]', caption: 'Before and after: the existing Strava Groups experience versus our redesign.', height: 300 },
+          { src: '/selected-work/project-four/hi-fi.png', label: '[ high-fidelity mockup screens — Groups discovery hub and detail page ]', caption: 'High-fidelity designs for the redesigned Groups experience.', height: 240 },
         ],
-      },
+        beforeAfter: {
+          before: { src: '/selected-work/project-four/before.mp4', alt: 'Strava Groups: baseline prototype video', caption: 'Baseline Groups experience from the initial audit.', height: 500 },
+          after: { src: '/selected-work/project-four/prototype.mp4', alt: 'Strava Groups: redesigned prototype video', caption: 'Redesigned Groups experience, prioritizing navigation and discovery.', height: 500 },
+        },
+      }
     ],
 
     prevSlug: 'project-three',
