@@ -81,7 +81,16 @@ export interface SelectedWorkItem {
     body2?: string
     body3?: string
     ndaNotice?: string  // shown instead of images when NDA restricts visuals
-    imageLabels?: { src?: string; alt?: string; label: string; caption?: string; height?: number }[]
+    imageLabels?: {
+      src?: string
+      alt?: string
+      label: string
+      caption?: string
+      height?: number
+      postTitle?: string
+      postBody?: string
+      postBody2?: string
+    }[]
     beforeAfter?: {
       before: { src?: string; alt?: string; caption?: string; height?: number }
       after: { src?: string; alt?: string; caption?: string; height?: number }
@@ -633,9 +642,6 @@ const selectedWorkItems: SelectedWorkItem[] = [
         body: 'Before designing anything, we immersed ourselves in the problem space. We reviewed foundational ABA literature on ABC documentation challenges, examined AI interventions in autism care, and mapped the current landscape of educator-facing tools. A consistent pattern emerged: while AI tools for autism are rapidly expanding, the vast majority are student-facing (social skill robots, gamified therapy, AR/VR). Almost nothing exists to support the adults responsible for documenting behavior.',
         body2: 'Research from Lindsay et al. (2013) confirmed that educators often feel undertrained and overwhelmed when supporting autistic students — particularly when managing behavior documentation. This framing shifted our design goal from "build an AI tool" to "reduce cognitive burden for an already-stretched professional."',
         body3: 'Ethical literature (Nguyen et al., 2023) and FERPA guidelines shaped our emphasis on role-based access, transparency, and editable AI outputs from the earliest stages of design.',
-        imageLabels: [
-          { label: '[ literature review synthesis — key themes and gaps identified across sources ]', caption: 'Synthesis of literature review showing the gap in educator-facing AI tools for behavioral documentation.', height: 300 },
-        ],
       },
       {
         id: 'system',
@@ -645,20 +651,33 @@ const selectedWorkItems: SelectedWorkItem[] = [
         body2: 'The data pipeline flows through five stages: (1) the teacher speaks or types a narrative, (2) audio is transcribed and PII-redacted server-side, (3) the conversational AI asks clarifying follow-ups, (4) ABC fields are extracted and populated in real time alongside the chat, and (5) the teacher reviews, edits, signs, and submits. At every stage, the teacher retains full control — AI outputs are suggestions, never final answers.',
         body3: 'This "human-in-the-loop" architecture was a deliberate design choice. We treated AI transparency and editability as first-class UX requirements, not afterthoughts. Audit history tracking ensures every edit is versioned, supporting accountability in formal school records.',
         imageLabels: [
-          { label: '[ system architecture diagram showing client, server, AI services, and database layers ]', caption: 'Three-tier architecture with integrated AI pipeline — designed for transparency and teacher control at every stage.', height: 340 },
-          { label: '[ data pipeline flow diagram: capture → transcription → conversation → extraction → storage ]', caption: 'The five-stage data processing pipeline, from teacher narration to structured ABC report.', height: 280 },
+          { src: '/selected-work/project-three/abcapture_system_architecture.svg', alt: 'System architecture diagram for ABCapture', label: '[ system architecture diagram showing client, server, AI services, and database layers ]', caption: 'Three-tier architecture with integrated AI pipeline — designed for transparency and teacher control at every stage.', height: 340 },
+          { src: '/selected-work/project-three/abcapture_data_pipeline.svg', alt: 'ABCapture data pipeline flow diagram', label: '[ data pipeline flow diagram: capture → transcription → conversation → extraction → storage ]', caption: 'The five-stage data processing pipeline, from teacher narration to structured ABC report.', height: 225},
         ],
       },
       {
         id: 'interface',
         eyebrow: 'Interface Design & Interaction Patterns',
         title: 'A split-screen workspace where conversation meets structure.',
-        body: 'The core interaction model centers on a split-screen interface: the left panel functions as a conversational chat (accepting typed or spoken input), while the right panel displays the structured ABC form. As the teacher describes an incident, the AI processes the conversation and continuously updates the ABC fields in real time. This dual-panel approach lets teachers see the connection between what they\'re saying and how it\'s being structured — building trust in the AI\'s interpretation.',
-        body2: '[ PLACEHOLDER — this section would benefit from more detail on your specific UI design contributions. wireframing process, key design decisions around the chat interface layout, how designed the form states (empty → populating → editable), any visual design system choices (color, typography, component library decisions), and how iterated on the design based on team feedback. ]',
-        body3: '[ PLACEHOLDER — Describe any specific interaction patterns designed: how the microphone button works, how ABC fields highlight as they update, the signature flow, the incident history dashboard layout, etc. ]',
+        body: 'The right panel starts with an empty-state illustration ("Start Chatting to Generate Form"), then transitions to live population as the teacher speaks. Once the conversation wraps, the AI echoes a structured A/B/C summary back in the chat for the teacher to verify before reviewing the full form.',
+        body2: 'The AI\s opening message is intentionally short — a brief greeting followed by exactly the six data points needed for an ABC form, each tagged with a playful emoji. Teachers are busy; every word earns its place.',
+        body3: "The logo — three alphabet blocks in red, green, and yellow-green — sets the tone for the entire color system. I conceived the concept and directed its creation through AI generation. Those three colors, plus blue, become the foundation of the UI palette. Every reference to Antecedent, Behavior, or Consequence throughout the app uses its corresponding block color consistently, from form field icons to the AI's chat summaries.",
         imageLabels: [
-          { label: '[ screenshot: split-screen interface — chat panel (left) and ABC form (right) ]', caption: 'The core workspace: conversational input on the left, structured ABC form auto-populating on the right.', height: 360 },
-          { label: '[ screenshot: incident history dashboard showing logged incidents for a student ]', caption: 'Incident history view — enabling teachers to review patterns over time.', height: 300 },
+          { src: '/selected-work/project-three/record-1.png', alt: 'ABCapture split-screen interface with chat and ABC form', label: '[ screenshot: split-screen interface — chat panel (left) and ABC form (right) ]', caption: 'The core workspace: conversational input on the left, structured ABC form auto-populating on the right.', height: 400 },
+          {
+            src: '/selected-work/project-three/record.png',
+            alt: 'ABCapture drafted report before submission',
+            label: '[ screenshot: drafted report before submission ]',
+            caption: 'A drafted ABC report after user chat input, ready for review and submission.',
+            height: 400,
+            
+            postTitle: 'A familiar dashboard layout, thoughtfully filled.',
+            postBody: 'The overall layout follows a standard dashboard pattern (Jakob\'s Law) — persistent left-side nav, stat cards, profile icon top-right, collapsible sidebar — so teachers arrive already knowing where to look. Navigation is ordered by task frequency, with Record Incident at the top. The dashboard surfaces a weekly snapshot across four stat cards (total students, total incidents, week-over-week comparison, this week\'s count), a to-do widget for unsigned drafts, and behavioral analytics charts below. Record New Incident is accessible from the dashboard, home page, and individual student profiles — always within one click.',
+            postBody2: 'The My Students roster gives each student a randomly assigned animal character icon, adding warmth and color to what could otherwise feel like a clinical list. Incident frequency is surfaced directly on each card so teachers can spot patterns without drilling into profiles.',
+          },
+          { src: '/selected-work/project-three/dashboard.png', alt: 'ABCapture dashboard page', label: '[ screenshot: dashboard page with quick stat cards ]', caption: 'The ABCapture dashboard provides a quick overview of key metrics and tasks.', height: 400 },
+          { src: '/selected-work/project-three/students.png', alt: 'ABCapture student roster', label: '[ screenshot: student roster ]', caption: 'The My Students roster — with playful character icons —  lists every student within a classroom and quick incident stats.', height: 400 },
+          { src: '/selected-work/project-three/report.png', alt: 'ABCapture incident report', label: '[ screenshot: incident report ]', caption: 'A completed ABC incident report with the ability to view full edit history — supporting accountability in formal school records.', height: 400 },
         ],
       },
       {
@@ -666,11 +685,11 @@ const selectedWorkItems: SelectedWorkItem[] = [
         eyebrow: 'Usability Evaluation Design',
         title: 'Testing with 9 participants across 3 task-based workflows.',
         body: 'We designed a formative usability study to evaluate ABCapture across five dimensions: task success and system reliability, perceived ease and speed, speech-to-text and LLM performance, professional language and bias sensitivity, and feature discoverability. Participants completed three sequential tasks using the deployed prototype: (1) creating a new student profile, (2) submitting an incident report using speech-to-text with one intentionally omitted detail, and (3) emailing the signed report to a guardian.',
-        body2: 'We recruited 9 participants through convenience sampling. While we were unable to recruit our intended target users (elementary school special education teachers), participants were familiar with classroom software and AI conversational systems. All interactions used simulated student profiles — no real student data was involved.',
-        body3: 'The study was delivered remotely through a Google Form paired with the live prototype, capturing both quantitative metrics (task completion, ease/speed ratings) and qualitative feedback (open-ended responses, error descriptions, language concerns).',
-        imageLabels: [
-          { label: '[ usability study structure: 3 tasks × 5 evaluation dimensions ]', caption: 'Study design mapping three task-based workflows to five evaluation dimensions.', height: 280 },
-        ],
+        body2: 'We recruited 9 participants through our community partner. All interactions used simulated student profiles — no real student data was involved. The study was delivered remotely through a Google Form paired with the live prototype, capturing both quantitative metrics (task completion, ease/speed ratings) and qualitative feedback (open-ended responses, error descriptions, language concerns).',
+        // come back and add something!
+        // imageLabels: [
+        //   { src: '/selected-work/project-three/cover.png', alt: 'Usability study design matrix for ABCapture', label: '[ usability study structure: 3 tasks × 5 evaluation dimensions ]', caption: 'Study design mapping three task-based workflows to five evaluation dimensions.', height: 280 },
+        // ],
       },
       {
         id: 'findings',
@@ -679,10 +698,11 @@ const selectedWorkItems: SelectedWorkItem[] = [
         body: 'Task 1 (student creation) achieved 100% completion with ease ratings of 4-5/5 and no reported errors — validating that the core data entry workflow is highly learnable. Task 2 (incident reporting) saw 70% completion, with failures attributed to external API rate limits rather than design issues. Among those who completed it, the AI-powered ABC extraction received strong praise: "I really like the record incident features. It is intelligent and parses information correctly" (P5). However, the chatbot\'s follow-up prompting was inconsistent — only 4 of 7 participants who omitted a detail received a follow-up question.',
         body2: 'Task 3 (guardian email) achieved 67% completion, with failures tied to workflow discoverability and a participant who used a non-functional email. The qualitative feedback was overwhelmingly positive about the interface: "The UI design was extremely impressive" (P9), "The application is clean, consistent, and easy to use" (P5). Key issues identified were timestamp parsing errors, grade validation gaps, and microphone icon confusion.',
         body3: 'A critical participant insight flagged a security gap: "the form did not verify that the person who signed and the teacher\'s name that logged in is the same" (P9) — highlighting the importance of identity verification in formal documentation tools.',
-        imageLabels: [
-          { label: '[ task completion rates across 3 workflows — bar chart or summary visualization ]', caption: 'Task completion rates: 100% for student creation, 70% for incident reporting, 67% for guardian email.', height: 260 },
-          { label: '[ selected participant quotes — positive feedback and identified issues ]', caption: 'Participant feedback highlighting both strengths (ABC extraction, clean UI) and improvement areas.', height: 280 },
-        ],
+        // come back and add something!
+        // imageLabels: [
+          // { src: '/selected-work/project-three/cover.png', alt: 'ABCapture task completion rates summary', label: '[ task completion rates across 3 workflows — bar chart or summary visualization ]', caption: 'Task completion rates: 100% for student creation, 70% for incident reporting, 67% for guardian email.', height: 260 },
+          // { src: '/selected-work/project-three/hero.png', alt: 'Participant feedback quotes and key findings', label: '[ selected participant quotes — positive feedback and identified issues ]', caption: 'Participant feedback highlighting both strengths (ABC extraction, clean UI) and improvement areas.', height: 280 },
+        // ],
       },
       {
         id: 'ethics',

@@ -732,9 +732,9 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                   <p>{step.body}</p>
                   {step.body2 && <p>{step.body2}</p>}
                   {step.body3 && <p>{step.body3}</p>}
-                  {step.imageLabels && step.imageLabels.map((img, j) => (
+                  {step.imageLabels && step.imageLabels.flatMap((img, j) => [
                     <ImgPlaceholder
-                      key={j}
+                      key={`img-${j}`}
                       src={img.src}
                       alt={img.alt}
                       gradient={
@@ -750,8 +750,11 @@ export default async function SelectedWorkPage({ params }: { params: Promise<{ s
                       label={img.label}
                       caption={img.caption}
                       height={img.height ?? 280}
-                    />
-                  ))}
+                    />,
+                    img.postTitle ? <h2 key={`post-title-${j}`}>{img.postTitle}</h2> : null,
+                    img.postBody ? <p key={`post-body-${j}`}>{img.postBody}</p> : null,
+                    img.postBody2 ? <p key={`post-body2-${j}`}>{img.postBody2}</p> : null,
+                  ])}
 
                   {step.beforeAfter && (
                     <div className="before-after-grid before-after-grid--app-redesign">
