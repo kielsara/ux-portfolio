@@ -20,10 +20,6 @@ export default function Home() {
                 studying how people behave, communicate, and navigate digital systems to create
                 intuitive, inclusive, and accessible experiences.
               </p>
-              <p>
-                <em><strong>Please note:</strong> This portfolio is a work in progress — you will notice missing images throughout that I am actively working on uploading.
-                If you have any questions about my work or experience, please feel free to reach out!</em>
-              </p>
               <div className="hero-chips" aria-label="Education and certifications">
                 <span className="hero-chip">MS Information Management</span>
                 <span className="hero-chip">BA Sociocultural Anthropology</span>
