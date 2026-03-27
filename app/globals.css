@@ -447,7 +447,7 @@ summary:focus-visible {
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: calc(100dvh - 78px);
+  min-height: 0;
 }
 
 .home-top-row {
@@ -459,7 +459,7 @@ summary:focus-visible {
 }
 
 .home-main .site-footer {
-  margin-top: auto;
+  margin-top: clamp(20px, 3.5vh, 44px);
 }
 
 .home-hero-section {
