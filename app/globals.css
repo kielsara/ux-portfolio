@@ -591,11 +591,11 @@ summary:focus-visible {
 }
 
 .marquee-column-track--up {
-  animation: marquee-column-up 34s linear infinite;
+  animation: marquee-column-up 60s linear infinite;
 }
 
 .marquee-column-track--down {
-  animation: marquee-column-down 34s linear infinite;
+  animation: marquee-column-down 60s linear infinite;
 }
 
 .marquee-column-track--paused {
