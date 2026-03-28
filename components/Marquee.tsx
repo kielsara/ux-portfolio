@@ -74,14 +74,32 @@ const ALL_PROJECTS = [
 ]
 
 const PROJECTS = ALL_PROJECTS.filter(p => !p.hidden)
-const LEFT_COLUMN_PROJECTS = PROJECTS.slice(0, 3)
-const RIGHT_COLUMN_PROJECTS = PROJECTS.slice(3, 5)
+const LOOP_REPEATS = 3
+const RIGHT_COLUMN_OFFSET = Math.max(1, Math.floor(PROJECTS.length / 2))
 
 type MarqueeProps = {
   orientation?: 'horizontal' | 'vertical'
 }
 
-const repeatCards = <T,>(cards: T[]) => [...cards, ...cards]
+const rotateCards = <T,>(cards: T[], offset: number) => {
+  if (!cards.length) {
+    return cards
+  }
+
+  const normalizedOffset = ((offset % cards.length) + cards.length) % cards.length
+
+  return [...cards.slice(normalizedOffset), ...cards.slice(0, normalizedOffset)]
+}
+
+const repeatCards = <T,>(cards: T[], repeats = 2) => {
+  const repeated: T[] = []
+
+  for (let i = 0; i < repeats; i += 1) {
+    repeated.push(...cards)
+  }
+
+  return repeated
+}
 
 function MarqueeCard({
   project,
@@ -92,7 +110,7 @@ function MarqueeCard({
   index: number
   listLength: number
 }) {
-  const isMiddleSet = index < listLength
+  const isMiddleSet = index >= listLength && index < listLength * 2
   const slideIndex = index % listLength
 
   return (
@@ -143,8 +161,11 @@ export default function Marquee({ orientation = 'horizontal' }: MarqueeProps) {
 
   const shouldPause = hovering || focused
 
-  const leftCards = useMemo(() => repeatCards(LEFT_COLUMN_PROJECTS), [])
-  const rightCards = useMemo(() => repeatCards(RIGHT_COLUMN_PROJECTS), [])
+  const leftColumnProjects = useMemo(() => PROJECTS, [])
+  const rightColumnProjects = useMemo(() => rotateCards(PROJECTS, RIGHT_COLUMN_OFFSET), [])
+
+  const leftCards = useMemo(() => repeatCards(leftColumnProjects, LOOP_REPEATS), [leftColumnProjects])
+  const rightCards = useMemo(() => repeatCards(rightColumnProjects, LOOP_REPEATS), [rightColumnProjects])
 
   if (!isVertical) {
     return null
@@ -173,7 +194,7 @@ export default function Marquee({ orientation = 'horizontal' }: MarqueeProps) {
                   key={`${project.id}-left-${index}`}
                   project={project}
                   index={index}
-                  listLength={LEFT_COLUMN_PROJECTS.length}
+                  listLength={leftColumnProjects.length}
                 />
               ))}
             </div>
@@ -186,7 +207,7 @@ export default function Marquee({ orientation = 'horizontal' }: MarqueeProps) {
                   key={`${project.id}-right-${index}`}
                   project={project}
                   index={index}
-                  listLength={RIGHT_COLUMN_PROJECTS.length}
+                  listLength={rightColumnProjects.length}
                 />
               ))}
             </div>
