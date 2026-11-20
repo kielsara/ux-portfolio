@@ -36,10 +36,10 @@ const NAV_GROUPS: NavGroup[] = [
   {
     groupLabel: 'Selected Work',
     items: [
+      { href: '/selected-work/project-four',  label: 'UX/UI Concept Redesign',   sub: 'Reimagining Strava\'s mobile experience' },
+      { href: '/selected-work/project-three', label: 'UX/UI Design with AI',  sub: 'Prototyping a behavior reporting platform' },
       { href: '/selected-work/project-one',   label: 'UX Audit & Redesign',       sub: 'Addressing Synchrony Analytics usability' },
       { href: '/selected-work/project-two',   label: 'Design System',  sub: 'Establishing a component library & guidelines' },
-      { href: '/selected-work/project-three', label: 'UX/UI Design with AI',  sub: 'Prototyping a behavior reporting platform' },
-      { href: '/selected-work/project-four',  label: 'UX/UI Concept Redesign',   sub: 'Reimagining Strava\'s mobile experience' },
       { href: '/selected-work/project-five',  label: 'CX Strategy & Design',   sub: 'Developing Busey\'s persona & journey map program' },
       { href: '/selected-work/project-six',   label: 'UX Research & Operations',    sub: 'Scaling research practices at Synchrony', hidden: true },
     ],
