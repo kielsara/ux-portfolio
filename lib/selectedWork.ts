@@ -368,6 +368,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
       ],
     },
 
+    prevSlug: 'project-three',
     nextSlug: 'project-two',
   },
 
@@ -573,7 +574,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
     },
 
     prevSlug: 'project-one',
-    nextSlug: 'project-three',
+    nextSlug: 'project-five',
   },
 
   // ── AI-Powered UX/UI Design — ABCapture ──
@@ -714,8 +715,8 @@ const selectedWorkItems: SelectedWorkItem[] = [
       },
     ],
 
-    prevSlug: 'project-two',
-    nextSlug: 'project-four',
+    prevSlug: 'project-four',
+    nextSlug: 'project-one',
   },
 
   // ── App Redesign — Strava Groups ──
@@ -861,8 +862,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
       }
     ],
 
-    prevSlug: 'project-three',
-    nextSlug: 'project-five',
+    nextSlug: 'project-three',
   },
 
   // ── CX Research & Organizational Design — Busey Bank ──
@@ -975,7 +975,7 @@ const selectedWorkItems: SelectedWorkItem[] = [
       },
     ],
 
-    prevSlug: 'project-four',
+    prevSlug: 'project-two',
     nextSlug: 'project-six',
   },
 
